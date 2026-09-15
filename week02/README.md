@@ -4,6 +4,21 @@
 - 학번: 202302200
 - 환경: Ubuntu 22.04, ROS 2 Humble
 
+## 사용자명 및 홈 경로
+
+현재 로그인 사용자명은 `ktw25079`이며, 홈 디렉터리는 `/home/kangtaeuk`이다.
+사용자명만 변경하면 홈 디렉터리 이름은 자동으로 변경되지 않는다.
+아래 명령은 `$HOME`을 사용하므로 현재 홈 경로를 따른다.
+홈 디렉터리를 `/home/ktw25079`로 이전하고 계정의 홈 경로도 변경하면
+같은 명령을 사용할 수 있다. 저장소도 해당 홈 디렉터리 아래에 있어야 한다.
+
+현재 터미널의 사용자명과 홈 경로는 다음 명령으로 확인한다.
+
+```bash
+whoami
+printenv HOME
+```
+
 ## 실습 내용
 
 talker가 `/chatter` 토픽으로 `std_msgs/msg/String` 메시지를 발행하고,
@@ -35,11 +50,11 @@ sudo apt install ros-humble-demo-nodes-cpp ros-humble-demo-nodes-py
 터미널 두 개를 나란히 열어 각각 실행한다.
 
 ```bash
-bash ~/intelligent_robot_practice/week02/run_demo.sh talker
+bash "$HOME/intelligent_robot_practice/week02/run_demo.sh" talker
 ```
 
 ```bash
-bash ~/intelligent_robot_practice/week02/run_demo.sh listener
+bash "$HOME/intelligent_robot_practice/week02/run_demo.sh" listener
 ```
 
 스크립트는 ROS 환경을 불러오고, 같은 PC 안에서 통신하도록 설정한다.
@@ -57,7 +72,7 @@ bash ~/intelligent_robot_practice/week02/run_demo.sh listener
 ```bash
 source /opt/ros/humble/setup.bash
 export ROS_LOCALHOST_ONLY=1
-python3 ~/intelligent_robot_practice/week02/talker.py
+python3 "$HOME/intelligent_robot_practice/week02/talker.py"
 ```
 
 터미널 2:
@@ -65,7 +80,7 @@ python3 ~/intelligent_robot_practice/week02/talker.py
 ```bash
 source /opt/ros/humble/setup.bash
 export ROS_LOCALHOST_ONLY=1
-python3 ~/intelligent_robot_practice/week02/listener.py
+python3 "$HOME/intelligent_robot_practice/week02/listener.py"
 ```
 
 출력 예시(시간 정보 생략):
