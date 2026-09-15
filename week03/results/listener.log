@@ -1,0 +1,48 @@
+2026-09-15T22:05:48+09:00
+User: ktw25079 | Home: /home/ktw25079 | ROS_DOMAIN_ID: 79
+$ bash /home/ktw25079/intelligent_robot_practice/week03/run_pubsub.sh listener
+[INFO] [1789477549.811543717] [listener_202302200]: I heard: hello ros2 0 — 강태욱
+[INFO] [1789477550.805543627] [listener_202302200]: I heard: hello ros2 1 — 강태욱
+[INFO] [1789477551.806066357] [listener_202302200]: I heard: hello ros2 2 — 강태욱
+[INFO] [1789477552.806081280] [listener_202302200]: I heard: hello ros2 3 — 강태욱
+[INFO] [1789477553.806592135] [listener_202302200]: I heard: hello ros2 4 — 강태욱
+[INFO] [1789477554.806112758] [listener_202302200]: I heard: hello ros2 5 — 강태욱
+[INFO] [1789477555.805986719] [listener_202302200]: I heard: hello ros2 6 — 강태욱
+[INFO] [1789477556.805780819] [listener_202302200]: I heard: hello ros2 7 — 강태욱
+[INFO] [1789477557.805530111] [listener_202302200]: I heard: hello ros2 8 — 강태욱
+[INFO] [1789477558.805929202] [listener_202302200]: I heard: hello ros2 9 — 강태욱
+[INFO] [1789477559.806415440] [listener_202302200]: I heard: hello ros2 10 — 강태욱
+[INFO] [1789477560.806192541] [listener_202302200]: I heard: hello ros2 11 — 강태욱
+[INFO] [1789477561.806241605] [listener_202302200]: I heard: hello ros2 12 — 강태욱
+[INFO] [1789477562.806385296] [listener_202302200]: I heard: hello ros2 13 — 강태욱
+[INFO] [1789477563.806351276] [listener_202302200]: I heard: hello ros2 14 — 강태욱
+[INFO] [1789477564.806134724] [listener_202302200]: I heard: hello ros2 15 — 강태욱
+[INFO] [1789477565.806376666] [listener_202302200]: I heard: hello ros2 16 — 강태욱
+[INFO] [1789477566.805826213] [listener_202302200]: I heard: hello ros2 17 — 강태욱
+[INFO] [1789477567.805880689] [listener_202302200]: I heard: hello ros2 18 — 강태욱
+[INFO] [1789477568.805695391] [listener_202302200]: I heard: hello ros2 19 — 강태욱
+[INFO] [1789477569.805701965] [listener_202302200]: I heard: hello ros2 20 — 강태욱
+[INFO] [1789477570.805790188] [listener_202302200]: I heard: hello ros2 21 — 강태욱
+[INFO] [1789477571.805599141] [listener_202302200]: I heard: hello ros2 22 — 강태욱
+[INFO] [1789477572.805377590] [listener_202302200]: I heard: hello ros2 23 — 강태욱
+[INFO] [1789477573.805630066] [listener_202302200]: I heard: hello ros2 24 — 강태욱
+[INFO] [1789477574.805680951] [listener_202302200]: I heard: hello ros2 25 — 강태욱
+[INFO] [1789477575.806280280] [listener_202302200]: I heard: hello ros2 26 — 강태욱
+[INFO] [1789477576.806295182] [listener_202302200]: I heard: hello ros2 27 — 강태욱
+[INFO] [1789477577.806701767] [listener_202302200]: I heard: hello ros2 28 — 강태욱
+[INFO] [1789477578.807001825] [listener_202302200]: I heard: hello ros2 29 — 강태욱
+[INFO] [1789477579.806031194] [listener_202302200]: I heard: hello ros2 30 — 강태욱
+[INFO] [1789477580.805947935] [listener_202302200]: I heard: hello ros2 31 — 강태욱
+[INFO] [1789477581.806656669] [listener_202302200]: I heard: hello ros2 32 — 강태욱
+[INFO] [1789477582.806518604] [listener_202302200]: I heard: hello ros2 33 — 강태욱
+[INFO] [1789477583.806389961] [listener_202302200]: I heard: hello ros2 34 — 강태욱
+[INFO] [1789477584.805899420] [listener_202302200]: I heard: hello ros2 35 — 강태욱
+[INFO] [1789477585.806925679] [listener_202302200]: I heard: hello ros2 36 — 강태욱
+[INFO] [1789477586.806015604] [listener_202302200]: I heard: hello ros2 37 — 강태욱
+[INFO] [1789477587.806885391] [listener_202302200]: I heard: hello ros2 38 — 강태욱
+[INFO] [1789477588.805806703] [listener_202302200]: I heard: hello ros2 39 — 강태욱
+[INFO] [1789477589.806310752] [listener_202302200]: I heard: hello ros2 40 — 강태욱
+[INFO] [1789477590.805705396] [listener_202302200]: I heard: hello ros2 41 — 강태욱
+[INFO] [1789477591.806157161] [listener_202302200]: I heard: hello ros2 42 — 강태욱
+[INFO] [1789477592.806069394] [listener_202302200]: I heard: hello ros2 43 — 강태욱
+Capture complete: stopped with SIGINT after 45 seconds.

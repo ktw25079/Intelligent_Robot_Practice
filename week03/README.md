@@ -49,12 +49,25 @@ bash "$HOME/intelligent_robot_practice/week03/run_pubsub.sh" graph
 export IRE_WS="$HOME/ire_ws"
 ```
 
-홈 디렉터리 이전 전에 생성한 `build`와 `install`에는 이전 절대 경로가
-남을 수 있다. 이전 빌드 결과를 사용 중이라면 해당 디렉터리를 별도로 보관하거나
-정리한 뒤 `$HOME/ire_ws`에서 다시 빌드한다.
+2026-09-15 홈 경로 변경에 맞춰 기존 빌드 결과를 백업하고 현재
+`$HOME/ire_ws`에서 재빌드했다. `build`와 `install`에 이전 홈 경로가
+남아 있지 않고, 끊어진 심볼릭 링크가 없는 것을 확인했다.
 
 ## rqt_graph 결과
 
 아래 캡처에서 talker와 listener가 `/chatter_202302200` 토픽을 통해 연결되어 있음을 확인할 수 있다.
 
 ![학번 202302200의 publisher와 subscriber 연결](screenshots/rqt_graph_202302200.png)
+
+## 재실행 결과 — 2026-09-15
+
+현재 홈 경로 `/home/ktw25079`에서 새 GNOME 터미널 두 개를 열어
+각각 talker와 listener를 실행했습니다. 이번 검증에서는 두 터미널에
+`ROS_DOMAIN_ID=79`, `ROS_LOCALHOST_ONLY=1`을 적용했습니다.
+45초 실행 후 SIGINT로 종료했으며, 동일한 메시지 번호 **44개**의 발행·수신을 확인했습니다.
+
+| Talker | Listener |
+| --- | --- |
+| ![발행 결과](screenshots/talker_202302200.png) | ![수신 결과](screenshots/listener_202302200.png) |
+
+원본 실행 로그: [talker](results/talker.log), [listener](results/listener.log)

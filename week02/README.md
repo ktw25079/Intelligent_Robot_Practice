@@ -15,7 +15,7 @@ listener가 구독하여 `I heard` 로그를 출력하는지 확인한다.
 
 ## 파일 구성
 
-- `실습보고서.odt`: 기존 talker의 Publishing과 listener의 I heard 화면 캡처
+- `실습보고서.odt`: 2026-09-15 새 터미널에서 실행한 talker와 listener 화면 캡처
 - `run_demo.sh`: ROS 2 기본 데모 실행 스크립트
 - `talker.py`: 1초마다 `Hello World: N`을 발행하는 직접 구현 코드
 - `listener.py`: 수신한 메시지를 출력하는 직접 구현 코드
@@ -80,3 +80,16 @@ python3 "$HOME/intelligent_robot_practice/week02/listener.py"
 listener를 늦게 실행하면 앞선 메시지는 수신하지 못하므로 번호가 1부터 시작하지
 않을 수 있다. 이후 같은 번호의 발행·수신 로그가 나타나면 정상이다.
 각 터미널에서 Ctrl+C를 누르면 종료된다.
+
+## 재실행 결과 — 2026-09-15
+
+현재 홈 경로 `/home/ktw25079`에서 새 GNOME 터미널 두 개를 열어
+각각 talker와 listener를 실행했습니다. 이번 검증에서는 두 터미널에
+`ROS_DOMAIN_ID=79`, `ROS_LOCALHOST_ONLY=1`을 적용했습니다.
+45초 실행 후 SIGINT로 종료했으며, 동일한 메시지 번호 **44개**의 발행·수신을 확인했습니다.
+
+| Talker | Listener |
+| --- | --- |
+| ![발행 결과](screenshots/talker_202302200.png) | ![수신 결과](screenshots/listener_202302200.png) |
+
+원본 실행 로그: [talker](results/talker.log), [listener](results/listener.log)

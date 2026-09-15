@@ -1,0 +1,48 @@
+2026-09-15T22:05:48+09:00
+User: ktw25079 | Home: /home/ktw25079 | ROS_DOMAIN_ID: 79
+$ bash /home/ktw25079/intelligent_robot_practice/week03/run_pubsub.sh talker
+[INFO] [1789477549.810703605] [talker_202302200]: pub: hello ros2 0 — 강태욱
+[INFO] [1789477550.805322590] [talker_202302200]: pub: hello ros2 1 — 강태욱
+[INFO] [1789477551.805327024] [talker_202302200]: pub: hello ros2 2 — 강태욱
+[INFO] [1789477552.805326237] [talker_202302200]: pub: hello ros2 3 — 강태욱
+[INFO] [1789477553.806220454] [talker_202302200]: pub: hello ros2 4 — 강태욱
+[INFO] [1789477554.805879559] [talker_202302200]: pub: hello ros2 5 — 강태욱
+[INFO] [1789477555.805385616] [talker_202302200]: pub: hello ros2 6 — 강태욱
+[INFO] [1789477556.806129767] [talker_202302200]: pub: hello ros2 7 — 강태욱
+[INFO] [1789477557.805519511] [talker_202302200]: pub: hello ros2 8 — 강태욱
+[INFO] [1789477558.806161831] [talker_202302200]: pub: hello ros2 9 — 강태욱
+[INFO] [1789477559.806123981] [talker_202302200]: pub: hello ros2 10 — 강태욱
+[INFO] [1789477560.806020897] [talker_202302200]: pub: hello ros2 11 — 강태욱
+[INFO] [1789477561.805962491] [talker_202302200]: pub: hello ros2 12 — 강태욱
+[INFO] [1789477562.805854015] [talker_202302200]: pub: hello ros2 13 — 강태욱
+[INFO] [1789477563.805969866] [talker_202302200]: pub: hello ros2 14 — 강태욱
+[INFO] [1789477564.806401307] [talker_202302200]: pub: hello ros2 15 — 강태욱
+[INFO] [1789477565.806284609] [talker_202302200]: pub: hello ros2 16 — 강태욱
+[INFO] [1789477566.806217762] [talker_202302200]: pub: hello ros2 17 — 강태욱
+[INFO] [1789477567.806051238] [talker_202302200]: pub: hello ros2 18 — 강태욱
+[INFO] [1789477568.805902977] [talker_202302200]: pub: hello ros2 19 — 강태욱
+[INFO] [1789477569.805784765] [talker_202302200]: pub: hello ros2 20 — 강태욱
+[INFO] [1789477570.806386459] [talker_202302200]: pub: hello ros2 21 — 강태욱
+[INFO] [1789477571.806063072] [talker_202302200]: pub: hello ros2 22 — 강태욱
+[INFO] [1789477572.805332438] [talker_202302200]: pub: hello ros2 23 — 강태욱
+[INFO] [1789477573.806087497] [talker_202302200]: pub: hello ros2 24 — 강태욱
+[INFO] [1789477574.805617936] [talker_202302200]: pub: hello ros2 25 — 강태욱
+[INFO] [1789477575.805550705] [talker_202302200]: pub: hello ros2 26 — 강태욱
+[INFO] [1789477576.805512992] [talker_202302200]: pub: hello ros2 27 — 강태욱
+[INFO] [1789477577.806328940] [talker_202302200]: pub: hello ros2 28 — 강태욱
+[INFO] [1789477578.806435225] [talker_202302200]: pub: hello ros2 29 — 강태욱
+[INFO] [1789477579.805930261] [talker_202302200]: pub: hello ros2 30 — 강태욱
+[INFO] [1789477580.805810615] [talker_202302200]: pub: hello ros2 31 — 강태욱
+[INFO] [1789477581.806049385] [talker_202302200]: pub: hello ros2 32 — 강태욱
+[INFO] [1789477582.805921137] [talker_202302200]: pub: hello ros2 33 — 강태욱
+[INFO] [1789477583.805514117] [talker_202302200]: pub: hello ros2 34 — 강태욱
+[INFO] [1789477584.806040567] [talker_202302200]: pub: hello ros2 35 — 강태욱
+[INFO] [1789477585.806301472] [talker_202302200]: pub: hello ros2 36 — 강태욱
+[INFO] [1789477586.805885166] [talker_202302200]: pub: hello ros2 37 — 강태욱
+[INFO] [1789477587.806376905] [talker_202302200]: pub: hello ros2 38 — 강태욱
+[INFO] [1789477588.805363085] [talker_202302200]: pub: hello ros2 39 — 강태욱
+[INFO] [1789477589.805576473] [talker_202302200]: pub: hello ros2 40 — 강태욱
+[INFO] [1789477590.805560521] [talker_202302200]: pub: hello ros2 41 — 강태욱
+[INFO] [1789477591.805488081] [talker_202302200]: pub: hello ros2 42 — 강태욱
+[INFO] [1789477592.805910684] [talker_202302200]: pub: hello ros2 43 — 강태욱
+Capture complete: stopped with SIGINT after 45 seconds.
