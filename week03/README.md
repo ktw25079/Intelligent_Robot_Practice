@@ -4,18 +4,6 @@
 - 학번: 202302200
 - 환경: ROS 2 Humble
 
-## 사용자명 및 홈 경로
-
-저장소 경로는 `$HOME/intelligent_robot_practice`이다.
-아래 명령의 `$HOME`은 `$HOME`를 가리킨다.
-
-현재 터미널의 사용자명과 홈 경로는 다음 명령으로 확인한다.
-
-```bash
-whoami
-printenv HOME
-```
-
 ## 실습 내용
 
 `my_first_pkg`의 talker가 1초마다 `std_msgs/msg/String` 메시지를 발행하고, listener가 메시지를 구독하여 출력한다. 실행 스크립트에서 노드와 토픽 이름에 학번을 붙인다.
@@ -54,7 +42,7 @@ bash "$HOME/intelligent_robot_practice/week03/run_pubsub.sh" listener 202302200
 bash "$HOME/intelligent_robot_practice/week03/run_pubsub.sh" graph
 ```
 
-실행 스크립트의 기본 워크스페이스는 `$HOME/ire_ws`, 즉 `$HOME/ire_ws`이다.
+실행 스크립트의 기본 워크스페이스는 `$HOME/ire_ws`이다.
 다른 워크스페이스를 사용하는 경우 각 실행 터미널에서 `IRE_WS`를 지정한다.
 
 ```bash
