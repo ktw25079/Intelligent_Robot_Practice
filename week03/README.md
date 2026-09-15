@@ -49,10 +49,6 @@ bash "$HOME/intelligent_robot_practice/week03/run_pubsub.sh" graph
 export IRE_WS="$HOME/ire_ws"
 ```
 
-2026-09-15 홈 경로 변경에 맞춰 기존 빌드 결과를 백업하고 현재
-`$HOME/ire_ws`에서 재빌드했다. `build`와 `install`에 이전 홈 경로가
-남아 있지 않고, 끊어진 심볼릭 링크가 없는 것을 확인했다.
-
 ## rqt_graph 결과
 
 아래 캡처에서 talker와 listener가 `/chatter_202302200` 토픽을 통해 연결되어 있음을 확인할 수 있다.
