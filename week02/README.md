@@ -4,19 +4,6 @@
 - 학번: 202302200
 - 환경: Ubuntu 22.04, ROS 2 Humble
 
-## 사용자명 및 홈 경로
-
-현재 로그인 사용자명은 `ktw25079`이며, 홈 디렉터리는 `/home/ktw25079`이다.
-저장소 경로는 `/home/ktw25079/intelligent_robot_practice`이다.
-아래 명령의 `$HOME`은 `/home/ktw25079`를 가리킨다.
-
-현재 터미널의 사용자명과 홈 경로는 다음 명령으로 확인한다.
-
-```bash
-whoami
-printenv HOME
-```
-
 ## 실습 내용
 
 talker가 `/chatter` 토픽으로 `std_msgs/msg/String` 메시지를 발행하고,

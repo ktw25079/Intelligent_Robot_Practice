@@ -4,19 +4,6 @@
 - 학번: 202302200
 - 환경: ROS 2 Humble
 
-## 사용자명 및 홈 경로
-
-현재 로그인 사용자명은 `ktw25079`이며, 홈 디렉터리는 `/home/ktw25079`이다.
-저장소 경로는 `/home/ktw25079/intelligent_robot_practice`이다.
-아래 명령의 `$HOME`은 `/home/ktw25079`를 가리킨다.
-
-현재 터미널의 사용자명과 홈 경로는 다음 명령으로 확인한다.
-
-```bash
-whoami
-printenv HOME
-```
-
 ## 실습 내용
 
 `my_first_pkg`의 talker가 1초마다 `std_msgs/msg/String` 메시지를 발행하고, listener가 메시지를 구독하여 출력한다. 실행 스크립트에서 노드와 토픽 이름에 학번을 붙인다.
@@ -55,7 +42,7 @@ bash "$HOME/intelligent_robot_practice/week03/run_pubsub.sh" listener 202302200
 bash "$HOME/intelligent_robot_practice/week03/run_pubsub.sh" graph
 ```
 
-실행 스크립트의 기본 워크스페이스는 `$HOME/ire_ws`, 즉 `/home/ktw25079/ire_ws`이다.
+실행 스크립트의 기본 워크스페이스는 `$HOME/ire_ws`이다.
 다른 워크스페이스를 사용하는 경우 각 실행 터미널에서 `IRE_WS`를 지정한다.
 
 ```bash
@@ -64,7 +51,7 @@ export IRE_WS="$HOME/ire_ws"
 
 홈 디렉터리 이전 전에 생성한 `build`와 `install`에는 이전 절대 경로가
 남을 수 있다. 이전 빌드 결과를 사용 중이라면 해당 디렉터리를 별도로 보관하거나
-정리한 뒤 `/home/ktw25079/ire_ws`에서 다시 빌드한다.
+정리한 뒤 `$HOME/ire_ws`에서 다시 빌드한다.
 
 ## rqt_graph 결과
 
