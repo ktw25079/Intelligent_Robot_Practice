@@ -1,38 +1,16 @@
 # Week 02 — ROS 2 설치 및 통신 확인
 
-- 이름: 강태욱
-- 학번: 202302200
-- 환경: Ubuntu 22.04, ROS 2 Humble
+## 목표
 
-## 실습 내용
+ROS 2 Humble 환경에서 talker와 listener를 실행하고,
+`/chatter` 토픽을 통한 메시지 발행·구독을 확인한다.
 
-talker가 `/chatter` 토픽으로 `std_msgs/msg/String` 메시지를 발행하고,
-listener가 구독하여 `I heard` 로그를 출력하는지 확인한다.
+## 과정
 
-```text
-/talker → /chatter → /listener
-```
+### 기본 데모 실행
 
-## 파일 구성
-
-- `실습보고서.odt`: 2026-09-15 새 터미널에서 실행한 talker와 listener 화면 캡처
-- `run_demo.sh`: ROS 2 기본 데모 실행 스크립트
-- `talker.py`: 1초마다 `Hello World: N`을 발행하는 직접 구현 코드
-- `listener.py`: 수신한 메시지를 출력하는 직접 구현 코드
-
-Python 코드는 보고서의 송수신 동작을 재현하기 위해 추가한 코드이며,
-ROS 2 기본 데모 패키지의 원본 소스는 아니다.
-
-## 1. 기본 데모 실행
-
-ROS 2 Humble과 `demo_nodes_cpp`, `demo_nodes_py`가 설치된 환경에서 실행한다.
-패키지가 없다면 다음 명령으로 설치한다.
-
-```bash
-sudo apt install ros-humble-demo-nodes-cpp ros-humble-demo-nodes-py
-```
-
-터미널 두 개를 나란히 열어 각각 실행한다.
+각각 별도의 터미널에서 실행한다. 스크립트는 ROS 환경을 불러오고,
+`demo_nodes_cpp`의 talker와 `demo_nodes_py`의 listener를 실행한다.
 
 ```bash
 bash "$HOME/intelligent_robot_practice/week02/run_demo.sh" talker
@@ -42,17 +20,10 @@ bash "$HOME/intelligent_robot_practice/week02/run_demo.sh" talker
 bash "$HOME/intelligent_robot_practice/week02/run_demo.sh" listener
 ```
 
-스크립트는 ROS 환경을 불러오고, 같은 PC 안에서 통신하도록 설정한다.
-내부 실행 명령은 각각 `ros2 run demo_nodes_cpp talker`와
-`ros2 run demo_nodes_py listener`이다.
+### 직접 구현한 Python 코드 실행
 
-## 2. 직접 구현한 Python 코드 실행
-
-기본 데모를 Ctrl+C로 종료한 뒤 실행한다. 별도의 패키지 빌드 없이 사용할 수 있다.
-두 터미널 모두 같은 `ROS_DOMAIN_ID`를 사용해야 한다.
-저장소를 다른 위치에 받았다면 아래 경로를 수정한다.
-
-터미널 1:
+기본 데모를 Ctrl+C로 종료한 뒤, [talker.py](talker.py)와
+[listener.py](listener.py)를 각각 별도의 터미널에서 실행한다.
 
 ```bash
 source /opt/ros/humble/setup.bash
@@ -60,36 +31,26 @@ export ROS_LOCALHOST_ONLY=1
 python3 "$HOME/intelligent_robot_practice/week02/talker.py"
 ```
 
-터미널 2:
-
 ```bash
 source /opt/ros/humble/setup.bash
 export ROS_LOCALHOST_ONLY=1
 python3 "$HOME/intelligent_robot_practice/week02/listener.py"
 ```
 
-출력 예시(시간 정보 생략):
+## 결과
+
+기본 데모에서 talker가 발행한 `Hello World: N` 메시지를 listener가
+수신하는 것을 확인했다.
 
 ```text
+/talker → /chatter → /listener
+
 [talker]: Publishing: 'Hello World: 1'
 [listener]: I heard: [Hello World: 1]
-[talker]: Publishing: 'Hello World: 2'
-[listener]: I heard: [Hello World: 2]
 ```
-
-listener를 늦게 실행하면 앞선 메시지는 수신하지 못하므로 번호가 1부터 시작하지
-않을 수 있다. 이후 같은 번호의 발행·수신 로그가 나타나면 정상이다.
-각 터미널에서 Ctrl+C를 누르면 종료된다.
-
-## 재실행 결과 — 2026-09-15
-
-현재 홈 경로 `/home/ktw25079`에서 새 GNOME 터미널 두 개를 열어
-각각 talker와 listener를 실행했습니다. 이번 검증에서는 두 터미널에
-`ROS_DOMAIN_ID=79`, `ROS_LOCALHOST_ONLY=1`을 적용했습니다.
-45초 실행 후 SIGINT로 종료했으며, 동일한 메시지 번호 **44개**의 발행·수신을 확인했습니다.
 
 | Talker | Listener |
 | --- | --- |
 | ![발행 결과](screenshots/talker_202302200.png) | ![수신 결과](screenshots/listener_202302200.png) |
 
-원본 실행 로그: [talker](results/talker.log), [listener](results/listener.log)
+[실습 보고서](실습보고서.odt) · [발행 로그](results/talker.log) · [수신 로그](results/listener.log)
