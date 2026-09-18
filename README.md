@@ -7,12 +7,37 @@ Ubuntu 22.04와 ROS 2 Humble을 기반으로 로봇 소프트웨어 개발을 �
 - 학번: 202302200
 - 실습 환경: Ubuntu 22.04, ROS 2 Humble
 
-## 수업 소개
+## 목적
 
 Linux와 ROS 2 기초부터 워크스페이스 및 패키지 구성, 노드 간 통신을 익힙니다.
 이후 로봇 시각화와 시뮬레이션, 센서 데이터 처리, 지도 작성 및 자율주행,
 로봇팔 모션 계획과 pick & place로 실습 범위를 넓힙니다.
 학기 말에는 프로젝트를 준비하고 현장 시연과 보고서로 결과를 제출합니다.
+
+## 진행 과정
+
+1. Ubuntu 22.04와 ROS 2 Humble 환경을 준비하고 기본 talker/listener 데모로 통신을 확인했습니다.
+2. Python publisher와 subscriber를 패키지로 구성하고, 학번을 적용한 노드·토픽 이름으로 실행했습니다.
+3. 실행 로그와 화면을 저장하고 rqt_graph로 노드 간 연결을 확인했습니다.
+
+## 현재 결과
+
+| 실습 | 확인한 결과 | 자료 |
+| --- | --- | --- |
+| 2주차 | talker의 `Hello World: N` 메시지를 listener에서 수신 | [코드·실행 방법·보고서](week02/) |
+| 3주차 | 학번별 토픽의 메시지 송수신과 rqt_graph 연결 확인 | [패키지·실행 방법·결과 화면](week03/) |
+
+현재 저장된 결과는 2·3주차 실습입니다. SLAM, 자율주행과 로봇팔 조작은 아래 강의 계획에 포함된 후속 학습 내용입니다.
+
+## 파일 안내 및 실행
+
+주차별 폴더에서 코드를 확인하고, 각 README의 환경 설정·빌드·실행 순서를 따릅니다. `results/`에는 실행 로그, `screenshots/`에는 결과 화면을 보관합니다.
+
+- [2주차 실행 안내](week02/README.md)
+- [3주차 패키지 빌드 및 실행 안내](week03/README.md)
+
+<details>
+<summary>강의 계획 · 실습 장비 · 평가 · 참고자료</summary>
 
 ## 주차별 강의 계획
 
@@ -33,16 +58,6 @@ Linux와 ROS 2 기초부터 워크스페이스 및 패키지 구성, 노드 간 
 | 13 | pick & place 구현 | YOLO·SAM·Ollama·Whisper AI 등 AI 기능 소개 | #4 |
 | 14 | 프로젝트 준비 | — | — |
 | 15 | 프로젝트 발표: 현장 시연 및 보고서 제출 | — | — |
-
-## 실습 자료
-
-각 폴더의 README에서 실행 방법과 결과를 확인할 수 있습니다.
-아래 목록은 현재 저장된 자료이며, 위 강의 계획과 별도로 정리했습니다.
-
-| 폴더 | 저장된 내용 |
-| --- | --- |
-| [week02](week02/) | ROS 2 설치 및 talker/listener 통신 확인, 실습 보고서 |
-| [week03](week03/) | Publisher/Subscriber 패키지, 학번을 적용한 노드 실행, rqt_graph 결과 |
 
 ## 실습 장비 — Waffle + OpenMANIPULATOR-X
 
@@ -107,3 +122,5 @@ Waffle 위에 로봇팔을 장착한 **모바일 매니퓰레이터**로 실습�
 - [Ultralytics YOLO](https://docs.ultralytics.com)
 - [OpenCV ArUco 마커 검출](https://docs.opencv.org/4.x/d5/dae/tutorial_aruco_detection.html)
 - [Ollama](https://ollama.com)
+
+</details>
