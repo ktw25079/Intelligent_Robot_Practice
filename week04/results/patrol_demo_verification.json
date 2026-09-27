@@ -1,0 +1,56 @@
+{
+  "drive_pause": {
+    "before": {
+      "x": 6.344444751739502,
+      "y": 5.544444561004639,
+      "theta": 0.0,
+      "linear_velocity": 0.0,
+      "angular_velocity": 0.0
+    },
+    "after": {
+      "x": 6.344444751739502,
+      "y": 5.544444561004639,
+      "theta": 0.0,
+      "linear_velocity": 0.0,
+      "angular_velocity": 0.0
+    },
+    "position_drift": 0.0,
+    "angle_drift": 0.0
+  },
+  "turn_pause": {
+    "before": {
+      "x": 8.534728050231934,
+      "y": 5.544444561004639,
+      "theta": 0.2879999876022339,
+      "linear_velocity": 0.0,
+      "angular_velocity": 0.0
+    },
+    "after": {
+      "x": 8.534728050231934,
+      "y": 5.544444561004639,
+      "theta": 0.2879999876022339,
+      "linear_velocity": 0.0,
+      "angular_velocity": 0.0
+    },
+    "position_drift": 0.0,
+    "angle_drift": 0.0
+  },
+  "final_pause": {
+    "before": {
+      "x": 5.544034004211426,
+      "y": 5.544661998748779,
+      "theta": -0.0017449153820052743,
+      "linear_velocity": 0.0,
+      "angular_velocity": 0.0
+    },
+    "after": {
+      "x": 5.544034004211426,
+      "y": 5.544661998748779,
+      "theta": -0.0017449153820052743,
+      "linear_velocity": 0.0,
+      "angular_velocity": 0.0
+    },
+    "position_drift": 0.0,
+    "angle_drift": 0.0
+  }
+}
