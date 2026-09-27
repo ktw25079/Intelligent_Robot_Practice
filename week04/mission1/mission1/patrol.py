@@ -10,7 +10,7 @@ from rclpy.executors import ExternalShutdownException
 from std_srvs.srv import SetBool
 from turtlesim.msg import Pose
 
-from mission1_202402312.square_motion import SquareMotion
+from mission1.square_motion import SquareMotion
 
 
 class Patrol(Node):
