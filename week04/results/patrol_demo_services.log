@@ -1,0 +1,41 @@
+WEEK04 | Terminal 2 - 시작 / 정지 / 재개
+
+서비스: /start_stop (std_srvs/srv/SetBool)
+true = 시작·재개 / false = 정지
+
+녹화 시작 대기 중...
+
+[1/6] 사각 순찰 시작
+
+/start_stop  std_srvs/srv/SetBool  data: true
+success: True | Patrol resumed
+
+[2/6] 직진 중 정지
+
+/start_stop  std_srvs/srv/SetBool  data: false
+success: True | Paused; current side and phase retained
+정지 확인: 위치 변화 0.000000, 각도 변화 0.000000 rad
+
+[3/6] 직진 재개
+
+/start_stop  std_srvs/srv/SetBool  data: true
+success: True | Patrol resumed
+
+[4/6] 회전 중 정지
+
+/start_stop  std_srvs/srv/SetBool  data: false
+success: True | Paused; current side and phase retained
+정지 확인: 위치 변화 0.000000, 각도 변화 0.000000 rad
+
+[5/6] 회전 재개 → 두 바퀴 주행
+
+/start_stop  std_srvs/srv/SetBool  data: true
+success: True | Patrol resumed
+
+[6/6] 두 바퀴 완료 → 최종 정지
+
+/start_stop  std_srvs/srv/SetBool  data: false
+success: True | Paused; current side and phase retained
+정지 확인: 위치 변화 0.000000, 각도 변화 0.000000 rad
+
+완료: 사각형 2바퀴 + 직진/회전 정지·재개 + 최종 정지
