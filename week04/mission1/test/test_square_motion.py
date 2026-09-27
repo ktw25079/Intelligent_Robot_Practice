@@ -3,7 +3,7 @@
 import math
 import unittest
 
-from mission1_202402312.square_motion import Phase, SquareMotion, angle_error
+from mission1.square_motion import Phase, SquareMotion, angle_error
 
 
 class SquareMotionTest(unittest.TestCase):
