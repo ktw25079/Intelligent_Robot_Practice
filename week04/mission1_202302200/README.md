@@ -1,7 +1,7 @@
-# Week04 미션 #1 — turtlesim 사각 순찰
+# mission1_202302200 — turtlesim 사각 순찰
 
 조원에게 받은 기존 패키지를 참고하여 AI 도움으로 제어 로직을 재구성한 버전입니다.
-패키지명과 Python 모듈명은 `mission1`입니다.
+패키지명과 Python 모듈명은 `mission1_202302200`입니다.
 
 ## 실습 요구조건과 구현
 
@@ -26,8 +26,8 @@
 pose가 0.5초 이상 들어오지 않으면 속도 0을 발행하며, 수신이 복구되면 이어갑니다.
 출발 pose가 없거나 예상 사각형이 화면을 벗어나면 시작 요청을 실패 처리합니다.
 
-- `mission1/square_motion.py`: 거리·각도 계산과 상태 전환
-- `mission1/patrol.py`: ROS 토픽, 서비스, 타이머, 진행 로그
+- `mission1_202302200/square_motion.py`: 거리·각도 계산과 상태 전환
+- `mission1_202302200/patrol.py`: ROS 토픽, 서비스, 타이머, 진행 로그
 - `launch/patrol.launch.py`: 두 노드 동시 실행과 실행 인자
 - `test/test_square_motion.py`: 세 바퀴 반복, 회전 각도 경계, 속도 제한, 중간 재개 검증
 
@@ -37,9 +37,9 @@ pose가 0.5초 이상 들어오지 않으면 속도 0을 발행하며, 수신이
 
 ```bash
 source /opt/ros/humble/setup.bash
-colcon build --symlink-install --packages-select mission1
+colcon build --symlink-install --packages-select mission1_202302200
 source install/setup.bash
-ros2 launch mission1 patrol.launch.py
+ros2 launch mission1_202302200 patrol.launch.py
 ```
 
 처음에는 정지 상태입니다. 다른 터미널에서:
@@ -53,7 +53,7 @@ ros2 service call /start_stop std_srvs/srv/SetBool "{data: false}"
 실행 인자로 설정을 바꿀 수 있습니다.
 
 ```bash
-ros2 launch mission1 patrol.launch.py side_length:=2.5 speed:=1.5 turn_speed:=2.0 autostart:=true
+ros2 launch mission1_202302200 patrol.launch.py side_length:=2.5 speed:=1.5 turn_speed:=2.0 autostart:=true
 ```
 
 파라미터는 시작 시 읽습니다. 변경값을 제어에 적용하려면 launch를 재실행하세요.
@@ -65,7 +65,7 @@ ros2 launch mission1 patrol.launch.py side_length:=2.5 speed:=1.5 turn_speed:=2.
 작업공간에서 제어기 검증:
 
 ```bash
-PYTHONPATH=mission1 python3 -m unittest discover -s mission1/test -v
+PYTHONPATH=mission1_202302200 python3 -m unittest discover -s mission1_202302200/test -v
 ```
 
 시연에서는 시작 → 직진 중 정지 → 재개 → 회전 중 정지 → 재개 → 두 바퀴 반복을 확인하세요.
