@@ -1,9 +1,9 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>mission1</name>
+  <name>mission1_202302200</name>
   <version>1.1.0</version>
   <description>Mission 1: distance and heading based square patrol with SetBool start/stop</description>
-  <maintainer email="student@example.com">조현규</maintainer>
+  <maintainer email="student@example.com">강태욱</maintainer>
   <license>Apache-2.0</license>
   <buildtool_depend>ament_python</buildtool_depend>
   <exec_depend>rclpy</exec_depend>
