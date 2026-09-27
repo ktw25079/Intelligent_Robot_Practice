@@ -68,6 +68,10 @@ ros2 service call /start_stop std_srvs/srv/SetBool "{data: true}"
 
 ## 결과
 
+제출 파일 다운로드: [소스코드 ZIP](results/week04_source.zip?raw=true) · [시연 녹화 MKV](results/patrol_demo_2laps.mkv?raw=true).
+ZIP에는 `mission1/`의 소스, 패키지 설정, launch 파일, 테스트와 실행 안내를 포함했으며 자동 생성 파일은 제외했다.
+압축을 풀어 `mission1/`을 ROS 2 작업공간에 배치한 뒤 위 순서로 빌드한다.
+
 SimpleScreenRecorder로 터미널 2개와 turtlesim 창을 함께 녹화했다.
 시작 → 직진 중 정지·재개 → 회전 중 정지·재개 → 사각형 두 바퀴 완료 → 최종 정지를 확인했다.
 `Lap 1 complete`, `Lap 2 complete` 로그가 출력되었고, 저장된 정지 전후 측정값에서 위치·각도 변화가 모두 0이었다.
