@@ -10,12 +10,12 @@
 
 ### 1. 코드 구성과 통신
 
-Ubuntu 22.04와 ROS 2 Humble의 turtlesim을 사용한다. 패키지명은 `mission1_202402312`, 실행 파일명은 `patrol`이다. 제공받은 패키지를 참고해 AI 도움으로 제어 로직을 재구성한 코드이며, 원본 패키지명과 작성자 메타데이터를 유지했다.
+Ubuntu 22.04와 ROS 2 Humble의 turtlesim을 사용한다. 패키지명은 `mission1`, 실행 파일명은 `patrol`이다. 제공받은 패키지를 참고해 AI 도움으로 제어 로직을 재구성한 코드이며, 패키지명과 Python 모듈명은 `mission1`으로 통일했으며 원본 작성자 메타데이터는 유지했다.
 
 | 파일 | 역할 |
 | --- | --- |
-| [patrol.py](mission1/mission1_202402312/patrol.py) | `/patrol` 노드, 위치 수신, 속도 발행, 서비스 처리 |
-| [square_motion.py](mission1/mission1_202402312/square_motion.py) | 이동 거리·방향 오차 계산과 직진·회전 상태 전환 |
+| [patrol.py](mission1/mission1/patrol.py) | `/patrol` 노드, 위치 수신, 속도 발행, 서비스 처리 |
+| [square_motion.py](mission1/mission1/square_motion.py) | 이동 거리·방향 오차 계산과 직진·회전 상태 전환 |
 | [patrol.launch.py](mission1/launch/patrol.launch.py) | `/turtlesim`과 `/patrol` 동시 실행 및 파라미터 전달 |
 | [test_square_motion.py](mission1/test/test_square_motion.py) | ROS 없이 운동학 모형으로 제어기 검증 |
 
@@ -116,4 +116,8 @@ response.message = 'Patrol resumed' if self.enabled else 'Paused; current side a
 
 저장된 정지 전후 변화량이 0이라는 결과는 해당 turtlesim 시연 조건에서의 결과다. 실제 로봇에서는 관성, 바퀴 미끄러짐, 위치 추정 오차와 통신 지연 때문에 정지 응답과 궤적이 달라질 수 있다. 후속 검증에서는 반복 횟수에 따른 출발점 복귀 오차와 서비스 요청부터 정지까지 걸리는 시간을 측정하고, 필요하면 고정된 꼭짓점이나 기준 경로에 대한 위치 오차 보정을 추가할 수 있다. 이러한 개선은 이번 실습에서 구현·검증한 성과에 포함하지 않는다.
 
-제출 시에는 이 초안을 지정된 보고서 양식에 옮기고, 제공받은 패키지의 이름·작성자 표기와 본인 기여 범위를 확인해야 한다.
+보고서 코드란에는 사각 순찰과 시작·정지 서비스, launch 구성의 핵심 부분을 발췌하였다. 초기화와 종료 처리를 포함한 전체 소스코드, 빌드·실행 방법, 소스 ZIP과 시연 녹화는 GitHub에 정리하였다.
+
+https://github.com/ktw25079/Intelligent_Robot_Practice/tree/main/week04
+
+시연 영상·캡처·로그는 패키지명 변경 전의 기록이며, 현재 `mission1` 패키지의 제어 로직은 동일하다.
