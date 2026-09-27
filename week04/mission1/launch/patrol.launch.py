@@ -22,6 +22,6 @@ def generate_launch_description():
     }
     return LaunchDescription(arguments + [
         Node(package='turtlesim', executable='turtlesim_node', name='turtlesim'),
-        Node(package='mission1_202402312', executable='patrol', name='patrol',
+        Node(package='mission1', executable='patrol', name='patrol',
              output='screen', parameters=[parameters]),
     ])
