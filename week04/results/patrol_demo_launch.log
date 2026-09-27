@@ -1,0 +1,23 @@
+[INFO] [launch]: All log files can be found below /tmp/week04-ros-log/2026-09-21-14-40-09-642103-ROG-Strix-G16-9911
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [turtlesim_node-1]: process started with pid [9913]
+[INFO] [patrol-2]: process started with pid [9915]
+[turtlesim_node-1] [INFO] [1789969209.713338773] [turtlesim]: Starting turtlesim with node name /turtlesim
+[turtlesim_node-1] [INFO] [1789969209.715021945] [turtlesim]: Spawning turtle [turtle1] at x=[5.544445], y=[5.544445], theta=[0.000000]
+[patrol-2] [INFO] [1789969209.787968830] [patrol]: Ready: /start_stop (true: start, false: stop)
+[patrol-2] [INFO] [1789969282.561014981] [patrol]: Patrol resumed
+[patrol-2] [INFO] [1789969282.961558508] [patrol]: Paused; current side and phase retained
+[patrol-2] [INFO] [1789969286.273379040] [patrol]: Patrol resumed
+[patrol-2] [INFO] [1789969288.402373227] [patrol]: Corner 1/4: turning 90 degrees
+[patrol-2] [INFO] [1789969288.512914283] [patrol]: Paused; current side and phase retained
+[patrol-2] [INFO] [1789969291.825125976] [patrol]: Patrol resumed
+[patrol-2] [INFO] [1789969295.702646667] [patrol]: Corner 2/4: turning 90 degrees
+[patrol-2] [INFO] [1789969299.682440808] [patrol]: Corner 3/4: turning 90 degrees
+[patrol-2] [INFO] [1789969303.682291774] [patrol]: Corner 4/4: turning 90 degrees
+[patrol-2] [INFO] [1789969305.122970430] [patrol]: Lap 1 complete
+[patrol-2] [INFO] [1789969307.682916509] [patrol]: Corner 1/4: turning 90 degrees
+[patrol-2] [INFO] [1789969311.682384345] [patrol]: Corner 2/4: turning 90 degrees
+[patrol-2] [INFO] [1789969315.682419541] [patrol]: Corner 3/4: turning 90 degrees
+[patrol-2] [INFO] [1789969319.682391060] [patrol]: Corner 4/4: turning 90 degrees
+[patrol-2] [INFO] [1789969321.122395571] [patrol]: Lap 2 complete
+[patrol-2] [INFO] [1789969321.136677529] [patrol]: Paused; current side and phase retained
