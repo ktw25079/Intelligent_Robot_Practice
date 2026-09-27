@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="3">
-  <name>mission1_202402312</name>
+  <name>mission1</name>
   <version>1.1.0</version>
   <description>Mission 1: distance and heading based square patrol with SetBool start/stop</description>
   <maintainer email="student@example.com">조현규</maintainer>
