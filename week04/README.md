@@ -85,6 +85,4 @@ SimpleScreenRecorder로 터미널 2개와 turtlesim 창을 함께 녹화했다.
 ![두 바퀴 완료 후 정지한 화면](screenshots/patrol_demo_stopped.png)
 
 왼쪽 위는 순찰 노드의 두 바퀴 완료 로그, 왼쪽 아래는 서비스 응답, 오른쪽은 사각형 궤적과 정지한 거북이다.
-녹화 시 두 터미널에 `ROS_DOMAIN_ID=44`를 동일하게 설정했고, 거북이 창은 `QT_SCALE_FACTOR=2`로 확대했다.
 제어기 테스트 2개가 통과했다. 코드 설명과 고찰은 [보고서 초안](report.md)에 정리했다.
-시연 영상·캡처·로그는 패키지명 변경 전의 기록이다. 현재 `mission1` 패키지는 같은 제어 로직을 사용한다.
