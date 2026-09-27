@@ -1,56 +1,61 @@
 {
   "drive_pause": {
     "before": {
-      "x": 6.344444751739502,
+      "x": 6.408444404602051,
       "y": 5.544444561004639,
       "theta": 0.0,
       "linear_velocity": 0.0,
       "angular_velocity": 0.0
     },
     "after": {
-      "x": 6.344444751739502,
+      "x": 6.408444404602051,
       "y": 5.544444561004639,
       "theta": 0.0,
       "linear_velocity": 0.0,
       "angular_velocity": 0.0
     },
     "position_drift": 0.0,
-    "angle_drift": 0.0
+    "angle_drift": 0.0,
+    "observation_seconds": 2.0
   },
   "turn_pause": {
     "before": {
-      "x": 8.534728050231934,
+      "x": 8.535245895385742,
       "y": 5.544444561004639,
-      "theta": 0.2879999876022339,
+      "theta": 0.04800000041723251,
       "linear_velocity": 0.0,
       "angular_velocity": 0.0
     },
     "after": {
-      "x": 8.534728050231934,
+      "x": 8.535245895385742,
       "y": 5.544444561004639,
-      "theta": 0.2879999876022339,
+      "theta": 0.04800000041723251,
       "linear_velocity": 0.0,
       "angular_velocity": 0.0
     },
     "position_drift": 0.0,
-    "angle_drift": 0.0
+    "angle_drift": 0.0,
+    "observation_seconds": 2.0
   },
   "final_pause": {
     "before": {
-      "x": 5.544034004211426,
-      "y": 5.544661998748779,
-      "theta": -0.0017449153820052743,
+      "x": 5.544527530670166,
+      "y": 5.544665813446045,
+      "theta": -0.0017304647481068969,
       "linear_velocity": 0.0,
       "angular_velocity": 0.0
     },
     "after": {
-      "x": 5.544034004211426,
-      "y": 5.544661998748779,
-      "theta": -0.0017449153820052743,
+      "x": 5.544527530670166,
+      "y": 5.544665813446045,
+      "theta": -0.0017304647481068969,
       "linear_velocity": 0.0,
       "angular_velocity": 0.0
     },
     "position_drift": 0.0,
-    "angle_drift": 0.0
-  }
+    "angle_drift": 0.0,
+    "observation_seconds": 2.0
+  },
+  "completed_laps": 2,
+  "package": "mission1_202302200"
 }
