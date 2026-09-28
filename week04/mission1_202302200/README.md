@@ -71,11 +71,8 @@ PYTHONPATH=mission1_202302200 python3 -m unittest discover -s mission1_202302200
 시연에서는 시작 → 직진 중 정지 → 재개 → 회전 중 정지 → 재개 → 두 바퀴 반복을 확인하세요.
 직진 중 정지하면 위치가, 회전 중 정지하면 각도가 유지되어야 합니다.
 
-## 제한 및 제출
+## 실행 조건
 
 기본 turtlesim 환경에서 순찰 노드만 거북이를 제어하는 것을 전제로 합니다.
 주행 중 reset, teleport 또는 별도 teleop를 사용했다면 launch를 재시작하세요.
 거리·각도 허용 오차와 시뮬레이터의 이산 갱신 때문에 여러 바퀴 후 궤적이 조금 어긋날 수 있습니다.
-
-제출물은 패키지 소스 압축, SimpleScreenRecorder 시연 녹화, 코드·캡처를 활용한 보고서입니다.
-`build/`, `install/`, `log/`, `__pycache__/`는 제출물에 포함하지 않습니다.
