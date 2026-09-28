@@ -35,7 +35,7 @@ source ~/intelligent_robot_practice/week04/install/setup.bash
 ros2 launch mission1_202302200 patrol.launch.py
 ```
 
-두 노드가 실행되고 거북이는 시작 요청을 기다린다. 종료는 이 터미널에서 `Ctrl+C`를 누른다.
+두 노드가 실행되고 거북이는 시작 요청을 기다린다. 시작 후에는 정지 서비스를 호출할 때까지 사각 경로를 반복한다. 종료는 이 터미널에서 `Ctrl+C`를 누른다.
 
 ### 터미널 2: 시작·정지·재개
 
@@ -78,7 +78,7 @@ python3 -u scripts/verify_patrol.py | tee results/patrol_demo_services.log
 
 ## 결과
 
-제출 파일 다운로드: [소스코드 ZIP](results/mission1_202302200.zip?raw=true) · [시연 녹화 MKV](results/patrol_demo_2laps.mkv?raw=true).
+자료 다운로드: [소스코드 ZIP](results/mission1_202302200.zip?raw=true) · [시연 녹화 MKV](results/patrol_demo_2laps.mkv?raw=true).
 ZIP에는 `mission1_202302200/`의 소스, 패키지 설정, launch 파일, 테스트와 실행 안내를 포함했으며 자동 생성 파일은 제외했다.
 압축을 풀어 `mission1_202302200/`을 ROS 2 작업공간에 배치한 뒤 위 순서로 빌드한다.
 
@@ -97,4 +97,4 @@ SimpleScreenRecorder로 터미널 2개와 turtlesim 창을 함께 녹화했다.
 
 왼쪽 위는 순찰 노드의 두 바퀴 완료 로그, 왼쪽 아래는 서비스 응답, 오른쪽은 사각형 궤적과 정지한 거북이다.
 
-제어기 테스트 2개가 통과했다. 보고서는 별도 작성한 최종 PDF로 제출한다.
+제어기 테스트 2개가 통과했다.
