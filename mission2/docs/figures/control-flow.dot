@@ -1,0 +1,26 @@
+digraph flow {
+ graph [rankdir=LR, bgcolor="white", pad="0.35", nodesep="0.65", ranksep="1.2", fontname="Noto Sans CJK KR", label="키보드 입력에서 실제 모터까지 · 세 가지 제어 경로", labelloc=t, fontsize=22];
+ node [shape=box, style="rounded,filled", fontname="Noto Sans CJK KR", fontsize=14, margin="0.18,0.15", color="#46759b", fillcolor="#edf5fc"];
+ edge [fontname="Noto Sans CJK KR", fontsize=11, color="#45627b"];
+ subgraph cluster_pc {label="원격 PC";color="#acc4d9";fontname="Noto Sans CJK KR";
+ twist [label="i / k / j / l / Space\nTeleop → Twist"];
+ servo [label="1~4 / qwer\nTeleop → JointJog\n/servo_node/delta_joint_cmds\n→ MoveIt Servo"];
+ grip [label="o / p\nTeleop → GripperCommand"];
+ {rank=same;twist;servo;grip;}
+ }
+ subgraph cluster_pi {label="Raspberry Pi · ros2_control";color="#acc4d9";fontname="Noto Sans CJK KR";
+ base [label="diff_drive_controller\n바퀴"];
+ arm [label="arm_controller\n팔 관절"];
+ gripper [label="gripper_controller\n그리퍼"];
+ {rank=same;base;arm;gripper;}
+ hw [label="하드웨어 인터페이스\n수정 드라이버 + SDK"];
+ base -> hw;arm -> hw;gripper -> hw;
+ }
+ twist -> base [label="/cmd_vel\nTwist"];
+ servo -> arm [label="/arm_controller/\njoint_trajectory"];
+ grip -> gripper [label="/gripper_controller/\ngripper_cmd"];
+ cr [label="OpenCR\n바퀴 · 팔 · 그리퍼",fillcolor="#fff4e4",color="#b48b47"];
+ hw -> cr [label="USB 시리얼",dir=both];
+ feedback [label="joint_state_broadcaster\n/joint_states → PC Servo",fillcolor="#eef8ef"];
+ hw -> feedback [style=dashed,label="관절 상태",constraint=false];
+}
