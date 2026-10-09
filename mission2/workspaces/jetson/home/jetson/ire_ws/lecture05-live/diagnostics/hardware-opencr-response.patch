@@ -1,0 +1,114 @@
+--- a/src/dynamixel_sdk_wrapper.cpp
++++ b/src/dynamixel_sdk_wrapper.cpp
+@@ -18,6 +18,27 @@
+ 
+ #include <iostream>
+ #include <string>
++#include <stdexcept>
++#include "dynamixel_sdk/port_handler_linux.h"
++
++namespace {
++class OpenCRPortHandler : public dynamixel::PortHandlerLinux {
++public:
++  explicit OpenCRPortHandler(const char *name) : PortHandlerLinux(name) {}
++  double response_timeout_ms = 100.0;
++  void setPacketTimeout(uint16_t) override {
++    PortHandlerLinux::setPacketTimeout(response_timeout_ms);
++  }
++};
++struct ScopedResponseTimeout {
++  OpenCRPortHandler &port;
++  double previous;
++  ScopedResponseTimeout(OpenCRPortHandler &p, double ms)
++    : port(p), previous(p.response_timeout_ms) { port.response_timeout_ms = ms; }
++  ~ScopedResponseTimeout() { port.response_timeout_ms = previous; }
++};
++}
++
+ 
+ namespace robotis
+ {
+@@ -30,7 +51,7 @@
+ 
+ DynamixelSDKWrapper::~DynamixelSDKWrapper()
+ {
+-  port_handler_->closePort();
++  if (port_handler_) { port_handler_->closePort(); delete port_handler_; }
+ }
+ 
+ inline void error_print(const char * log)
+@@ -40,7 +61,7 @@
+ 
+ bool DynamixelSDKWrapper::open_port(const std::string & usb_port)
+ {
+-  port_handler_ = dynamixel::PortHandler::getPortHandler(usb_port.c_str());
++  port_handler_ = new OpenCRPortHandler(usb_port.c_str());
+   return port_handler_->openPort();
+ }
+ 
+@@ -95,8 +116,10 @@
+ 
+ uint8_t DynamixelSDKWrapper::read_byte(const uint16_t & address)
+ {
+-  uint8_t data[1];
+-  this->read(address, 1, &data[0]);
++  uint8_t data[1] = {0};
++  if (!this->read(address, 1, &data[0])) {
++    throw std::runtime_error("OpenCR byte read failed at address " + std::to_string(address));
++  }
+ 
+   return data[0];
+ }
+@@ -110,6 +133,10 @@
+ 
+   int32_t dxl_comm_result = COMM_RX_FAIL;
+   uint8_t dxl_error = 0;
++
++  // IMU calibration is synchronous in OpenCR firmware (up to 5 seconds).
++  ScopedResponseTimeout timeout(*static_cast<OpenCRPortHandler *>(port_handler_),
++    address == 59 && length == 1 ? 6500.0 : 100.0);
+ 
+   dxl_comm_result = packet_handler_->writeTxRx(
+     port_handler_, id_, address, length, data, &dxl_error);
+--- a/src/opencr.cpp
++++ b/src/opencr.cpp
+@@ -1,3 +1,4 @@
++#include <stdexcept>
+ // Copyright 2022 ROBOTIS CO., LTD.
+ //
+ // Licensed under the Apache License, Version 2.0 (the "License");
+@@ -16,6 +17,7 @@
+ 
+ #include "turtlebot3_manipulation_hardware/opencr.hpp"
+ 
++
+ #include <unistd.h>
+ #include <algorithm>
+ #include <memory>
+@@ -79,9 +81,10 @@
+ 
+ void OpenCR::imu_recalibration()
+ {
+-  dxl_sdk_wrapper_->write_byte(
+-    opencr_control_table.imu_re_calibration.address,
+-    opencr_control_table.imu_re_calibration.length);
++  uint8_t request = 1;
++  if (!dxl_sdk_wrapper_->write(opencr_control_table.imu_re_calibration.address, 1, &request)) {
++    throw std::runtime_error("OpenCR IMU recalibration acknowledgement failed");
++  }
+ }
+ 
+ opencr::IMU OpenCR::get_imu()
+--- a/include/turtlebot3_manipulation_hardware/dynamixel_sdk_wrapper.hpp
++++ b/include/turtlebot3_manipulation_hardware/dynamixel_sdk_wrapper.hpp
+@@ -53,8 +53,8 @@
+   void write_byte(const uint16_t & address, uint8_t data);
+ 
+ private:
+-  dynamixel::PortHandler * port_handler_;
+-  dynamixel::PacketHandler * packet_handler_;
++  dynamixel::PortHandler * port_handler_ = nullptr;
++  dynamixel::PacketHandler * packet_handler_ = nullptr;
+ 
+   std::mutex sdk_handler_m_;
+ 
