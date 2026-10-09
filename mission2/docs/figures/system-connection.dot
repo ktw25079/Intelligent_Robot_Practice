@@ -1,0 +1,19 @@
+digraph mission2 {
+ graph [rankdir=LR, bgcolor="white", pad="0.4", nodesep="0.5", ranksep="0.75", fontname="Noto Sans CJK KR", label="미션 2 · 원격 PC와 TurtleBot3 연결 구성\n팀 4 / Ubuntu 22.04 / ROS 2 Humble\n각 ROS 터미널: ROS_DOMAIN_ID=4 · ROS_LOCALHOST_ONLY=0", labelloc=t, fontsize=23];
+ node [shape=box, style="rounded,filled", fontname="Noto Sans CJK KR", fontsize=15, margin="0.22,0.18", color="#46759b", fillcolor="#edf5fc"];
+ edge [fontname="Noto Sans CJK KR", fontsize=12, color="#45627b", arrowsize=0.8];
+ pc [label="본인 노트북 192.168.0.204\n팀원 원격 PC\n네트워크 설정 · SSH 접속\n키보드 Teleop · MoveIt Servo\n/cmd_vel 관찰"];
+ wifi [label="같은 Wi-Fi 공유기\n192.168.0.0/24", fillcolor="#eef8ef", color="#50865a"];
+ subgraph cluster_robot {
+ label="TurtleBot3 + OpenMANIPULATOR-X"; fontname="Noto Sans CJK KR"; fontsize=17; color="#a9b9c7"; style=rounded;
+ pi [label="Raspberry Pi · 192.168.0.21\nUbuntu 22.04 + ROS 2 Humble\nhardware.launch.py\nros2_control · 하드웨어 드라이버"];
+ cr [label="OpenCR\n펌웨어 · 모터 통신\nIMU / 상태 응답", fillcolor="#fff4e4", color="#b48b47"];
+ wheels [label="좌·우 바퀴\n주행 / 회전", fillcolor="#fff4e4", color="#b48b47"];
+ arm [label="로봇팔 관절 4개 + 그리퍼\n지정 자세", fillcolor="#fff4e4", color="#b48b47"];
+ pi -> cr [dir=both,label="USB 시리얼\n/dev/ttyACM0"];
+ cr -> wheels [dir=both,label="모터 명령 / 상태"];
+ cr -> arm [dir=both,label="모터 명령 / 상태"];
+ }
+ pc -> wifi [dir=both,label="SSH: 원격 셸\nROS 2: 명령 / 상태"];
+ wifi -> pi [dir=both,label="Wi-Fi\nDDS 통신"];
+}
