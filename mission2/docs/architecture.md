@@ -6,17 +6,17 @@
 
 ![전체 연결](figures/system-connection.png)
 
-| 구성 요소 | 하는 일 | 하지 않는 것으로 구분할 일 |
+| 구성 요소 | 역할 | 코드·연결 |
 | --- | --- | --- |
-| 본인 노트북 | Wi-Fi·IP 설정, 라즈베리파이 접속, 팀 환경 구성 | 팀원 폴더의 모든 파일을 본인이 직접 작성했다는 뜻은 아님 |
-| 팀원 원격 PC (`jetson`) | MoveIt Servo, teleop, 토픽 관찰, 4분할 UI | 로봇에 장착된 라즈베리파이와 별도 컴퓨터 |
-| 라즈베리파이 | launch와 ROS 2 컨트롤러·드라이버 실행 | 모터의 저수준 제어 루프를 전부 직접 담당하지 않음 |
-| OpenCR | USB 명령 수신, 펌웨어를 통한 모터·IMU 처리 | Ubuntu나 ROS 2 Humble을 설치하는 컴퓨터가 아님 |
-| DYNAMIXEL | 바퀴·팔 관절·그리퍼 구동과 상태 응답 | 키보드 문자열을 직접 해석하지 않음 |
+| 본인 노트북 | Wi-Fi·IP 설정, 라즈베리파이 접속, 팀 환경 구성 | `192.168.0.204` → SSH → Pi |
+| 팀원 원격 PC (`jetson`) | MoveIt Servo, teleop, 토픽 관찰, 4분할 UI | `ire_ws`의 PC 노드 실행 |
+| 라즈베리파이 | launch와 ROS 2 컨트롤러·드라이버 실행 | `192.168.0.21`, USB로 OpenCR 연결 |
+| OpenCR | USB 명령 수신, 펌웨어를 통한 모터·IMU 처리 | DYNAMIXEL 통신과 IMU 상태 처리 |
+| DYNAMIXEL | 바퀴·팔 관절·그리퍼 구동과 상태 응답 | OpenCR에서 모터 명령 수신 |
 
 본인 노트북은 `192.168.0.204`, 라즈베리파이는 `192.168.0.21`이다. 팀원 원격 PC의 실제 IP는 제공 자료에서 확정하지 않는다. 여러 PC가 접속할 때 같은 IP를 함께 사용하면 안 된다.
 
-그림의 공유기 블록에 표시한 `ROS_DOMAIN_ID=4`와 `ROS_LOCALHOST_ONLY=0`은 공유기 설정 항목이 아니다. 같은 네트워크에서 통신하는 **각 ROS 2 프로세스의 환경 변수**다. 같은 네트워크·도메인 외에도 DDS 탐색이 통과할 수 있는 네트워크 상태가 필요하다.
+그림 상단의 `ROS_DOMAIN_ID=4`와 `ROS_LOCALHOST_ONLY=0`은 **각 ROS 2 프로세스의 환경 변수**다. 공유기는 PC와 Pi의 네트워크 연결을 제공한다. 노드 검색에는 같은 네트워크·도메인과 DDS 탐색이 가능한 통신 상태가 필요하다.
 
 ## 2. SSH 접속과 ROS 2 통신
 
@@ -69,7 +69,7 @@ remappings=[
 | `/scan` | LDS-01 레이저 스캔 | launch에 드라이버 포함; 실제 스캔 메시지 캡처 없음 |
 | `/arm_controller/joint_trajectory` | Servo가 만든 팔 궤적 명령 | 코드·설정상 연결; 저장된 메시지 로그 없음 |
 
-`/odom`은 제공 설정에서 명령을 적분하는 open-loop 방식이다. 바퀴 미끄러짐과 실제 이동 오차를 반영한 외부 측정값이나 엔코더·IMU 융합 결과로 설명하지 않는다.
+`/odom`은 제공 설정에서 명령을 적분하는 open-loop 방식이다. 실제 바퀴 미끄러짐을 직접 측정하지 않으며, 별도 엔코더·IMU 융합 검증 자료는 없다.
 
 ## 5. 다섯 컨트롤러의 역할
 
@@ -81,7 +81,7 @@ remappings=[
 | `arm_controller` | 팔 관절 궤적 처리 |
 | `gripper_controller` | 그리퍼 위치 액션 처리 |
 
-이들은 `controller_manager`가 관리하는 컨트롤러·브로드캐스터다. 각각이 모두 독립 프로세스로 실행된다고 해석하지 않는다. [설정 파일](../workspaces/jetson/home/jetson/ire_ws/src/turtlebot3_manipulation/turtlebot3_manipulation_bringup/config/hardware_controller_manager.yaml)의 관리 루프는 100 Hz이며, 실제 주기 지터는 측정하지 않았다.
+이들은 `controller_manager` 프로세스 안에서 관리하는 컨트롤러·브로드캐스터 플러그인이다. [설정 파일](../workspaces/jetson/home/jetson/ire_ws/src/turtlebot3_manipulation/turtlebot3_manipulation_bringup/config/hardware_controller_manager.yaml)의 관리 루프는 100 Hz이며, 실제 주기 지터는 측정하지 않았다.
 
 ## 6. 4분할 창과 실행 순서
 
