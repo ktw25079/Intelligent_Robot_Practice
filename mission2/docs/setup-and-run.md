@@ -6,7 +6,7 @@
 
 수행 순서는 `노트북 Wi-Fi·IP 설정 → Pi 접속 환경 구성 → Ubuntu/ROS/펌웨어 준비 → 패키지 빌드 → bringup → Servo → teleop → 결과 확인`이다. 초기 환경 전환은 수행자 설명에 근거하며, 보존된 설치·빌드 스크립트와 실행 코드를 아래에 연결한다.
 
-아래 재배치 명령은 보존본을 새 환경에서 사용하는 방법으로 정리한 것이다. 당시 명령 기록 전체가 아니며, 현재 문서 작성 환경에서 로봇을 다시 구동한 결과도 아니다. 기존 작업공간이 있는 컴퓨터에서는 해당 폴더를 보존하고 필요한 부분만 비교한다.
+아래 명령은 팀 소스를 같은 구조로 배치해 재현하는 절차다. 설치·빌드 스크립트 발췌와 새 PC용 절차를 구분했다. 기존 작업공간이 있다면 복사 전에 내용을 비교한다.
 
 전제: Ubuntu 22.04, ROS 2 Humble의 패키지 저장소 및 ROS 환경, `git`, `colcon`, `rosdep`을 준비한 상태다. PC는 desktop/MoveIt 환경, Pi는 ros-base와 하드웨어 드라이버를 사용한다. OpenCR은 TurtleBot3 Manipulation용 펌웨어가 준비되어 있어야 한다. 보존본의 `.ino`는 참조 파일이며 단독 업로드 프로젝트가 아니다.
 
@@ -42,8 +42,6 @@ network:
           password: "<현장 비밀번호>"
 ```
 
-보조자료에는 비밀번호 재설정도 있지만, 이번 자료만으로 실제 비밀번호 재설정 수행 여부는 확정하지 않는다. Wi-Fi 설정 참고와 계정 복구 수행을 같은 사실로 쓰지 않는다.
-
 Pi 부팅 후 노트북에서 연결을 확인한다.
 
 ```bash
@@ -53,7 +51,7 @@ ssh ubuntu@192.168.0.21
 
 SSH 성공과 ROS 2 노드 검색 성공은 별도 확인 항목이다. PC와 Pi 양쪽에서 `ROS_DOMAIN_ID=4`, `ROS_LOCALHOST_ONLY=0`을 설정한다.
 
-## 3. 보존본을 각 컴퓨터에 배치
+## 3. 작업공간을 각 컴퓨터에 배치
 
 각 장치에 저장소를 받은 뒤 기준 변수를 지정한다. 아래 복사 명령은 대상 작업공간이 없는 새 환경을 전제로 한다. PC와 Pi의 설치 결과는 서로 복사하지 않고 각 장치에서 빌드한다.
 
@@ -88,7 +86,7 @@ fi
 cp -a "$SNAPSHOT/jetson/home/jetson/ire_ws" "$HOME/"
 ```
 
-`jetson`은 보존본의 원래 계정 이름이다. PC 계정을 반드시 jetson으로 바꿀 필요는 없으며, 대부분의 스크립트는 `$HOME/ire_ws`를 사용한다. 4분할 UI의 SSH ControlPath는 별도 예외다.
+`jetson`은 팀원 PC의 원래 계정 이름이다. 대부분의 스크립트는 현재 계정의 `$HOME/ire_ws`를 사용하며 4분할 UI의 SSH ControlPath만 별도로 맞춰야 한다.
 
 ## 4. Pi 의존성 설치와 기본 빌드
 
@@ -151,7 +149,7 @@ rosdep install --from-paths \
 colcon build --symlink-install --packages-up-to turtlebot3_manipulation_teleop
 ```
 
-전체 보존본에는 내비게이션·Cartographer 관련 패키지도 있지만 이번 미션 실행에는 위 teleop 의존 패키지까지 사용한다. 보존된 파일의 존재가 SLAM·내비게이션 수행 결과를 뜻하지 않는다.
+이번 미션은 위 teleop 의존 패키지까지 실행한다. 함께 포함된 navigation·Cartographer 패키지는 기반 소스의 참고 구성이다.
 
 ## 7. 실행 전 점검
 
@@ -161,7 +159,7 @@ Pi에서 사전 점검을 실행한다. [preflight-robot.py](../workspaces/raspb
 bash ~/lecture05-setup/preflight-robot.sh
 ```
 
-이 스크립트는 모터 동작을 시험하지 않는다. 결과의 `physical_clearance_checked`도 `False`이므로 소프트웨어 통과를 팔 주변 공간 확보로 해석하지 않는다. 실물 구동 전에는 팔 주변 공간을 확보하고, 주행은 바닥에서 수행한다.
+이 스크립트는 통신·패키지 상태를 점검하며 모터 동작과 주변 공간은 검사하지 않는다. 실물 구동 전에는 사람이 팔 주변 공간을 확보하고, 주행은 바닥에서 수행한다.
 
 포트 접근이 실패하면 실제 장치 이름과 권한, udev 설정을 확인한다. 포트를 사용하는 기존 bringup이 있다면 중복 실행하지 않는다. 코드의 검사 결과가 필요할 때는 `~/lecture05-setup/preflight-latest.json`을 확인한다. 이 JSON은 이번 보존본에 포함되어 있지 않다.
 
