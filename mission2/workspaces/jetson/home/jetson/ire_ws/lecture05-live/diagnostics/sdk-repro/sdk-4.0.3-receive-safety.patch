@@ -1,0 +1,106 @@
+--- a/c++/src/dynamixel_sdk/protocol2_packet_handler.cpp
++++ b/c++/src/dynamixel_sdk/protocol2_packet_handler.cpp
+@@ -329,7 +329,8 @@
+       {
+         if (rxpacket[PKT_RESERVED] != 0x00 ||
+ //           rxpacket[PKT_ID] > 0xFC || // FAST protocol responds with a broadcast ID
+-           DXL_MAKEWORD(rxpacket[PKT_LENGTH_L], rxpacket[PKT_LENGTH_H]) > RXPACKET_MAX_LEN ||
++           DXL_MAKEWORD(rxpacket[PKT_LENGTH_L], rxpacket[PKT_LENGTH_H]) < 4 ||
++           DXL_MAKEWORD(rxpacket[PKT_LENGTH_L], rxpacket[PKT_LENGTH_H]) > RXPACKET_MAX_LEN - 7 ||
+            rxpacket[PKT_INSTRUCTION] != 0x55)
+         {
+           // remove the first byte in the packet
+@@ -456,10 +457,27 @@
+     // HEADER0 HEADER1 HEADER2 RESERVED ID LENGTH_L LENGTH_H INST ERROR CRC16_L CRC16_H
+   }
+ 
+-  // rx packet
+-  do {
++  // A late READ response may arrive during a WRITE. All callers allocate a
++  // full receive buffer; discard mismatched responses within this timeout.
++  uint16_t expected_length = 4;
++  if (txpacket[PKT_INSTRUCTION] == INST_READ)
++    expected_length += DXL_MAKEWORD(txpacket[PKT_PARAMETER0+2], txpacket[PKT_PARAMETER0+3]);
++  else if (txpacket[PKT_INSTRUCTION] == INST_PING)
++    expected_length += 3;
++  while (true)
++  {
+     result = rxPacket(port, rxpacket);
+-  } while (result == COMM_SUCCESS && txpacket[PKT_ID] != rxpacket[PKT_ID]);
++    if (result != COMM_SUCCESS)
++      break;
++    if (txpacket[PKT_ID] == rxpacket[PKT_ID] &&
++        DXL_MAKEWORD(rxpacket[PKT_LENGTH_L], rxpacket[PKT_LENGTH_H]) == expected_length)
++      break;
++    if (port->isPacketTimeout())
++    {
++      result = COMM_RX_CORRUPT;
++      break;
++    }
++  }
+ 
+   if (result == COMM_SUCCESS && txpacket[PKT_ID] == rxpacket[PKT_ID])
+   {
+@@ -480,7 +498,7 @@
+   int result                 = COMM_TX_FAIL;
+ 
+   uint8_t txpacket[10]        = {0};
+-  uint8_t rxpacket[14]        = {0};
++  uint8_t rxpacket[RXPACKET_MAX_LEN]        = {0};
+ 
+   if (id >= BROADCAST_ID)
+     return COMM_NOT_AVAILABLE;
+@@ -609,7 +627,7 @@
+ int Protocol2PacketHandler::reboot(PortHandler *port, uint8_t id, uint8_t *error)
+ {
+   uint8_t txpacket[10]        = {0};
+-  uint8_t rxpacket[11]        = {0};
++  uint8_t rxpacket[RXPACKET_MAX_LEN]        = {0};
+ 
+   txpacket[PKT_ID]            = id;
+   txpacket[PKT_LENGTH_L]      = 3;
+@@ -622,7 +640,7 @@
+ int Protocol2PacketHandler::clearMultiTurn(PortHandler *port, uint8_t id, uint8_t *error)
+ {
+   uint8_t txpacket[15]        = {0};
+-  uint8_t rxpacket[11]        = {0};
++  uint8_t rxpacket[RXPACKET_MAX_LEN]        = {0};
+ 
+   txpacket[PKT_ID]            = id;
+   txpacket[PKT_LENGTH_L]      = 8;
+@@ -640,7 +658,7 @@
+ int Protocol2PacketHandler::clearError(PortHandler *port, uint8_t id, uint8_t *error)
+ {
+   uint8_t txpacket[15]        = {0};
+-  uint8_t rxpacket[11]        = {0};
++  uint8_t rxpacket[RXPACKET_MAX_LEN]        = {0};
+ 
+   txpacket[PKT_ID]            = id;
+   txpacket[PKT_LENGTH_L]      = 8;
+@@ -658,7 +676,7 @@
+ int Protocol2PacketHandler::factoryReset(PortHandler *port, uint8_t id, uint8_t option, uint8_t *error)
+ {
+   uint8_t txpacket[11]        = {0};
+-  uint8_t rxpacket[11]        = {0};
++  uint8_t rxpacket[RXPACKET_MAX_LEN]        = {0};
+ 
+   txpacket[PKT_ID]            = id;
+   txpacket[PKT_LENGTH_L]      = 4;
+@@ -867,7 +885,7 @@
+   int result                  = COMM_TX_FAIL;
+ 
+   uint8_t *txpacket           = (uint8_t *)malloc(length + 12 + (length / 3));
+-  uint8_t rxpacket[11]        = {0};
++  uint8_t rxpacket[RXPACKET_MAX_LEN]        = {0};
+ 
+   if (txpacket == NULL)
+     return result;
+@@ -956,7 +974,7 @@
+   int result                  = COMM_TX_FAIL;
+ 
+   uint8_t *txpacket           = (uint8_t *)malloc(length + 12 + (length / 3));
+-  uint8_t rxpacket[11]        = {0};
++  uint8_t rxpacket[RXPACKET_MAX_LEN]        = {0};
+ 
+   if (txpacket == NULL)
+     return result;
