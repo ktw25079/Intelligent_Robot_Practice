@@ -1,4 +1,4 @@
-# week04 실습 정리
+# Mission 1 · turtlesim 사각 순찰
 
 ## 목표
 
@@ -19,12 +19,12 @@ ROS 2 패키지는 `mission1_202302200/`에 있다. Ubuntu 22.04, ROS 2 Humble�
 
 ### 2. 최초 빌드
 
-저장소를 `~/intelligent_robot_practice`에 둔 경우 아래와 같이 `week04`를 작업공간으로 사용한다. ROS 2 Humble 설치 후 필요한 패키지를 준비한다.
+저장소를 `~/intelligent_robot_practice`에 둔 경우 아래와 같이 `mission1`를 작업공간으로 사용한다. ROS 2 Humble 설치 후 필요한 패키지를 준비한다.
 
 ```bash
 sudo apt update
 sudo apt install ros-humble-turtlesim ros-humble-std-srvs python3-colcon-common-extensions
-cd ~/intelligent_robot_practice/week04
+cd ~/intelligent_robot_practice/mission1
 source /opt/ros/humble/setup.bash
 colcon build --symlink-install --packages-select mission1_202302200
 ```
@@ -33,7 +33,7 @@ colcon build --symlink-install --packages-select mission1_202302200
 
 ```bash
 source /opt/ros/humble/setup.bash
-source ~/intelligent_robot_practice/week04/install/setup.bash
+source ~/intelligent_robot_practice/mission1/install/setup.bash
 ros2 launch mission1_202302200 patrol.launch.py
 ```
 
@@ -69,11 +69,11 @@ ros2 service call /start_stop std_srvs/srv/SetBool "{data: true}"
 
 ### 5. 자동 시연 검증
 
-기존 launch를 종료하고 터미널 1에서 새로 실행한 뒤, 터미널 2에서 `week04`로 이동한다. 아래 명령은 `results/`의 서비스 로그와 검증 JSON을 새 실행 결과로 덮어쓰므로, 기존 결과를 보관하려면 먼저 별도로 복사한다.
+기존 launch를 종료하고 터미널 1에서 새로 실행한 뒤, 터미널 2에서 `mission1`로 이동한다. 아래 명령은 `results/`의 서비스 로그와 검증 JSON을 새 실행 결과로 덮어쓰므로, 기존 결과를 보관하려면 먼저 별도로 복사한다.
 수동 서비스 호출 대신 시작·정지 순서를 자동으로 진행하고, 두 바퀴 후 정지하며 검증 JSON을 저장한다.
 
 ```bash
-cd ~/intelligent_robot_practice/week04
+cd ~/intelligent_robot_practice/mission1
 source /opt/ros/humble/setup.bash
 python3 -u scripts/verify_patrol.py | tee results/patrol_demo_services.log
 ```
@@ -99,7 +99,7 @@ ZIP에는 `mission1_202302200/`의 소스, 패키지 설정, launch 파일, 테�
 
 왼쪽 위는 순찰 노드의 두 바퀴 완료 로그, 왼쪽 아래는 서비스 응답, 오른쪽은 사각형 궤적과 정지한 거북이다.
 
-제어기 수치 시험은 ROS 없이 반복 주행·각도 경계·속도 제한과 직진 중 재개를 검사하는 2개 테스트로 구성된다. ROS 서비스 정지·재개 결과는 위 로그와 JSON에서 확인한다. 수치 시험은 `week04/`에서 다음과 같이 실행한다.
+제어기 수치 시험은 ROS 없이 반복 주행·각도 경계·속도 제한과 직진 중 재개를 검사하는 2개 테스트로 구성된다. ROS 서비스 정지·재개 결과는 위 로그와 JSON에서 확인한다. 수치 시험은 `mission1/`에서 다음과 같이 실행한다.
 
 ```bash
 PYTHONPATH=mission1_202302200 python3 -m unittest discover -s mission1_202302200/test -v
