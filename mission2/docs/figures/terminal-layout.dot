@@ -1,0 +1,11 @@
+digraph terminals {
+ graph [bgcolor="white", pad="0.35", fontname="Noto Sans CJK KR", label="실제 4분할 화면의 역할 · Bringup 준비 후 Servo와 Teleop 실행", labelloc=t, fontsize=22];
+ node [shape=plain,fontname="Noto Sans CJK KR"];
+ layout [label=<
+ <TABLE BORDER="0" CELLBORDER="1" CELLSPACING="12" CELLPADDING="18" COLOR="#55758e">
+ <TR><TD BGCOLOR="#eaf3fb"><B>① 왼쪽 위 · Pi SBC</B><BR/><BR/>SSH → Raspberry Pi<BR/>hardware.launch.py<BR/><BR/>하드웨어 연결 · 컨트롤러 활성화</TD>
+ <TD BGCOLOR="#eef8ef"><B>② 오른쪽 위 · 원격 PC</B><BR/><BR/>ros2 topic echo /cmd_vel<BR/>속도 명령 관찰<BR/><BR/>캡처의 0 = 그 순간의 정지 명령</TD></TR>
+ <TR><TD BGCOLOR="#fff4e4"><B>③ 왼쪽 아래 · 원격 PC</B><BR/><BR/>MoveIt Servo<BR/>servo.launch.py use_sim:=false<BR/><BR/>관절 입력 → 궤적 · 제한 조건 확인</TD>
+ <TD BGCOLOR="#f4edfb"><B>④ 오른쪽 아래 · 원격 PC</B><BR/><BR/>Keyboard Teleop<BR/>키보드 입력을 받는 창<BR/><BR/>i/k/j/l: 속도 · Space: 바퀴 정지<BR/>1~4/qwer: 팔 · o/p: 그리퍼</TD></TR>
+ </TABLE>>];
+}
