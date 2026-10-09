@@ -2,7 +2,7 @@
 
 [미션 2로 돌아가기](../README.md)
 
-코드는 제공된 2026-10-08 보존본 기준이다. 아래 발췌는 전체 실행 파일이 아니라 해당 동작을 설명하는 부분이다. ROBOTIS 원본 패키지, 팀 실행 스크립트, 수정 드라이버를 구분한다.
+2026-10-08 팀 작업공간의 ROBOTIS 패키지, 실행 스크립트와 수정 드라이버를 기준으로 핵심 부분을 발췌했다. 각 파일의 전체 소스는 아래 링크에서 확인할 수 있다.
 
 ## 1. 파일을 읽는 순서
 
@@ -125,7 +125,7 @@ base_twist_pub_->publish(cmd_vel_);
 rclcpp::sleep_for(std::chrono::milliseconds(10));
 ```
 
-별도 스레드에서 이 부분을 반복하므로 키 입력이 없더라도 마지막 `cmd_vel_`을 계속 보낸다. 10 ms sleep을 기준으로 약 100 Hz를 의도한 구성이나, 실행 시간과 스케줄링이 더해지므로 실측 100 Hz를 보장하는 표현은 쓰지 않는다.
+별도 스레드에서 이 부분을 반복하므로 키 입력이 없더라도 마지막 `cmd_vel_`을 계속 보낸다. 10 ms sleep을 기준으로 약 100 Hz를 의도한 구성이다. 실제 주기에는 코드 실행 시간과 스케줄링이 더해지며 발행률 실측 자료는 없다.
 
 컨트롤러에는 `cmd_vel_timeout: 0.5`가 있지만, teleop이 마지막 값을 계속 발행하면 이 timeout은 키를 놓는 동작으로 발생하지 않는다. 그래서 Space 정지 입력을 별도로 사용한다. Space는 여기서 바퀴 명령 초기화이며 로봇 전체의 전원 차단 기능이 아니다.
 
@@ -154,7 +154,7 @@ if (publish_joint_) {
 
 바퀴와 달리 관절 명령은 발행 플래그가 있을 때 전송한 후 플래그를 내린다. `BASE_FRAME_ID`는 `link0`이다. 지정 자세를 만드는 목표 각도 배열이나 자동 자세 전환 루틴은 이 키보드 코드에 없다.
 
-헤더에는 `ARM_JOINT_VEL = 10.0`과 rad/s 주석이 있지만, [moveit_servo.yaml](../workspaces/jetson/home/jetson/ire_ws/src/turtlebot3_manipulation/turtlebot3_manipulation_moveit_config/config/moveit_servo.yaml)은 `command_in_type: unitless`, `scale.joint: 0.5`로 설정되어 있다. 이 상수 하나를 실제 관절 속도 10 rad/s로 보고하면 안 된다. 입력 크기와 Servo 설정 사이에 검토할 부분이 있으며, 본 자료에서는 코드를 변경하거나 실제 관절 속도를 측정하지 않았다.
+헤더에는 `ARM_JOINT_VEL = 10.0`과 rad/s 주석이 있지만, [moveit_servo.yaml](../workspaces/jetson/home/jetson/ire_ws/src/turtlebot3_manipulation/turtlebot3_manipulation_moveit_config/config/moveit_servo.yaml)은 `command_in_type: unitless`, `scale.joint: 0.5`로 설정되어 있다. 따라서 헤더 상수와 실제 관절 속도는 구분해야 한다. 입력 상수 10.0은 YAML 주석의 unitless 범위 [-1, 1]과도 차이가 있다. 실제 관절 속도와 입력 처리 결과의 계측 자료는 없다.
 
 Servo 설정에는 `incoming_command_timeout: 0.1`, `joint_limit_margin: 0.1`도 있다. 팔 입력의 시간 제한과 관절 한계 처리는 바퀴의 0.5초 timeout과 별개의 설정이다.
 
@@ -177,7 +177,7 @@ case KEYCODE_P:
 
 teleop은 `/servo_node/start_servo`와 `/servo_node/stop_servo`의 Trigger 클라이언트를 만든다. 시작 시 서비스를 기다린 뒤 시작 요청을 보낸다. 캡처의 `SUCCESS TO CONNECT SERVO START SERVER`와 `SUCCESS to start 'moveit_servo'`가 이 코드 경로에 대응한다.
 
-다만 코드의 성공 출력은 future가 준비되었다는 조건에서 발생하며 `Trigger` 응답의 `success` 값을 따로 검사하지 않는다. 따라서 이 문구만으로 모든 팔 동작을 검증했다고 쓰지 않고, 실제 자세 사진과 함께 판단한다.
+다만 코드의 성공 출력은 future가 준비되었다는 조건에서 발생하며 `Trigger` 응답의 `success` 값을 따로 검사하지 않는다. 캡처의 메시지는 서비스 응답 도착을 뒷받침하고, 팔의 형상 변화는 초기·지정 자세 사진에서 확인된다.
 
 ## 10. 설정값과 측정값을 구분한다
 
