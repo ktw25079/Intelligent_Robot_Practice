@@ -2,11 +2,11 @@
 
 [미션 2로 돌아가기](../README.md)
 
-## 1. 기본 소스와 보정 소스를 함께 보존한 이유
+## 1. 기본 드라이버와 보정 작업공간
 
-Pi의 `turtlebot3_ws`는 기본 하드웨어 패키지, `lecture05-repair_ws`는 수정 드라이버와 SDK를 포함한다. 시작 스크립트는 기본 작업공간 뒤에 보정 작업공간을 source한다. 기본 소스가 남아 있다고 실제 실행에서도 기본 드라이버만 사용한 것으로 해석하지 않는다.
+Pi의 `turtlebot3_ws`는 기본 하드웨어 패키지, `lecture05-repair_ws`는 수정 드라이버와 SDK를 포함한다. 시작 스크립트는 기본 작업공간 뒤에 보정 작업공간을 source한다. 실제 bringup은 이 순서로 보정 드라이버를 적용한다.
 
-수정 내용은 코드·patch로 확인할 수 있지만, 실패 당시 전체 로그나 수정 전후 통신 성공률 측정은 없다. 아래는 적용된 코드의 역할을 설명하며 특정 오류가 이 수정 하나로 완전히 해결되었다고 단정하지 않는다.
+수정 내용은 코드·patch에 남아 있다. 아래는 적용된 코드의 역할이며, 실패 당시 전체 로그와 수정 전후 통신 성공률 측정은 없다.
 
 ## 2. 사전 점검 스크립트
 
@@ -20,7 +20,7 @@ Pi의 `turtlebot3_ws`는 기본 하드웨어 패키지, `lecture05-repair_ws`는
 | OpenCR PING/READ | ID 200, 1,000,000 baud에서 응답과 제어 테이블 확인 | 펌웨어 전체 기능 시험은 아님 |
 | 모델·연결 플래그 | Waffle_OpenManipulator와 팔·바퀴 연결 상태 확인 | 부팅 시 연결 플래그와 물리 동작은 구분 |
 
-JSON에는 입력 전압도 기록하도록 되어 있다. 이는 OpenCR 입력 전압이며 Pi의 5 V 공급 전압과 같다고 쓰지 않는다. `physical_clearance_checked=False`이므로 주변 공간은 사람이 별도로 확인한다. 실제 생성된 JSON은 보존본에 없다.
+JSON에는 입력 전압도 기록하도록 되어 있다. 이는 OpenCR 입력 전압으로 Pi의 5 V 공급 전압과 별개다. `physical_clearance_checked=False`이므로 주변 공간은 사람이 별도로 확인한다. 실제 생성된 JSON은 보존본에 없다.
 
 ## 3. OpenCR 응답 대기 시간
 
@@ -66,9 +66,9 @@ void OpenCR::imu_recalibration()
 2. 수신 버퍼를 `RXPACKET_MAX_LEN` 크기로 확보하도록 변경한다.
 3. 요청의 ID와 예상 응답 길이를 확인하고 일치하지 않는 늦은 응답을 timeout 안에서 걸러낸다.
 
-예를 들어 READ 응답이 늦게 도착해 뒤의 WRITE 응답으로 처리되는 상황을 고려한 코드다. 여기서 실제 패킷 혼선 빈도나 성능 개선량을 측정한 결과는 제공되지 않았다.
+예를 들어 READ 응답이 늦게 도착해 뒤의 WRITE 응답으로 처리되는 상황을 고려한 코드다. 패킷 혼선 빈도와 성능 개선량은 별도로 측정하지 않았다.
 
-보정 SDK 원본은 [sdk-4.0.3-fixed](../workspaces/raspberry-pi/home/ubuntu/lecture05-setup/sdk-4.0.3-fixed/)에 있다. `diagnostics/`는 당시 조사·재현용 소스이며 일반 실행 순서에는 포함하지 않는다. 포트 스캔·쓰기 probe를 bringup과 동시에 실행하는 절차로 안내하지 않는다.
+보정 SDK는 [sdk-4.0.3-fixed](../workspaces/raspberry-pi/home/ubuntu/lecture05-setup/sdk-4.0.3-fixed/)에 있다. `diagnostics/`는 당시 조사·재현용 소스다. 일반 구동에는 bringup·Servo·teleop 스크립트를 사용한다.
 
 ## 6. 실제 캡처의 경고와 오류
 
@@ -79,7 +79,7 @@ void OpenCR::imu_recalibration()
 | `Link end_effector_link has visual geometry but no collision geometry` | 해당 링크의 시각 모델과 충돌 모델 구성 차이 | 외형이 보여도 모든 링크의 충돌 모델이 완비된 것은 아님 |
 | `Resolution not specified for Octomap. Assuming resolution = 0.1 instead` | 해상도 미지정으로 기본값 사용 | 지도 정확도·장애물 인식 성능을 입증하는 수치가 아님 |
 
-세 번째 메시지는 [Servo 연결 직후 화면](../screenshots/mission2-ready-final.png)에 있다. 관절 한계 경고는 [사용자 4분할 화면](../screenshots/four-terminals.png)에 있다. 두 캡처는 서로 다른 시점의 자료이며 경고를 지워 하나의 완전 정상 화면처럼 재구성하지 않았다.
+세 번째 메시지는 [Servo 연결 직후 화면](../screenshots/mission2-ready-final.png)에 있다. 관절 한계 경고는 [사용자 4분할 화면](../screenshots/four-terminals.png)에 있다. 두 캡처는 서로 다른 실행 시점의 메시지를 보여 준다.
 
 ## 7. 문제가 있을 때 확인할 계층
 
@@ -90,4 +90,4 @@ void OpenCR::imu_recalibration()
 5. 팔: Servo 프로세스·서비스와 관절 한계 메시지 확인.
 6. 실제 결과: 사진·영상·수치 로그가 어느 확인 항목을 뒷받침하는지 분리.
 
-이 순서는 문제를 좁혀 가는 설명이며, 나열한 모든 문제가 이번 실습에서 발생했다는 뜻은 아니다.
+실제 캡처에서 관찰된 메시지는 위 표에 구분했다.
