@@ -1,0 +1,42 @@
+{
+  "purpose": "실제 사용 작업공간의 소스 구조 보존본. 기존 새 PC용 재구성 배포본과 별개.",
+  "snapshot_date": "2026-10-08",
+  "workspaces": {
+    "raspberry-pi/home/ubuntu/turtlebot3_ws": "기존 Pi 작업공간 src 원본",
+    "raspberry-pi/home/ubuntu/lecture05-repair_ws": "수정한 SDK와 하드웨어 드라이버 src 원본",
+    "jetson/home/jetson/ire_ws": "미션2 관련 패키지/스크립트만 선별한 Jetson 작업공간"
+  },
+  "correct_name": "lecture05-repair_ws (lecture04-repair_ws가 아님)",
+  "excluded": [
+    "build/",
+    "install/",
+    "log/",
+    "무관한 다른 주차 패키지",
+    ".git",
+    "SSH 키와 비밀번호",
+    "보고서/PDF"
+  ],
+  "not_a_full_disk_backup": true,
+  "original_sdk_symlink": {
+    "path": "/home/ubuntu/lecture05-repair_ws/src/dynamixel_sdk",
+    "target": "/home/ubuntu/lecture05-setup/sdk-4.0.3-fixed/ros/dynamixel_sdk",
+    "note": "원래 절대경로 링크 그대로 보존. 대상 소스도 raspberry-pi/home/ubuntu/lecture05-setup 아래 포함. 다른 폴더에서 빌드할 경우 링크를 해당 위치에 맞게 재설정해야 함."
+  },
+  "environment_order_on_pi": [
+    "source /opt/ros/humble/setup.bash",
+    "source ~/turtlebot3_ws/install/setup.bash",
+    "source ~/lecture05-repair_ws/install/setup.bash"
+  ],
+  "original_repair_build_commands": [
+    "source /opt/ros/humble/setup.bash",
+    "source ~/turtlebot3_ws/install/setup.bash",
+    "cd ~/lecture05-repair_ws",
+    "MAKEFLAGS=-j1 colcon build --executor sequential --cmake-args -DCMAKE_BUILD_TYPE=RelWithDebInfo -DBUILD_TESTING=OFF"
+  ],
+  "original_runtime_scripts_note": "개인 홈 경로와 SSH ControlPath를 포함한 실제 스크립트 그대로. 새로운 컴퓨터에서 바로 실행하는 범용 설치본은 아님. SSH 인증정보/소켓 자체는 미포함.",
+  "source_versions": {
+    "turtlebot3_manipulation": "814f140e8e208994dd6159f189993156e3943d98",
+    "patched_dynamixel_sdk_base": "4.0.3"
+  },
+  "firmware": "OpenCR의 이미 업로드된 바이너리와 툴체인은 이 소스 구조 보존본에 포함하지 않음. opencr-firmware-reference.ino는 참조용이며 단독 완전 빌드 프로젝트가 아님."
+}
