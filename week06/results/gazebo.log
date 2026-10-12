@@ -1,0 +1,116 @@
+[INFO] [1791778183.772234809] [camera_controller]: Publishing camera info to [/pi_camera/camera_info]
+[INFO] [1791778183.819102329] [diff_drive]: Wheel pair 1 separation set to [0.287000m]
+[INFO] [1791778183.819135255] [diff_drive]: Wheel pair 1 diameter set to [0.066000m]
+[INFO] [1791778183.819613280] [diff_drive]: Subscribed to [/cmd_vel]
+[INFO] [1791778183.824594000] [diff_drive]: Advertise odometry on [/odom]
+[INFO] [1791778183.825579852] [diff_drive]: Publishing odom transforms between [odom] and [base_footprint]
+[INFO] [1791778183.833665510] [gazebo_ros2_control]: Loading gazebo_ros2_control plugin
+[INFO] [1791778183.835730119] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in namespace: /
+[INFO] [1791778183.835750129] [gazebo_ros2_control]: Starting gazebo_ros2_control plugin in ros 2 node: gazebo_ros2_control
+[INFO] [1791778183.837120048] [gazebo_ros2_control]: connected to service!! robot_state_publisher
+[INFO] [1791778183.837396451] [gazebo_ros2_control]: Received urdf from param server, parsing...
+[INFO] [1791778183.837415008] [gazebo_ros2_control]: Loading parameter files /home/ktw25079/Downloads/lecture05-actual-workspaces-20261008/lecture06/local/share/turtlebot3_manipulation_gazebo/config/gazebo_controller_manager.yaml
+[INFO] [1791778183.841578333] [gazebo_ros2_control]: Loading joint: wheel_left_joint
+[INFO] [1791778183.841592381] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.841596650] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841601520] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841607361] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.841610057] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841612913] [gazebo_ros2_control]: 	Command:
+[INFO] [1791778183.841634536] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.841704666] [gazebo_ros2_control]: Loading joint: wheel_right_joint
+[INFO] [1791778183.841708363] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.841711971] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841714676] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841718514] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.841720868] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841723664] [gazebo_ros2_control]: 	Command:
+[INFO] [1791778183.841728363] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.841763333] [gazebo_ros2_control]: Loading joint: joint1
+[INFO] [1791778183.841766169] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.841768694] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841771359] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841774466] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.841776770] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841779235] [gazebo_ros2_control]: 	Command:
+[INFO] [1791778183.841781570] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841825257] [gazebo_ros2_control]: Loading joint: joint2
+[INFO] [1791778183.841828674] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.841830878] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841833113] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841837311] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.841848423] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841851500] [gazebo_ros2_control]: 	Command:
+[INFO] [1791778183.841854085] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841885979] [gazebo_ros2_control]: Loading joint: joint3
+[INFO] [1791778183.841888834] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.841891349] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841902221] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841905177] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.841907331] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841910648] [gazebo_ros2_control]: 	Command:
+[INFO] [1791778183.841913073] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841970417] [gazebo_ros2_control]: Loading joint: joint4
+[INFO] [1791778183.841973664] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.841975828] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.841977952] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841980468] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.841982331] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.841984686] [gazebo_ros2_control]: 	Command:
+[INFO] [1791778183.841986720] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.842023784] [gazebo_ros2_control]: Loading joint: gripper_left_joint
+[INFO] [1791778183.842026229] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.842028564] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.842030768] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.842033654] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.842035698] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.842039175] [gazebo_ros2_control]: 	Command:
+[INFO] [1791778183.842041139] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.842102852] [gazebo_ros2_control]: Loading joint: gripper_right_joint
+[INFO] [1791778183.842111970] [gazebo_ros2_control]: Joint 'gripper_right_joint'is mimicking joint 'gripper_left_joint' with multiplier: 1
+[INFO] [1791778183.842115698] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.842118043] [gazebo_ros2_control]: 		 position
+[INFO] [1791778183.842120467] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.842123003] [gazebo_ros2_control]: 		 velocity
+[INFO] [1791778183.842124987] [gazebo_ros2_control]: 			 found initial value: 0.000000
+[INFO] [1791778183.842127481] [gazebo_ros2_control]: 	Command:
+[INFO] [1791778183.842129596] [gazebo_ros2_control]: 		 position
+[WARN] [1791778183.842201479] [gazebo_ros2_control]: Skipping sensor in the URDF named 'battery' which is not in the gazebo model.
+[INFO] [1791778183.842207251] [gazebo_ros2_control]: Loading sensor: imu
+[INFO] [1791778183.842210067] [gazebo_ros2_control]: 	State:
+[INFO] [1791778183.842222091] [gazebo_ros2_control]: 		 orientation.x
+[INFO] [1791778183.842231359] [gazebo_ros2_control]: 		 orientation.y
+[INFO] [1791778183.842233734] [gazebo_ros2_control]: 		 orientation.z
+[INFO] [1791778183.842237942] [gazebo_ros2_control]: 		 orientation.w
+[INFO] [1791778183.842244916] [gazebo_ros2_control]: 		 angular_velocity.x
+[INFO] [1791778183.842248193] [gazebo_ros2_control]: 		 angular_velocity.y
+[INFO] [1791778183.842250938] [gazebo_ros2_control]: 		 angular_velocity.z
+[INFO] [1791778183.842253534] [gazebo_ros2_control]: 		 linear_acceleration.x
+[INFO] [1791778183.842256039] [gazebo_ros2_control]: 		 linear_acceleration.y
+[INFO] [1791778183.842259115] [gazebo_ros2_control]: 		 linear_acceleration.z
+[INFO] [1791778183.842272792] [resource_manager]: Initialize hardware 'TurtleBot3ManipulationSystem' 
+[INFO] [1791778183.842340518] [resource_manager]: Successful initialization of hardware 'TurtleBot3ManipulationSystem'
+[INFO] [1791778183.842416129] [resource_manager]: 'configure' hardware 'TurtleBot3ManipulationSystem' 
+[INFO] [1791778183.842420227] [resource_manager]: Successful 'configure' of hardware 'TurtleBot3ManipulationSystem'
+[INFO] [1791778183.842425247] [resource_manager]: 'activate' hardware 'TurtleBot3ManipulationSystem' 
+[INFO] [1791778183.842427191] [resource_manager]: Successful 'activate' of hardware 'TurtleBot3ManipulationSystem'
+[INFO] [1791778183.842465718] [gazebo_ros2_control]: Loading controller_manager
+[INFO] [1791778183.849690856] [gazebo_ros2_control]: Loaded gazebo_ros2_control.
+[INFO] [1791778183.948245061] [controller_manager]: Loading controller 'joint_state_broadcaster'
+[INFO] [1791778183.957253225] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[INFO] [1791778183.957343555] [joint_state_broadcaster]: 'joints' or 'interfaces' parameter is empty. All available state interfaces will be published
+[INFO] [1791778183.992320518] [controller_manager]: Configuring controller 'joint_state_broadcaster'
+[ERROR] [1791778183.992344846] [controller_manager]: Controller 'joint_state_broadcaster' can not be configured from 'active' state.
+[INFO] [1791778184.204405406] [controller_manager]: Loading controller 'arm_controller'
+[WARN] [1791778184.212651894] [arm_controller]: [Deprecated]: "allow_nonzero_velocity_at_trajectory_end" is set to true. The default behavior will change to false.
+[INFO] [1791778184.213694331] [controller_manager]: Loading controller 'imu_broadcaster'
+[INFO] [1791778184.218016572] [controller_manager]: Loading controller 'gripper_controller'
+[INFO] [1791778184.222888688] [controller_manager]: Configuring controller 'arm_controller'
+[INFO] [1791778184.222971593] [arm_controller]: No specific joint names are used for command interfaces. Using 'joints' parameter.
+[INFO] [1791778184.222984900] [arm_controller]: Command interfaces are [position] and state interfaces are [position velocity].
+[INFO] [1791778184.223001393] [arm_controller]: Using 'splines' interpolation method.
+[INFO] [1791778184.223525106] [arm_controller]: Controller state will be published at 200.00 Hz.
+[INFO] [1791778184.224286393] [arm_controller]: Action status changes will be monitored at 20.00 Hz.
+[INFO] [1791778184.227997636] [controller_manager]: Configuring controller 'imu_broadcaster'
+[INFO] [1791778184.230999577] [controller_manager]: Configuring controller 'gripper_controller'
+[INFO] [1791778184.231026510] [gripper_controller]: Action status changes will be monitored at 20.000000 Hz.
