@@ -1,0 +1,6 @@
+robot name is: myurdf_202302200
+---------- Successfully Parsed XML ---------------
+root Link: base_link has 1 child(ren)
+    child(1):  arm_link
+        child(1):  slider_link
+            child(1):  tool_link
