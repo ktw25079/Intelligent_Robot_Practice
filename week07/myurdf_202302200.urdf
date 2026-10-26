@@ -1,0 +1,61 @@
+<?xml version="1.0"?>
+<robot name="myurdf_202302200">
+  <!-- Units: metres and radians. A rotating arm with an extending tip. -->
+  <material name="gray"><color rgba="0.35 0.40 0.45 1"/></material>
+  <material name="blue"><color rgba="0.10 0.40 0.90 1"/></material>
+  <material name="orange"><color rgba="1.0 0.55 0.10 1"/></material>
+  <material name="green"><color rgba="0.15 0.80 0.35 1"/></material>
+
+  <link name="base_link">
+    <visual>
+      <origin xyz="0 0 0.05"/>
+      <geometry><box size="0.40 0.30 0.10"/></geometry>
+      <material name="gray"/>
+    </visual>
+  </link>
+  <link name="arm_link">
+    <visual>
+      <origin xyz="0 0 0.15"/>
+      <geometry><cylinder radius="0.045" length="0.30"/></geometry>
+      <material name="blue"/>
+    </visual>
+    <visual>
+      <origin xyz="0.15 0 0.30"/>
+      <geometry><box size="0.36 0.09 0.09"/></geometry>
+      <material name="blue"/>
+    </visual>
+  </link>
+  <!-- Rotate the entire arm around the vertical Z axis, +/- 90 degrees. -->
+  <joint name="base_arm_joint" type="revolute">
+    <parent link="base_link"/><child link="arm_link"/>
+    <origin xyz="0 0 0.10"/>
+    <axis xyz="0 0 1"/>
+    <limit lower="-1.5708" upper="1.5708" effort="10" velocity="1"/>
+  </joint>
+
+  <link name="slider_link">
+    <visual>
+      <origin xyz="0.12 0 0"/>
+      <geometry><box size="0.24 0.05 0.05"/></geometry>
+      <material name="orange"/>
+    </visual>
+  </link>
+  <!-- Extend along the arm's LOCAL X axis by 0 to 0.20 m. -->
+  <joint name="arm_slider_joint" type="prismatic">
+    <parent link="arm_link"/><child link="slider_link"/>
+    <origin xyz="0.18 0 0.30"/>
+    <axis xyz="1 0 0"/>
+    <limit lower="0" upper="0.20" effort="10" velocity="0.10"/>
+  </joint>
+
+  <link name="tool_link">
+    <visual>
+      <geometry><sphere radius="0.055"/></geometry>
+      <material name="green"/>
+    </visual>
+  </link>
+  <joint name="slider_tool_joint" type="fixed">
+    <parent link="slider_link"/><child link="tool_link"/>
+    <origin xyz="0.24 0 0"/>
+  </joint>
+</robot>
