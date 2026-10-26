@@ -18,6 +18,8 @@ Ubuntu 22.04와 ROS 2 Humble에서 노드 간 통신, turtlesim 제어와 실제
 4. **mission2:** 팀 4의 TurtleBot3를 bringup하고 키보드로 바퀴 주행과 로봇팔 자세 변경을 수행했다.
 5. **week06:** Gazebo에서 Waffle Pi와 매니퓰레이터를 생성하고 RViz2 LaserScan·카메라 및 RQt 속도 명령 그래프를 확인했다.
 
+6. **week07:** 회전·직선 이동 관절을 가진 URDF를 직접 작성하고 RViz 표시와 TF 변환·트리를 확인했다.
+
 ## 결과 및 실습 자료
 
 | 실습 | 확인한 결과 | 코드·실행 방법·결과 자료 |
@@ -27,6 +29,7 @@ Ubuntu 22.04와 ROS 2 Humble에서 노드 간 통신, turtlesim 제어와 실제
 | mission1 | turtlesim 사각형 두 바퀴, 직진·회전 정지·재개와 최종 정지 | [미션 1 사각 순찰](mission1/README.md) |
 | mission2 | 실제 로봇 컨트롤러 5개 활성화, 수동 주행과 팔 자세 변경 | [미션 2 코드·구조도·실행·결과](mission2/README.md) |
 | week06 | Gazebo 베이스 주행, RViz2 LaserScan·카메라 및 RQt Plot 통합 화면 | [week06 실습 정리](week06/README.md) |
+| week07 | 링크 4개·관절 3종류 URDF, RViz 슬라이더와 TF 변환·트리 | [week07 실습 정리](week07/README.md) |
 
 week02·03은 메시지 통신, mission1은 turtlesim 시뮬레이션, mission2는 실물 로봇, week06은 Gazebo 시뮬레이션 결과다. 각 폴더에 실행 로그·캡처·영상과 확인 범위를 정리했다.
 
@@ -44,3 +47,5 @@ cd "$HOME/intelligent_robot_practice"
 mission2는 원격 PC와 라즈베리파이에서 각각 빌드·실행한다. [장치별 배치·최초 빌드·네 터미널 실행](mission2/docs/setup-and-run.md)을 따른다.
 
 week06은 PC 한 대에서 Gazebo·RViz2·RQt를 실행한다. [시뮬레이션 패키지 준비·빌드·실행](week06/README.md)을 따른다.
+
+week07은 별도 패키지 빌드 없이 URDF를 표시한다. [URDF 검사·RViz·TF 확인](week07/README.md)을 따른다.
