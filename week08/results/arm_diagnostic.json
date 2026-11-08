@@ -1,0 +1,44 @@
+{
+  "probe": "OpenCR ID 200 PING and control-table READ only; no motor writes",
+  "samples": [
+    {
+      "model_number": 20480,
+      "model_information": 3,
+      "firmware": 5,
+      "ping_result": 0,
+      "read_result": 0,
+      "device_error": 0,
+      "read_bytes": 344,
+      "arm_connected": 0,
+      "wheels_connected": 1,
+      "input_voltage_V": 12.15
+    },
+    {
+      "model_number": 20480,
+      "model_information": 3,
+      "firmware": 5,
+      "ping_result": 0,
+      "read_result": 0,
+      "device_error": 0,
+      "read_bytes": 344,
+      "arm_connected": 0,
+      "wheels_connected": 1,
+      "input_voltage_V": 12.13
+    },
+    {
+      "model_number": 20480,
+      "model_information": 3,
+      "firmware": 5,
+      "ping_result": 0,
+      "read_result": 0,
+      "device_error": 0,
+      "read_bytes": 344,
+      "arm_connected": 0,
+      "wheels_connected": 1,
+      "input_voltage_V": 12.11
+    }
+  ],
+  "pi_power_flags": 0,
+  "repair_overlay_present": true,
+  "diagnosis": "OpenCR reports arm disconnected; successful reads distinguish this observation from communication timeout. Individual motor or cable fault not identified."
+}
