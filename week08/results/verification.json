@@ -1,0 +1,115 @@
+{
+  "marker_size_m": 0.13,
+  "live": {
+    "images": 78,
+    "infos": 75,
+    "poses": 108,
+    "ids": [
+      0
+    ],
+    "pose_frame": "camera_rgb_optical_frame",
+    "last_position": [
+      -0.021331715904775252,
+      -0.0002911571487228655,
+      0.495357138843185
+    ],
+    "K": [
+      641.02532,
+      0.0,
+      151.10608,
+      0.0,
+      645.39785,
+      125.54039,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "D": [
+      0.109028,
+      0.347015,
+      0.001179,
+      -0.005805,
+      0.0
+    ],
+    "size": [
+      320,
+      240
+    ]
+  },
+  "source_paused": {
+    "images": 0,
+    "infos": 0,
+    "poses": 0,
+    "ids": []
+  },
+  "replay": {
+    "images": 28,
+    "infos": 32,
+    "poses": 28,
+    "ids": [
+      0
+    ],
+    "K": [
+      641.02532,
+      0.0,
+      151.10608,
+      0.0,
+      645.39785,
+      125.54039,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "D": [
+      0.109028,
+      0.347015,
+      0.001179,
+      -0.005805,
+      0.0
+    ],
+    "size": [
+      320,
+      240
+    ],
+    "pose_frame": "camera_rgb_optical_frame",
+    "last_position": [
+      -0.019564090885857654,
+      -0.005652135714993826,
+      0.5101447877693549
+    ]
+  },
+  "restored": {
+    "images": 29,
+    "infos": 25,
+    "poses": 0,
+    "ids": [],
+    "K": [
+      641.02532,
+      0.0,
+      151.10608,
+      0.0,
+      645.39785,
+      125.54039,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "D": [
+      0.109028,
+      0.347015,
+      0.001179,
+      -0.005805,
+      0.0
+    ],
+    "size": [
+      320,
+      240
+    ]
+  },
+  "bag": "aruco_bag",
+  "replay_rate": 0.5,
+  "source_isolation": "camera PID 971 SIGSTOP during playback; SIGCONT afterwards",
+  "bringup_limitation": "Not connected manipulator; camera static TF base_footprint to camera_rgb_optical_frame verified",
+  "calibration": "instructor supplied; not individually calibrated for borrowed camera",
+  "marker_measurement": "user approximate 13 cm"
+}
