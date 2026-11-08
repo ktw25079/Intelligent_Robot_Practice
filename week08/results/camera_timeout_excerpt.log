@@ -1,0 +1,3 @@
+[1:09:59.815852367] [3418] ERROR RPI pipeline_base.cpp:1333 Camera frontend has timed out!
+[1:09:59.815961261] [3418] ERROR RPI pipeline_base.cpp:1334 Please check that your camera sensor connector is attached securely.
+[1:09:59.816109596] [3418] ERROR RPI pipeline_base.cpp:1335 Alternatively, try another cable and/or sensor.
