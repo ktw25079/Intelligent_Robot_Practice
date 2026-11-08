@@ -20,6 +20,8 @@ Ubuntu 22.04와 ROS 2 Humble에서 노드 간 통신, turtlesim 제어와 실제
 
 6. **week07:** 회전·직선 이동 관절을 가진 URDF를 직접 작성하고 RViz 표시와 TF 변환·트리를 확인했다.
 
+7. **week08:** 실물 카메라로 ArUco ID·pose를 검출하고 rosbag 재생으로 같은 ID와 pose 발행을 확인했다.
+
 ## 결과 및 실습 자료
 
 | 실습 | 확인한 결과 | 코드·실행 방법·결과 자료 |
@@ -30,6 +32,7 @@ Ubuntu 22.04와 ROS 2 Humble에서 노드 간 통신, turtlesim 제어와 실제
 | mission2 | 실제 로봇 컨트롤러 5개 활성화, 수동 주행과 팔 자세 변경 | [미션 2 코드·구조도·실행·결과](mission2/README.md) |
 | week06 | Gazebo 베이스 주행, RViz2 LaserScan·카메라 및 RQt Plot 통합 화면 | [week06 실습 정리](week06/README.md) |
 | week07 | 링크 4개·관절 3종류 URDF, RViz 슬라이더와 TF 변환·트리 | [week07 실습 정리](week07/README.md) |
+| week08 | 실물 ArUco ID 0·pose 검출, 영상·보정 정보 rosbag 기록·재생 | [week08 실습 정리](week08/README.md) |
 
 week02·03은 메시지 통신, mission1은 turtlesim 시뮬레이션, mission2는 실물 로봇, week06은 Gazebo 시뮬레이션 결과다. 각 폴더에 실행 로그·캡처·영상과 확인 범위를 정리했다.
 
@@ -49,3 +52,5 @@ mission2는 원격 PC와 라즈베리파이에서 각각 빌드·실행한다. [
 week06은 PC 한 대에서 Gazebo·RViz2·RQt를 실행한다. [시뮬레이션 패키지 준비·빌드·실행](week06/README.md)을 따른다.
 
 week07은 별도 패키지 빌드 없이 URDF를 표시한다. [URDF 검사·RViz·TF 확인](week07/README.md)을 따른다.
+
+week08은 PC에서 검출·RViz·rosbag을 실행하고 Pi에서 카메라를 실행한다. [실물 카메라 준비·ArUco 검출·재생 검증](week08/README.md)을 따른다.
