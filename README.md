@@ -32,7 +32,7 @@ Ubuntu 22.04와 ROS 2 Humble에서 노드 간 통신, turtlesim 제어와 실제
 | mission2 | 실제 로봇 컨트롤러 5개 활성화, 수동 주행과 팔 자세 변경 | [미션 2 코드·구조도·실행·결과](mission2/README.md) |
 | week06 | Gazebo 베이스 주행, RViz2 LaserScan·카메라 및 RQt Plot 통합 화면 | [week06 실습 정리](week06/README.md) |
 | week07 | 링크 4개·관절 3종류 URDF, RViz 슬라이더와 TF 변환·트리 | [week07 실습 정리](week07/README.md) |
-| week08 | 실물 ArUco ID 0·pose 검출, 영상·보정 정보 rosbag 기록·재생 | [week08 실습 정리](week08/README.md) |
+| week08 | 실물 ArUco ID 0·pose 검출, rosbag 기록·재생, C920 연결·보정 절차 | [week08 실습 정리](week08/README.md) |
 
 week02·03은 메시지 통신, mission1은 turtlesim 시뮬레이션, mission2는 실물 로봇, week06은 Gazebo 시뮬레이션 결과다. 각 폴더에 실행 로그·캡처·영상과 확인 범위를 정리했다.
 
