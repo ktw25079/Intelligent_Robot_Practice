@@ -1,0 +1,33 @@
+{
+  "map_saved_at_local": "2026-11-09 17:14:02 Asia/Seoul",
+  "map_size_cells": [
+    157,
+    165
+  ],
+  "resolution_m_per_cell": 0.05,
+  "origin": [
+    -4.95,
+    -4.24,
+    0
+  ],
+  "map_server_reload": "PGM/YAML read and lifecycle configure/activate succeeded; isolated-domain topic echo timed out",
+  "controllers_observed_active": [
+    "joint_state_broadcaster",
+    "arm_controller",
+    "diff_drive_controller",
+    "imu_broadcaster",
+    "gripper_controller"
+  ],
+  "preflight_opencr_voltage_V": 12.19,
+  "pc_pi_ros_test": "bidirectional String messages received on hotspot",
+  "teleop_limits": {
+    "linear_m_s": 0.05,
+    "angular_rad_s": 0.2
+  },
+  "limitations": [
+    "Unobserved regions and edge artifacts remain",
+    "No quantitative wall accuracy measurement",
+    "Full classroom coverage and loop closure not independently verified"
+  ],
+  "screenshots": "02_low_speed_mapping.png was supplied after map save; it is not a simultaneous capture"
+}
