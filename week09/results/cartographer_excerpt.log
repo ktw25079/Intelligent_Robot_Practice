@@ -1,0 +1,30 @@
+[cartographer_node-1] [WARN] [1794212426.433254159] [cartographer logger]: W1109 17:20:26.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212427.190066176] [cartographer logger]: W1109 17:20:27.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212427.668875471] [cartographer logger]: W1109 17:20:27.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212428.169746202] [cartographer logger]: W1109 17:20:28.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212428.679044753] [cartographer logger]: W1109 17:20:28.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212429.174759331] [cartographer logger]: W1109 17:20:29.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212430.421161141] [cartographer logger]: W1109 17:20:30.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212430.672448399] [cartographer logger]: W1109 17:20:30.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [INFO] [1794212430.920496777] [cartographer logger]: I1109 17:20:30.000000 26532 collated_trajectory_builder.cc:81] odom rate: 4.00 Hz 2.50e-01 s +/- 8.77e-04 s (pulsed at 100.17% real time)
+[cartographer_node-1] [INFO] [1794212430.920545538] [cartographer logger]: I1109 17:20:30.000000 26532 collated_trajectory_builder.cc:81] scan rate: 4.85 Hz 2.06e-01 s +/- 3.29e-02 s (pulsed at 100.38% real time)
+[cartographer_node-1] [WARN] [1794212431.422206110] [cartographer logger]: W1109 17:20:31.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212432.172784683] [cartographer logger]: W1109 17:20:32.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212432.423200302] [cartographer logger]: W1109 17:20:32.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212432.920996621] [cartographer logger]: W1109 17:20:32.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212433.422893421] [cartographer logger]: W1109 17:20:33.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212433.675623466] [cartographer logger]: W1109 17:20:33.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212434.424348949] [cartographer logger]: W1109 17:20:34.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212434.925736251] [cartographer logger]: W1109 17:20:34.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212435.434578642] [cartographer logger]: W1109 17:20:35.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212435.674860234] [cartographer logger]: W1109 17:20:35.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212436.174698036] [cartographer logger]: W1109 17:20:36.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212437.435889238] [cartographer logger]: W1109 17:20:37.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212437.925146565] [cartographer logger]: W1109 17:20:37.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212438.427262674] [cartographer logger]: W1109 17:20:38.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212438.925050558] [cartographer logger]: W1109 17:20:38.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212439.176581498] [cartographer logger]: W1109 17:20:39.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212439.459443304] [cartographer logger]: W1109 17:20:39.000000 26532 range_data_collator.cc:82] Dropped 2 earlier points.
+[cartographer_node-1] [WARN] [1794212439.460866745] [cartographer logger]: W1109 17:20:39.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212439.922794696] [cartographer logger]: W1109 17:20:39.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
+[cartographer_node-1] [WARN] [1794212440.175522270] [cartographer logger]: W1109 17:20:40.000000 26532 range_data_collator.cc:82] Dropped 1 earlier points.
