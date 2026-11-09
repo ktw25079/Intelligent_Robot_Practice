@@ -1,5 +1,9 @@
 # Mission 1 · turtlesim 사각 순찰
 
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
+
+pose 기반 사각 순찰 제어기와 ROS 어댑터를 분리하고, 정지·재개 상태 보존을 수치 시험과 실제 turtlesim 서비스 호출로 확인했다.
+
 ## 목표
 
 - turtlesim 거북이가 사각 경로를 반복 주행하도록 구현한다.
@@ -16,6 +20,25 @@ ROS 2 패키지는 `mission1_202302200/`에 있다. Ubuntu 22.04, ROS 2 Humble�
 - [patrol.py](mission1_202302200/mission1_202302200/patrol.py): `/turtle1/pose` 수신, `/turtle1/cmd_vel` 속도 발행, `/start_stop` 서비스와 진행 로그를 처리한다. 정지 시 현재 제어 상태를 보존한다.
 - [patrol.launch.py](mission1_202302200/launch/patrol.launch.py): turtlesim과 patrol을 함께 실행한다. 기본값은 정지 상태이며 한 변 길이는 3.0 turtlesim 좌표 단위다. 최대 직진 속도는 2.0 좌표 단위/s, 최대 회전 속도는 3.0 rad/s다.
 - [test_square_motion.py](mission1_202302200/test/test_square_motion.py): 반복 주행, 회전, 속도 제한, 정지 후 재개를 검증하는 제어기 테스트다.
+
+### 제어 설계와 동작 조건
+
+`SquareMotion`은 pose를 받아 속도 명령을 계산하고, `Patrol`은 ROS 토픽·서비스와 연결한다. 두 층을 나눠 제어기 수치 시험을 ROS 없이 실행할 수 있게 했다.
+
+```mermaid
+stateDiagram-v2
+    [*] --> DRIVE
+    DRIVE --> TURN: 남은 거리 ≤ 0.01
+    TURN --> DRIVE: 방향 오차 ≤ 0.002 rad
+    note right of DRIVE
+        정지 요청은 현재 상태·기준점 보존
+        재개 시 남은 동작부터 진행
+    end note
+```
+
+- 변의 진행 거리는 현재 위치 변화의 목표 방향 성분으로 계산한다. 회전 목표는 최초 방향에 90°씩 더해 설정해 현재 방향의 오차를 반복 누적하지 않는다.
+- 서비스 시작은 유효한 화면 내 경로와 0.5초 이내 pose 수신을 요구한다. pose가 오래되면 제어 주기에서 0속도를 발행한다.
+- `false` 요청은 즉시 0속도를 발행하고 변·회전 상태를 유지한다. 실제 정지 관측은 아래 JSON, 반복 경로의 수치 조건은 테스트에서 확인한다.
 
 ### 2. 최초 빌드
 
