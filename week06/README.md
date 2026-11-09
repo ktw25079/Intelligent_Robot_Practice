@@ -1,5 +1,9 @@
 # week06 실습 정리
 
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
+
+Gazebo·RViz·RQt Plot을 연결해 센서 표시와 주행 명령을 함께 관찰했다. 이 결과는 시뮬레이션의 베이스 주행에 해당한다.
+
 ## 목표
 
 - Gazebo에서 Waffle Pi + OpenMANIPULATOR-X를 생성하고 키보드로 베이스를 주행한다.
