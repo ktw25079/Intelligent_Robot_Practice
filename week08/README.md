@@ -1,5 +1,9 @@
 # week08 실습 정리
 
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
+
+실물 카메라의 ArUco 검출을 영상·pose·rosbag으로 확인했다. CSI 카메라의 재생 검증과 C920의 미보정 ID 검출 결과를 구분한다.
+
 ## 목표
 
 - 실물 카메라 영상에서 ArUco ID와 위치·자세를 확인한다.
