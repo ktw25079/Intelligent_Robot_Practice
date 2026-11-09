@@ -12,6 +12,12 @@
 
 ## 2. 네트워크 설정
 
+현재 운용은 휴대폰 핫스팟을 사용한다. PC와 Pi를 같은 핫스팟에 연결하고 현재 Pi 주소로 SSH 접속한 뒤, ROS 메시지 수신을 따로 확인한다. [공통 재현 안내](../../docs/REPRODUCIBILITY.md#현재-실물-네트워크)를 따른다.
+
+<details>
+<summary>2026-10-08 실습 당시의 공유기·고정 IP 구성</summary>
+
+
 | 장치 | 주소 | 비고 |
 | --- | --- | --- |
 | 본인 노트북 | `192.168.0.204/24` | 사용자가 확인한 주소 |
@@ -50,6 +56,8 @@ ssh ubuntu@192.168.0.21
 ```
 
 SSH 성공과 ROS 2 노드 검색 성공은 별도 확인 항목이다. PC와 Pi 양쪽에서 `ROS_DOMAIN_ID=4`, `ROS_LOCALHOST_ONLY=0`을 설정한다.
+
+</details>
 
 ## 3. 작업공간을 각 컴퓨터에 배치
 
@@ -168,8 +176,8 @@ bash ~/lecture05-setup/preflight-robot.sh
 ### 터미널 1 · Pi 하드웨어
 
 ```bash
-# 원격 PC에서 접속
-ssh ubuntu@192.168.0.21
+# 원격 PC에서 현재 핫스팟의 Pi 주소로 접속
+ssh ubuntu@<현재_Pi_IP>
 # 이후 명령은 Pi에서 실행
 bash ~/lecture05-setup/bringup-robot.sh
 ```
