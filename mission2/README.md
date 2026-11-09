@@ -1,5 +1,9 @@
 # Mission 2 · TurtleBot3 장비 Bringup
 
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
+
+팀 제공 ROBOTIS 작업공간으로 실물 바퀴·팔·그리퍼를 구동하고, 제어 경로와 다섯 컨트롤러의 활성 상태를 정리했다.
+
 ## 목표
 
 - 팀 4의 원격 PC와 라즈베리파이에 ROS 2 통신 환경을 구성한다.
@@ -9,6 +13,8 @@
 ## 과정
 
 ### 실습 환경과 수행 범위
+
+아래 IP와 공유기 구성은 **2026-10-08 당시 기록**이다. 현재 실물 실습은 휴대폰 핫스팟을 사용하므로 [현재 네트워크 안내](../docs/REPRODUCIBILITY.md#현재-실물-네트워크)에 따라 Pi 주소를 확인한다.
 
 2026년 10월 8일 팀 4 실습에서 본인 노트북의 Wi-Fi·IP를 설정한 뒤 본인·팀원 PC로 라즈베리파이에 접속했다. Ubuntu 22.04·ROS 2 Humble과 OpenCR 펌웨어를 준비하고, bringup → MoveIt Servo → 키보드 teleop 순서로 로봇을 구동했다. 설치 과정과 저장된 증거의 범위는 [결과 상세](docs/results.md)에 정리했다.
 
@@ -41,7 +47,7 @@ ROBOTIS 기반 패키지, 팀 실습용 스크립트와 OpenCR 통신 보정 코
 
 ```bash
 # 원격 PC → 라즈베리파이: 로봇 구동
-ssh ubuntu@192.168.0.21
+ssh ubuntu@<현재_Pi_IP>
 bash ~/lecture05-setup/bringup-robot.sh
 ```
 
