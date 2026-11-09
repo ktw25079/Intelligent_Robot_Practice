@@ -1,5 +1,9 @@
 # week09 실습 정리
 
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
+
+실물 LiDAR 지도의 이중벽을 관찰하고 저속 제한 후 다시 매핑했다. 원본 지도·실행 로그·캡처로 변화와 남은 한계를 기록했다.
+
 ## 목표
 
 - 실물 TurtleBot3의 LiDAR·odometry로 강의실 지도를 작성한다.
@@ -84,6 +88,8 @@ bash scripts/run.sh save
 | 센서 처리 로그 | scan 약 4.8~5Hz, odom 약 4Hz |
 | 저장 지도 | 157×165셀, 해상도 0.05m/셀, 원점 (-4.95, -4.24, 0) |
 | 파일 재로드 | 별도 로컬 ROS 그룹에서 map_server의 읽기·configure·activate 성공 |
+
+![저장된 점유격자 원본의 PNG 변환](results/map_preview.png)
 
 [지도 PGM](results/map.pgm) · [지도 YAML](results/map.yaml) · [PNG 미리보기](results/map_preview.png) · [검증 기록](results/verification.json)
 
