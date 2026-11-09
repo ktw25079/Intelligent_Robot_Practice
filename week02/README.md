@@ -1,5 +1,9 @@
 # week02 실습 정리
 
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
+
+ROS 2 기본 데모의 메시지 송수신을 확인하고, 발행자·구독자·타이머 구조를 Python 대응 코드로 정리했다.
+
 ## 목표
 
 - ROS 2 기본 talker와 listener를 실행해 `/chatter` 토픽의 메시지 발행·구독을 확인한다.
