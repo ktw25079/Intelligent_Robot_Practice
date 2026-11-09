@@ -1,5 +1,9 @@
 # week03 실습 정리
 
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
+
+노드 이름·토픽·메시지 파라미터를 실행 시 분리해 설정하는 Python 패키지를 만들고, 로그와 rqt_graph로 연결을 확인했다.
+
 ## 목표
 
 - Python publisher와 subscriber를 `my_first_pkg` 패키지로 구성하고 빌드한다.
@@ -12,6 +16,8 @@
 - [talker.py](my_first_pkg/my_first_pkg/talker.py): `chatter`에 1초마다 `hello ros2 N — 이름` 형식의 `String` 메시지를 발행한다. 번호는 0부터 증가하며 이름은 `student_name` 파라미터로 받는다.
 - [listener.py](my_first_pkg/my_first_pkg/listener.py): `chatter`를 구독하고 `on_msg()`에서 수신 내용을 출력한다.
 - [setup.py](my_first_pkg/setup.py): `console_scripts`에 두 노드의 `main()`을 등록해 `ros2 run my_first_pkg talker`와 `listener`로 실행하게 한다.
+
+코드는 기본 `chatter`를 사용하고 실행 스크립트가 학번 이름으로 remap한다. 사용자별 노드·토픽 구성을 소스 편집 없이 바꿀 수 있으며, 파라미터 `student_name`은 메시지 내용만 바꾼다.
 
 ### 2. 패키지 배치와 최초 빌드
 
