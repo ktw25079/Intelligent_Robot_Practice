@@ -1,0 +1,22 @@
+name: Repository checks
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  evidence-and-controller:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check documentation and saved evidence
+        run: python3 tools/check_repository.py
+      - name: Test square patrol controller without ROS
+        env:
+          PYTHONPATH: mission1/mission1_202302200
+        run: python3 -m unittest discover -s mission1/mission1_202302200/test -v
