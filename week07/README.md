@@ -1,5 +1,9 @@
 # week07 실습 정리
 
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
+
+회전·직선 이동·고정 관절을 가진 URDF를 직접 설계하고, 예상 운동학과 TF 출력을 비교했다.
+
 ## 목표
 
 - `base_link`를 첫 링크로 하는 URDF를 직접 설계하고, 링크 3개 이상·관절 2종류 이상을 구성한다.
