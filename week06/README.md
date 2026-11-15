@@ -2,8 +2,6 @@
 
 [전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
 
-Gazebo·RViz·RQt Plot을 연결해 센서 표시와 주행 명령을 함께 관찰했다. 이 결과는 시뮬레이션의 베이스 주행에 해당한다.
-
 ## 목표
 
 - Gazebo에서 Waffle Pi + OpenMANIPULATOR-X를 생성하고 키보드로 베이스를 주행한다.
@@ -19,6 +17,9 @@ Gazebo·RViz·RQt Plot을 연결해 센서 표시와 주행 명령을 함께 관
 [mission.rviz](mission.rviz)는 Fixed Frame을 `odom`, LaserScan을 `/scan`, 점 크기를 0.05m로 설정한다. RobotModel은 `/robot_description`, 카메라는 실제 발행 토픽인 `/pi_camera/image_raw`을 사용한다. RViz2에는 `use_sim_time=true`를 적용한다.
 
 [teleop.py](teleop.py)는 `/cmd_vel`에 `geometry_msgs/msg/Twist`를 발행한다. 강의의 베이스 키 배치인 `i/k`(선속도 ±0.01m/s), `j/l`(각속도 ±0.1rad/s), Space(정지), Esc(종료)를 사용하며 최대 선속도는 ±0.2m/s, 최대 각속도는 ±0.5rad/s이다. 마지막 명령을 유지하므로 이동 후 Space로 정지한다. 팔 키보드 조작과 MoveIt Servo는 이번 실행에 포함하지 않았다.
+
+<details>
+<summary>설치·빌드·실행 방법</summary>
 
 ### 2. 패키지 준비와 최초 빌드
 
@@ -74,6 +75,8 @@ ros2 run rqt_topic rqt_topic
 ```
 
 Topic Monitor에서 `/odom`, `/cmd_vel`을 선택한다. 현재 RQt Plot 버전은 Odometry의 header에는 시뮬레이션 시각, header가 없는 Twist에는 PC 시각을 사용하므로 두 메시지를 한 시간축에 혼합하지 않았다.
+
+</details>
 
 ## 결과
 
