@@ -2,8 +2,6 @@
 
 [전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
 
-pose 기반 사각 순찰 제어기와 ROS 어댑터를 분리하고, 정지·재개 상태 보존을 수치 시험과 실제 turtlesim 서비스 호출로 확인했다.
-
 ## 목표
 
 - turtlesim 거북이가 사각 경로를 반복 주행하도록 구현한다.
@@ -39,6 +37,9 @@ stateDiagram-v2
 - 변의 진행 거리는 현재 위치 변화의 목표 방향 성분으로 계산한다. 회전 목표는 최초 방향에 90°씩 더해 설정해 현재 방향의 오차를 반복 누적하지 않는다.
 - 서비스 시작은 유효한 화면 내 경로와 0.5초 이내 pose 수신을 요구한다. pose가 오래되면 제어 주기에서 0속도를 발행한다.
 - `false` 요청은 즉시 0속도를 발행하고 변·회전 상태를 유지한다. 실제 정지 관측은 아래 JSON, 반복 경로의 수치 조건은 테스트에서 확인한다.
+
+<details>
+<summary>설치·빌드·실행 방법</summary>
 
 ### 2. 최초 빌드
 
@@ -101,19 +102,17 @@ source /opt/ros/humble/setup.bash
 python3 -u scripts/verify_patrol.py | tee results/patrol_demo_services.log
 ```
 
+</details>
+
 ## 결과
 
-turtlesim 시뮬레이터에서 실행하고 SimpleScreenRecorder로 터미널 2개와 turtlesim 창을 함께 녹화했다.
-시작 → 직진 중 정지·재개 → 회전 중 정지·재개 → 사각형 두 바퀴 완료 → 최종 정지를 확인했다.
+turtlesim에서 시작 → 직진 중 정지·재개 → 회전 중 정지·재개 → 사각형 두 바퀴 완료 → 최종 정지를 확인했다.
 `Lap 1 complete`, `Lap 2 complete` 로그가 출력되었고, 저장된 정지 전후 측정값에서 위치 변화는 0.0 turtlesim 좌표 단위, 각도 변화는 0.0 rad였다.
 두 바퀴에서 자동 종료하는 코드는 없으며, 시연 클라이언트가 최종 정지 서비스를 호출했다.
 각 정지 검증은 서비스 응답 후 0.4초를 기다린 뒤 2초 동안 위치·각도를 비교했다.
 
 자료 다운로드: [소스코드 ZIP](results/mission1_202302200.zip?raw=true) · [시연 녹화 MKV](results/patrol_demo_2laps.mkv?raw=true).
-ZIP에는 `mission1_202302200/`의 소스, 패키지 설정, launch 파일, 테스트와 실행 안내를 포함했으며 자동 생성 파일은 제외했다.
-압축을 풀어 `mission1_202302200/`을 ROS 2 작업공간에 배치한 뒤 위 순서로 빌드한다.
 
-- [시연 영상](results/patrol_demo_2laps.mkv): 2560×1600, 설정 30 fps, 약 49초, 무음.
 - [순찰 실행 로그](results/patrol_demo_launch.log): 모서리 회전, 두 바퀴 완료와 최종 정지.
 - [서비스 응답 로그](results/patrol_demo_services.log): `SetBool` 시작·정지 요청과 응답. 녹화에서는 [검증 클라이언트](scripts/verify_patrol.py)로 호출 순서를 자동화했다.
 - [정지 검증값](results/patrol_demo_verification.json): 직진·회전·최종 정지 전후의 `/turtle1/pose` 값.
