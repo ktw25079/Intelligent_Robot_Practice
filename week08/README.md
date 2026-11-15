@@ -2,8 +2,6 @@
 
 [전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
 
-실물 카메라의 ArUco 검출을 영상·pose·rosbag으로 확인했다. CSI 카메라의 재생 검증과 C920의 미보정 ID 검출 결과를 구분한다.
-
 ## 목표
 
 - 실물 카메라 영상에서 ArUco ID와 위치·자세를 확인한다.
@@ -56,6 +54,6 @@ Ubuntu 22.04·ROS 2 Humble에서 Raspberry Pi 카메라 영상 320×240과 보�
 
 ![C920 영상과 ArUco ID](screenshots/03_logitech_c920_live.png)
 
-20초 검사에서 영상 125개·CameraInfo 129개와 ID 0을 확인했다. [당시 검사값](results/logitech_before_calibration.json)의 K는 모두 0이고 D는 비어 있었다. **최종 보정값 저장·COMMIT, C920의 pose·bag 재생은 아직 검증하지 않았다.** 위 pose·bag 결과는 CSI 카메라로 얻은 결과다.
+20초 검사에서 영상 125개·CameraInfo 129개와 ID 0을 확인했다. [당시 검사값](results/logitech_before_calibration.json)의 K는 모두 0이고 D는 비어 있었다. **최종 보정값 저장·COMMIT, C920의 pose·bag 재생은 아직 검증하지 않았다.**
 
 기존 CSI 카메라는 두 리본케이블에서 촬영 시간 초과가 재현됐고, 정상 동작하던 다른 카메라 모듈로 교체한 뒤 수신에 성공했다. 모듈과 커넥터 중 어느 부품의 문제인지는 확정하지 않았다. [오류 로그](results/camera_timeout_excerpt.log) · [비교 과정과 추가 진단](docs/troubleshooting.md)
