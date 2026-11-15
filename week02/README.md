@@ -2,14 +2,19 @@
 
 [전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
 
-ROS 2 기본 데모의 메시지 송수신을 확인하고, 발행자·구독자·타이머 구조를 Python 대응 코드로 정리했다.
-
 ## 목표
 
 - ROS 2 기본 talker와 listener를 실행해 `/chatter` 토픽의 메시지 발행·구독을 확인한다.
 - 같은 동작의 Python 코드에서 발행자, 구독자와 타이머의 역할을 이해한다.
 
 ## 과정
+
+- [talker.py](talker.py): `create_publisher()`로 `chatter`의 `String` 발행자를 만들고, 1초 주기의 타이머에서 `Hello World: N`을 보낸다. 번호는 1부터 증가한다.
+- [listener.py](listener.py): `create_subscription()`으로 같은 토픽을 구독하고 `receive_message()`에서 받은 내용을 출력한다.
+- 두 파일의 `rclpy.spin()`은 타이머와 메시지 수신을 계속 처리한다. 패키지 빌드 없이 직접 실행한다.
+
+<details>
+<summary>설치·빌드·실행 방법</summary>
 
 ### 1. 실행 환경 준비
 
@@ -42,9 +47,7 @@ bash "$HOME/intelligent_robot_practice/week02/run_demo.sh" listener
 
 ### 3. Python 코드 이해 및 실행
 
-- [talker.py](talker.py): `create_publisher()`로 `chatter`의 `String` 발행자를 만들고, 1초 주기의 타이머에서 `Hello World: N`을 보낸다. 번호는 1부터 증가한다.
-- [listener.py](listener.py): `create_subscription()`으로 같은 토픽을 구독하고 `receive_message()`에서 받은 내용을 출력한다.
-- 두 파일의 `rclpy.spin()`은 타이머와 메시지 수신을 계속 처리한다. 패키지 빌드 없이 직접 실행한다.
+
 
 기본 데모를 각 터미널에서 `Ctrl+C`로 종료한 뒤 실행한다.
 
@@ -63,6 +66,8 @@ source /opt/ros/humble/setup.bash
 export ROS_DOMAIN_ID=79 ROS_LOCALHOST_ONLY=1
 python3 "$HOME/intelligent_robot_practice/week02/listener.py"
 ```
+
+</details>
 
 ## 결과
 
