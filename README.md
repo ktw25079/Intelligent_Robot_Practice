@@ -20,7 +20,7 @@
 | [![ArUco 영상과 pose 좌표축](week08/screenshots/01_rviz2_aruco.png)](week08/README.md) | [![저속 주행 후 실물 지도](week09/screenshots/02_low_speed_mapping.png)](week09/README.md) |
 | ID 0·pose 검출, 영상과 보정 정보 60개 메시지 기록·재생 | 이중벽 관찰 후 속도 제한, PGM·YAML 저장·재로드 |
 
-사진은 실제 실행 자료이며 각 링크에서 명령·설정·로그와 확인하지 못한 범위를 함께 볼 수 있다. SLAM 지도에는 일부 미관측 영역과 번짐이 남아 있다.
+SLAM 지도에는 일부 미관측 영역과 번짐이 남아 있다.
 
 ## 구현에서 검증까지
 
@@ -64,12 +64,12 @@ PYTHONPATH=mission1/mission1_202302200 \
   python3 -m unittest discover -s mission1/mission1_202302200/test -v
 ```
 
-실제 실행은 위 표에서 해당 실습의 README를 따른다. **저장소 루트에서 전체 colcon build를 실행하지 않는다.** 실물·시뮬레이션용 작업공간과 동일 이름의 보존 패키지가 함께 있어 실습별 지정 경로에서 빌드해야 한다. [장치·작업공간·통신 설정](docs/REPRODUCIBILITY.md)
+동일 이름의 패키지가 있으므로 `colcon build`는 **각 실습 README에 지정된 작업공간**에서 실행한다. [장치·작업공간·통신 설정](docs/REPRODUCIBILITY.md)
 
-CI는 파일 연결, Python·셸 문법, 보존 소스 해시, 데이터 구조와 사각 순찰 수치 시험을 확인한다. ROS 통신·Gazebo·실물 구동을 실행하거나 그 성공을 보증하는 배지는 아니다. [자동 검사 항목](docs/EVIDENCE.md#자동-검사)
+CI는 문서·소스·데이터 검사와 사각 순찰 수치 시험을 실행한다. [자동 검사 항목](docs/EVIDENCE.md#자동-검사)
 
 ## 자료 구조와 출처
 
-각 실습의 `README.md`는 **목표 → 과정 → 결과**, `screenshots/`는 화면·사진, `results/`는 로그·측정값·영상·지도다. 코드의 기본 패키지 구조는 그대로 유지한다. Mission 2의 `workspaces/`는 팀원이 제공한 당시 소스 보존본이다.
+각 실습의 `README.md`는 **목표 → 과정 → 결과**, `screenshots/`는 화면·사진, `results/`는 로그·측정값·영상·지도다. Mission 2의 `workspaces/`는 팀 제공 소스다.
 
 직접 작성한 제어기·URDF, 강의 예제 적용, ROBOTIS와 팀 제공 소스를 구분하고 원본 라이선스를 보존한다. [파일별 출처와 수정 범위](docs/PROVENANCE.md)
