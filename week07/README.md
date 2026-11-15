@@ -2,8 +2,6 @@
 
 [전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
 
-회전·직선 이동·고정 관절을 가진 URDF를 직접 설계하고, 예상 운동학과 TF 출력을 비교했다.
-
 ## 목표
 
 - `base_link`를 첫 링크로 하는 URDF를 직접 설계하고, 링크 3개 이상·관절 2종류 이상을 구성한다.
@@ -23,6 +21,9 @@
 | `slider_link` → `tool_link` | `slider_tool_joint` · fixed | 끝점 고정 |
 
 `visual`의 기본 도형과 색으로 각 링크를 구분하고, `origin`으로 연결 위치를 지정했다. `parent`·`child`로 트리를 구성하고 `axis`·`limit`으로 관절의 축과 범위를 정했다. RViz/TF 확인용 모델이므로 동역학 시뮬레이션에 필요한 질량·관성·충돌 형상은 포함하지 않았다.
+
+<details>
+<summary>설치·빌드·실행 방법</summary>
 
 ### 2. 준비와 검사
 
@@ -67,6 +68,8 @@ ros2 run tf2_tools view_frames
 ```
 
 두 터미널은 같은 `ROS_DOMAIN_ID`를 사용해야 한다. `view_frames`는 약 5초 동안 TF를 수집한 뒤 날짜·시간이 붙은 PDF와 GV 파일을 생성한다.
+
+</details>
 
 ## 결과
 
