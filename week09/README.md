@@ -2,8 +2,6 @@
 
 [전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md)
 
-실물 LiDAR 지도의 이중벽을 관찰하고 저속 제한 후 다시 매핑했다. 원본 지도·실행 로그·캡처로 변화와 남은 한계를 기록했다.
-
 ## 목표
 
 - 실물 TurtleBot3의 LiDAR·odometry로 강의실 지도를 작성한다.
@@ -24,6 +22,9 @@ Ubuntu 22.04·ROS 2 Humble 노트북과 Raspberry Pi를 같은 휴대폰 핫스�
 | [teleop 소스](turtlebot3_manipulation_teleop/src/turtlebot3_manipulation_teleop.cpp) | 키 입력에 따른 속도 증감 및 Space 정지 |
 
 ROBOTIS 기반 소스는 [mission2 작업공간](../mission2/workspaces/README.md)을 사용한다. 이 폴더의 teleop은 당시 실행한 소스이며, 기존 상한 `0.26m/s`, `1.8rad/s`를 매핑용 `0.05m/s`, `0.2rad/s`로 낮췄다. 나머지 bringup·Cartographer·로봇 모델·MoveIt 설정은 mission2 소스를 재사용한다.
+
+<details>
+<summary>설치·빌드·실행 방법</summary>
 
 ### 2. 노트북 설치와 빌드
 
@@ -72,6 +73,8 @@ bash scripts/run.sh save
 ```
 
 초기화하려면 정지 후 **지도 터미널만 Ctrl+C로 종료하고 `bash scripts/run.sh map`을 재실행**한다. RViz의 Reset은 Cartographer 지도 초기화가 아니다. bringup과 Servo는 유지할 수 있다.
+
+</details>
 
 ## 결과
 
