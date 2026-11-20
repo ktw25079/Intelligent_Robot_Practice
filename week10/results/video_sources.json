@@ -1,0 +1,22 @@
+{
+  "physical_videos": [
+    {
+      "file": "results/videos/a_to_b.mp4",
+      "original_name": "V20261117_222442000_8D704D05-80D6-43B5-B6FA-991A95CEAEC8.mp4",
+      "sha256": "721ba8abeb58fbd4e3da16038527ec186be4a3c8712b99ab3200490960f7ad0f",
+      "screenshot_second": 20
+    },
+    {
+      "file": "results/videos/a_obstacle_b.mp4",
+      "original_name": "V20261117_222442000_494BE37C-7B0B-404A-8C93-6DA533A1B004.mp4",
+      "sha256": "930acab14e68b8f026135a1ee0ca4b463a2271e1c5794d3e0507dc8496f22073",
+      "screenshot_second": 6
+    }
+  ],
+  "note": "실물 영상과 RViz·로그의 정확한 시각 동기화는 확인하지 않음. 실물 원본 바이트 보존.",
+  "rviz_screenshot": {
+    "file": "screenshots/rviz_obstacle.jpg",
+    "source": "results/videos/rviz_with_obstacle_04.mkv",
+    "second": 20
+  }
+}
