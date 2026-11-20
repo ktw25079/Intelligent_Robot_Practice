@@ -49,6 +49,7 @@ flowchart LR
 | [week07](week07/README.md) | URDF 4링크·3종 관절, launch 설정 | 관절 슬라이더와 TF 변환·트리 | RViz / TF |
 | [week08](week08/README.md) | 강의 ArUco 예제의 실물 적용·rosbag 검증 | CSI 카메라 ID·pose 재생, C920 ID 검출 | Pi 카메라 + PC |
 | [week09](week09/README.md) | Cartographer 운용·저속 제한·저장 도구 | 157×165셀 지도, 0.05m/셀, 파일 재로드 | 실물 SLAM |
+| [week10](week10/README.md) | Nav2 목표 전송·A→B 순차 주행·장애물 회피 | 실물 영상 2개, RViz 녹화, A·B 성공 로그 | 실물 Nav2 |
 
 week02의 저장 로그는 기본 데모 결과다. Mission 2는 팀 실습 자료이며, week08의 C920 보정·pose 재생과 week09의 전체 공간 폐루프 검증은 완료 확인 전이다. [근거와 한계 전체 보기](docs/EVIDENCE.md)
 
