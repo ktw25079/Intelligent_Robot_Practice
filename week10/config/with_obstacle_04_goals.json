@@ -1,0 +1,14 @@
+{
+  "A": {
+    "x": -0.10103027130224364,
+    "y": 0.46327390366475235,
+    "yaw": 0.8054715137133737
+  },
+  "B": {
+    "x": 1.206,
+    "y": 2.128,
+    "yaw": 1.0265158418489166
+  },
+  "goal_timeout_sec": 180,
+  "note": "A is the measured stationary start after return and scan alignment; B unchanged."
+}
