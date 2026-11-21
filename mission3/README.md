@@ -1,4 +1,4 @@
-# week10 실습 정리
+# Mission 3 · Nav2 두 지점 자율주행
 
 [전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md) · [실행 코드](src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py)
 
@@ -46,13 +46,13 @@ for name in ('A', 'B'):
 
 ### 3. 빌드와 실행
 
-사전 조건은 ROS 2 Humble, `colcon`, 실물 bringup 및 TurtleBot3 로봇 모델이다. 하드웨어 준비는 [Mission 2](../mission2/docs/setup-and-run.md)를 따른다. 저장소의 `week10/`에서 별도 작업공간으로 빌드한다. 아래 복사는 `~/nav10_ws/src`에 두 패키지가 없는 최초 배치 기준이다. 기존 작업공간에서는 중복 복사하지 않는다.
+사전 조건은 ROS 2 Humble, `colcon`, 실물 bringup 및 TurtleBot3 로봇 모델이다. 하드웨어 준비는 [Mission 2](../mission2/docs/setup-and-run.md)를 따른다. 저장소의 `mission3/`에서 별도 작업공간으로 빌드한다. 아래 복사는 `~/nav10_ws/src`에 두 패키지가 없는 최초 배치 기준이다. 기존 작업공간에서는 중복 복사하지 않는다.
 
 ```bash
 source /opt/ros/humble/setup.bash
 sudo apt install python3-colcon-common-extensions ros-humble-navigation2 \
   ros-humble-nav2-bringup ros-humble-nav2-simple-commander
-export NAV_DATA="$PWD"  # 현재 위치: 저장소/week10
+export NAV_DATA="$PWD"  # 현재 위치: 저장소/mission3
 mkdir -p ~/nav10_ws/src
 cp -r "$NAV_DATA/src/ire_week10_nav_demo" "$NAV_DATA/src/turtlebot3_manipulation_navigation2" ~/nav10_ws/src/
 cd ~/nav10_ws
@@ -69,7 +69,7 @@ export ROS_DOMAIN_ID=4 ROS_LOCALHOST_ONLY=0
 ros2 launch turtlebot3_manipulation_bringup hardware.launch.py
 ```
 
-**PC 터미널 1·2 공통:** 각 터미널에서 저장소 `week10/`로 이동하고 실행한다. 로봇 모델이 별도 overlay에 있으면 먼저 source한다.
+**PC 터미널 1·2 공통:** 각 터미널에서 저장소 `mission3/`로 이동하고 실행한다. 로봇 모델이 별도 overlay에 있으면 먼저 source한다.
 
 ```bash
 source /opt/ros/humble/setup.bash
