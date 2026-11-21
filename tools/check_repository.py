@@ -16,7 +16,6 @@ import xml.etree.ElementTree as ET
 import zipfile
 
 ROOT = Path(__file__).resolve().parents[1]
-LABS = ('week02', 'week03', 'mission1', 'mission2', 'week06', 'week07', 'week08', 'week09')
 SNAPSHOT = 'mission2/workspaces/'
 
 
@@ -129,13 +128,42 @@ def check_map(counts):
     counts['map_cells'] = width * height
 
 
+def check_nav_evidence(counts):
+    base = ROOT / 'week10'
+    for name in ('no_obstacle_01', 'with_obstacle_04'):
+        rows = [json.loads(line) for line in (base / f'results/logs/{name}.jsonl').read_text().splitlines()]
+        goals = json.loads((base / f'config/{name}_goals.json').read_text())
+        require(bool(rows) and rows[0].get('event') == 'session', f'{name}: missing session')
+        require(rows[0].get('goals') == goals and rows[0].get('execute') is True, f'{name}: goals/session mismatch')
+        sequence = [(row.get('event'), row.get('goal'), row.get('result')) for row in rows
+                    if row.get('event') in ('goal_sent', 'goal_result', 'sequence_succeeded', 'stopped')]
+        expected = [('goal_sent', 'A', None), ('goal_result', 'A', 'TaskResult.SUCCEEDED'),
+                    ('goal_sent', 'B', None), ('goal_result', 'B', 'TaskResult.SUCCEEDED'),
+                    ('sequence_succeeded', None, None)]
+        require(sequence == expected, f'{name}: unexpected goal sequence')
+        counts['nav_sessions'] += 1
+    manifest = json.loads((base / 'results/video_sources.json').read_text())
+    for video in manifest['physical_videos']:
+        path = (base / video['file']).resolve()
+        require(path.is_relative_to(base), 'Video path escapes week10')
+        require(hashlib.sha256(path.read_bytes()).hexdigest() == video['sha256'], f'Video hash mismatch: {path.name}')
+        counts['video_hashes'] += 1
+
+
 def main():
     tracked = tracked_files()
+    labs = sorted({n.split("/")[0] for n in tracked
+                   if re.fullmatch(r"(?:week\d{2}|mission\d+)", n.split("/")[0])})
     counts = Counter()
     failures = []
-    for lab in LABS:
+    for lab in labs:
         try:
             require(f'{lab}/README.md' in tracked, f'{lab}: README missing')
+            readme = (ROOT / lab / 'README.md').read_text()
+            title = f'# {lab} 실습 정리' if lab.startswith('week') else f'# Mission {lab[7:]} · '
+            require(readme.startswith(title), f'{lab}: README title does not follow convention')
+            sections = [readme.find('\n## ' + name + '\n') for name in ('목표', '과정', '결과')]
+            require(all(i >= 0 for i in sections) and sections == sorted(sections), f'{lab}: README sections missing or out of order')
             for folder in ('screenshots', 'results'):
                 require(any(n.startswith(f'{lab}/{folder}/') for n in tracked), f'{lab}: {folder} missing')
             require(any(n.startswith(lab + '/') and n.endswith(('.py', '.cpp', '.sh', '.urdf')) for n in tracked), f'{lab}: code missing')
@@ -146,12 +174,12 @@ def main():
             inspect_file(name, tracked, counts)
         except (ValueError, OSError, SyntaxError, ET.ParseError, subprocess.CalledProcessError, zipfile.BadZipFile, struct.error) as error:
             failures.append(f'{name}: {error}')
-    for check in (check_snapshot, check_bag, check_map):
+    for check in (check_snapshot, check_bag, check_map, check_nav_evidence):
         try:
             check(counts)
         except (ValueError, OSError, sqlite3.Error, AttributeError, KeyError) as error:
             failures.append(f'{check.__name__}: {error}')
-    print(json.dumps({'labs': len(LABS), 'checks': dict(counts), 'failures': failures}, ensure_ascii=False, indent=2))
+    print(json.dumps({'labs': len(labs), 'checks': dict(counts), 'failures': failures}, ensure_ascii=False, indent=2))
     return bool(failures)
 
 
