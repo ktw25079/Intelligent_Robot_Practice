@@ -10,17 +10,46 @@
 
 ## 대표 결과
 
-| 서비스 기반 사각 순찰 · Mission 1 | 실물 하드웨어 제어 · Mission 2 |
-| --- | --- |
-| [![사각형 두 바퀴와 정지 검증](mission1/screenshots/patrol_demo_stopped.png)](mission1/README.md) | [![실물 로봇의 초기 자세](mission2/screenshots/initial-pose.jpg)](mission2/README.md) |
-| 상태를 보존하는 정지·재개, 두 바퀴 시연, pose 기반 정지 검사 | 컨트롤러 5개 활성화, 바퀴 주행·팔 자세 변경 |
+<table>
+<tr>
+<td width="50%" align="center" valign="top">
+<a href="mission1/README.md"><img src="mission1/screenshots/overview.svg" width="420" height="236" alt="Mission 1 · 사각 순찰"/></a><br/>
+<strong><a href="mission1/README.md">Mission 1 · 사각 순찰</a></strong><br/>
+정지·재개와 두 바퀴 주행
+</td>
+<td width="50%" align="center" valign="top">
+<a href="mission2/README.md"><img src="mission2/screenshots/overview.svg" width="420" height="236" alt="Mission 2 · 실물 제어"/></a><br/>
+<strong><a href="mission2/README.md">Mission 2 · 실물 제어</a></strong><br/>
+컨트롤러 5개 활성화·팔 자세 변경
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+<a href="mission3/README.md"><img src="mission3/screenshots/overview.svg" width="420" height="236" alt="Mission 3 · 자율주행"/></a><br/>
+<strong><a href="mission3/README.md">Mission 3 · 자율주행</a></strong><br/>
+A→B 순차 이동·장애물 회피 장면
+</td>
+<td width="50%" align="center" valign="top">
+<a href="week07/README.md"><img src="week07/screenshots/overview.svg" width="420" height="236" alt="week07 · 로봇 모델"/></a><br/>
+<strong><a href="week07/README.md">week07 · 로봇 모델</a></strong><br/>
+4링크·3종 관절과 TF 확인
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+<a href="week08/README.md"><img src="week08/screenshots/overview.svg" width="420" height="236" alt="week08 · 시각 인식"/></a><br/>
+<strong><a href="week08/README.md">week08 · 시각 인식</a></strong><br/>
+ArUco ID·pose 검출과 기록·재생
+</td>
+<td width="50%" align="center" valign="top">
+<a href="week09/README.md"><img src="week09/screenshots/overview.svg" width="420" height="236" alt="week09 · 지도 작성"/></a><br/>
+<strong><a href="week09/README.md">week09 · 지도 작성</a></strong><br/>
+저속 매핑·지도 저장·재로드
+</td>
+</tr>
+</table>
 
-| 카메라 검출과 재생 · week08 | 실물 지도 작성 · week09 |
-| --- | --- |
-| [![ArUco 영상과 pose 좌표축](week08/screenshots/01_rviz2_aruco.png)](week08/README.md) | [![저속 주행 후 실물 지도](week09/screenshots/02_low_speed_mapping.png)](week09/README.md) |
-| ID 0·pose 검출, 영상과 보정 정보 60개 메시지 기록·재생 | 이중벽 관찰 후 속도 제한, PGM·YAML 저장·재로드 |
-
-SLAM 지도에는 일부 미관측 영역과 번짐이 남아 있다.
+SLAM 지도에는 일부 미관측 영역과 번짐이 남아 있다. 각 실습에서 실행 근거와 확인 범위를 볼 수 있다.
 
 ## 구현에서 검증까지
 
@@ -35,7 +64,7 @@ flowchart LR
     C --> D[week07<br/>모델·좌표계]
     D --> E[week08<br/>카메라·pose·재생]
     E --> F[week09<br/>실물 지도·저장]
-    F --> G[week10<br/>Nav2 목표 주행]
+    F --> G[Mission 3<br/>Nav2 목표 주행]
 ```
 
 ## 실습 목록
@@ -50,7 +79,7 @@ flowchart LR
 | [week07](week07/README.md) | URDF 4링크·3종 관절, launch 설정 | 관절 슬라이더와 TF 변환·트리 | RViz / TF |
 | [week08](week08/README.md) | 강의 ArUco 예제의 실물 적용·rosbag 검증 | CSI 카메라 ID·pose 재생, C920 ID 검출 | Pi 카메라 + PC |
 | [week09](week09/README.md) | Cartographer 운용·저속 제한·저장 도구 | 157×165셀 지도, 0.05m/셀, 파일 재로드 | 실물 SLAM |
-| [week10](week10/README.md) | Nav2 목표 전송·A→B 순차 주행·장애물 회피 | 실물 영상 2개, RViz 녹화, A·B 성공 로그 | 실물 Nav2 |
+| [Mission 3](mission3/README.md) | Nav2 목표 전송·A→B 순차 주행·장애물 회피 | 실물 영상 2개, RViz 녹화, A·B 성공 로그 | 실물 Nav2 |
 
 week02의 저장 로그는 기본 데모 결과다. Mission 2는 팀 실습 자료이며, week08의 C920 보정·pose 재생과 week09의 전체 공간 폐루프 검증은 완료 확인 전이다. [근거와 한계 전체 보기](docs/EVIDENCE.md)
 
