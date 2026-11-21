@@ -25,6 +25,10 @@ Ubuntu 22.04·ROS 2 Humble에서 Raspberry Pi 카메라 영상 320×240과 보�
 
 최초 설치, 빌드, Pi 카메라·TF, PC 검출, rosbag 기록·재생 명령은 [Pi 카메라 실행 안내](docs/pi-camera-workflow.md)에 정리했다. 카메라 교체와 팔 초기화 오류의 근거는 [문제 확인 기록](docs/troubleshooting.md)에서 확인할 수 있다.
 
+검출 노드는 Image와 CameraInfo를 `qos_profile_sensor_data`로 구독한다. `/aruco/pose`에는 입력 영상의 타임스탬프를 유지하고, `frame_id` 파라미터의 카메라 광학 프레임을 사용한다. RViz의 `base_footprint` 표시는 로봇이 제공하는 TF와 연결한 결과다.
+
+CameraInfo는 최근 수신한 K·D를 캐시하며 영상과 메시지별 동기화를 수행하지 않는다. 이 실습은 고정된 해상도·보정값을 전제로 한다. 여러 마커의 pose를 같은 토픽에 발행하지만 `PoseStamped`에 마커 ID는 포함하지 않으므로, 저장된 검증은 단일 ID 0을 기준으로 해석한다.
+
 ### 2. C920 USB 카메라 연결
 
 추가로 C920을 Pi에 연결해 노트북 영상 수신과 ID 0 검출을 확인했다. CSI 카메라와 입력 토픽·장치·보정값이 다르므로 별도 설정을 사용한다. [C920 연결 및 보정 안내](C920_CALIBRATION.md)에 설치, 체커보드, 보정 GUI와 적용 절차를 정리했다.
