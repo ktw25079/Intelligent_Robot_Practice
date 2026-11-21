@@ -12,6 +12,8 @@
 
 ### 환경 구성과 제어 연결
 
+[실물 로봇 사진](screenshots/robot-hardware.png)에서 베이스·LiDAR·로봇팔·카메라 구성을 확인할 수 있다.
+
 Ubuntu 22.04·ROS 2 Humble에서 TurtleBot3 Waffle 계열과 OpenMANIPULATOR-X를 구동했다. Pi는 하드웨어 bringup을, 원격 PC는 MoveIt Servo·키보드 teleop와 상태 관찰을 맡았다. `ROS_DOMAIN_ID=4`, `ROS_LOCALHOST_ONLY=0`으로 통신 환경을 맞추고 bringup → Servo → teleop 순서로 실행했다.
 
 ![원격 PC와 로봇 연결](docs/figures/system-connection.png)
