@@ -1,6 +1,6 @@
 # Intelligent Robot Practice
 
-**ROS 2 통신에서 실물 로봇 제어·시각 인식·SLAM까지, 코드와 실행 근거를 함께 기록한 실습 저장소.**
+**ROS 2 통신에서 실물 로봇 제어·시각 인식·SLAM·Nav2까지, 코드와 실행 근거를 함께 기록한 실습 저장소.**
 
 강태욱 · 202302200 · 2026년 2학기 · Ubuntu 22.04 / ROS 2 Humble
 
@@ -35,6 +35,7 @@ flowchart LR
     C --> D[week07<br/>모델·좌표계]
     D --> E[week08<br/>카메라·pose·재생]
     E --> F[week09<br/>실물 지도·저장]
+    F --> G[week10<br/>Nav2 목표 주행]
 ```
 
 ## 실습 목록
@@ -56,8 +57,8 @@ week02의 저장 로그는 기본 데모 결과다. Mission 2는 팀 실습 자�
 ## 시작하기
 
 ```bash
-git clone https://github.com/ktw25079/Intelligent_Robot_Practice.git
-cd Intelligent_Robot_Practice
+git clone https://github.com/ktw25079/Intelligent_Robot_Practice.git ~/intelligent_robot_practice
+cd ~/intelligent_robot_practice
 
 # ROS·하드웨어 없이 저장소 자료와 제어기 수치 시험 확인
 python3 tools/check_repository.py
