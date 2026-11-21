@@ -129,7 +129,7 @@ def check_map(counts):
 
 
 def check_nav_evidence(counts):
-    base = ROOT / 'week10'
+    base = ROOT / 'mission3'
     for name in ('no_obstacle_01', 'with_obstacle_04'):
         rows = [json.loads(line) for line in (base / f'results/logs/{name}.jsonl').read_text().splitlines()]
         goals = json.loads((base / f'config/{name}_goals.json').read_text())
@@ -145,7 +145,7 @@ def check_nav_evidence(counts):
     manifest = json.loads((base / 'results/video_sources.json').read_text())
     for video in manifest['physical_videos']:
         path = (base / video['file']).resolve()
-        require(path.is_relative_to(base), 'Video path escapes week10')
+        require(path.is_relative_to(base), 'Video path escapes mission3')
         require(hashlib.sha256(path.read_bytes()).hexdigest() == video['sha256'], f'Video hash mismatch: {path.name}')
         counts['video_hashes'] += 1
 
