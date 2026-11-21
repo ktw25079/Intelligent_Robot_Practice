@@ -2,7 +2,7 @@
 
 [전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md) · [실행 코드](src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py)
 
-직접 만든 실물 지도에서 Nav2로 A→B 순차 주행과 장애물이 있는 경로의 회피를 실습했다. 실물 영상 2개, RViz 녹화, 목표별 결과 로그를 함께 보관한다.
+10주차 미션 3에서는 직접 만든 실물 지도에서 Nav2로 A→B 순차 주행과 장애물이 있는 경로의 회피를 실습했다. 실물 영상 2개, RViz 녹화, 목표별 결과 로그를 함께 보관한다.
 
 ## 목표
 

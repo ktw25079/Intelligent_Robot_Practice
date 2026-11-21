@@ -4,7 +4,7 @@
 
 강태욱 · 202302200 · 2026년 2학기 · Ubuntu 22.04 / ROS 2 Humble
 
-[![Repository checks](https://github.com/ktw25079/Intelligent_Robot_Practice/actions/workflows/verify.yml/badge.svg)](https://github.com/ktw25079/Intelligent_Robot_Practice/actions/workflows/verify.yml)
+[![Repository checks](https://github.com/ktw25079/Intelligent_Robot_Practice/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/ktw25079/Intelligent_Robot_Practice/actions/workflows/verify.yml)
 
 [실습별 코드](#실습-목록) · [재현 안내](docs/REPRODUCIBILITY.md) · [검증 범위](docs/EVIDENCE.md) · [코드 출처와 기여](docs/PROVENANCE.md)
 
