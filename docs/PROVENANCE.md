@@ -12,7 +12,7 @@
 | week07 | 강의 launch 구성 | 4링크 URDF 직접 설계, 모델 경로·RViz 설정, 운동학과 TF 비교 | [URDF](../week07/myurdf_202302200.urdf) · [launch](../week07/launch/display.launch.py) |
 | week08 | iCIR 강의 ArUco·색 검출 예제, 강의 카메라 보정값 | 실물 토픽·마커 크기 적용, 패키지 진입점, 수신·재생 검사, C920 연결 도구 | [검출기](../week08/ire_week08_vision/ire_week08_vision/aruco_detect.py) · [검사기](../week08/scripts/check_topics.py) |
 | week09 | Mission 2의 ROBOTIS 패키지·Cartographer | 실물 SLAM 운용, teleop 속도 상한 변경, 실행·저장 도구와 결과 검증 | [teleop](../week09/turtlebot3_manipulation_teleop/) · [라이선스](../week09/turtlebot3_manipulation_teleop/LICENSE) |
-| week10 | iCIR 강의 Nav2 예제·ROBOTIS Navigation2 패키지 (Apache-2.0) | A·B 순차 목표 전송, 시간·odom 검사, 경로·결과 기록 및 실물 운용 | [목표 전송 코드](../week10/src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py) · [Nav2 설정](../week10/config/nav2.yaml) |
+| Mission 3 | iCIR 강의 Nav2 예제·ROBOTIS Navigation2 패키지 (Apache-2.0) | A·B 순차 목표 전송, 시간·odom 검사, 경로·결과 기록 및 실물 운용 | [목표 전송 코드](../mission3/src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py) · [Nav2 설정](../mission3/config/nav2.yaml) |
 
 강의 예제나 팀 제공 드라이버를 새로운 알고리즘의 독자 구현으로 표현하지 않는다. 개발·수정한 부분과 설치·운용·검증한 부분을 각 실습 문서에서 구분한다.
 
