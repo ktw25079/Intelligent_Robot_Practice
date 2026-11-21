@@ -16,6 +16,7 @@
 | [week07](../week07/README.md) | 별도 빌드 없이 URDF launch | 같은 domain, localhost 1 권장 | PC / RViz |
 | [week08](../week08/docs/pi-camera-workflow.md) | `week08/`에서 영상 패키지 빌드 | domain 4, localhost 0 | Pi 카메라 + PC |
 | [week09](../week09/README.md) | `week09/scripts/build.sh`로 지정 5개 빌드 | domain 4, localhost 0, wall time | PC + 실물 로봇 |
+| [week10](../week10/README.md) | `week10/src`의 두 패키지를 `~/nav10_ws`에 배치 후 빌드 | domain 4, localhost 0, wall time | PC + 실물 로봇 / Nav2 |
 
 `ROS_DOMAIN_ID`는 실습 장비의 실제 그룹과 맞춘다. 다른 도메인으로 실행한 ros2 daemon의 결과가 남아 있으면 올바른 환경을 source한 뒤 `ros2 daemon stop`으로 재탐색한다. 다른 실습의 overlay를 한 터미널에 계속 겹쳐 source하지 않고 새 터미널에서 시작한다.
 
@@ -28,7 +29,7 @@
 3. 양쪽 ROS 터미널에서 `ROS_DOMAIN_ID=4`, `ROS_LOCALHOST_ONLY=0`을 설정한다.
 4. SSH와 별개로 ROS 노드·토픽 수신을 확인한다. SSH 성공만으로 DDS 통신을 검증한 것은 아니다.
 
-실물은 Pi bringup → PC Servo·teleop 순서로 시작한다. SLAM에서는 bringup 후 Cartographer도 실행한다. 정지 시 teleop의 Space를 먼저 사용하며, 현재 키보드 코드는 키를 놓아도 마지막 속도 명령을 유지한다. 하드웨어 종료 동작과 전원 준비는 [Mission 2 실행 안내](../mission2/docs/setup-and-run.md)를 따른다.
+수동 주행은 Pi bringup → PC Servo·teleop 순서로 시작한다. Nav2 주행은 bringup → PC Nav2 → 초기 위치 지정 → 목표 전송 순서이며, Cartographer·teleop을 함께 실행하지 않는다. SLAM에서는 bringup 후 Cartographer도 실행한다. 정지 시 teleop의 Space를 먼저 사용하며, 현재 키보드 코드는 키를 놓아도 마지막 속도 명령을 유지한다. 하드웨어 종료 동작과 전원 준비는 [Mission 2 실행 안내](../mission2/docs/setup-and-run.md)를 따른다.
 
 ## 입력과 시간 기준
 
