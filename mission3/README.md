@@ -18,21 +18,40 @@ Ubuntu 22.04 / ROS 2 Humble과 실물 TurtleBot3 Manipulation을 사용했다. A
 
 [Nav2 설정](config/nav2.yaml)과 [실물 컨트롤러 설정](config/hardware_controller_manager.yaml), [지도](results/maps/map.yaml)를 보관했다. 실물 odometry는 `open_loop=false`, `position_feedback=true`인 엔코더 피드백을 사용한다. 지도는 이번 주행에 사용한 저장본이며 week09의 지도와 구분한다.
 
+| Nav2 구성 | 보관된 설정 | 의미 |
+| --- | --- | --- |
+| 전역 경로 | NavFn, `use_astar=false` | Dijkstra 기반 경로 계획 |
+| 지역 제어 | DWB, `controller_frequency=20.0` Hz | 지역 궤적 평가와 속도 명령 생성 |
+| 도착 판정 | `xy_goal_tolerance=0.25` m, `yaw_goal_tolerance=0.3` rad | 성공 판정 허용 범위. 실측 도착 오차와 구분 |
+| 장애물 여유 | global/local `inflation_radius=0.55` m | costmap 비용 영역. 실제 최소 장애물 거리와 구분 |
+
+위 수치는 [실행 설정](config/nav2.yaml)의 값이며, 측정한 주기·오차나 튜닝 최적값을 뜻하지 않는다. 경로 계획과 속도 제어는 Nav2 플러그인이 담당하고, 작성한 클라이언트는 목표 순서·실행 상태·기록을 관리한다.
+
 ### 2. 목표 전송 코드
 
 [go_to_pose_202302200.py](src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py)는 강의의 단일 목표 예제를 두 지점 순차 실행으로 확장했다. `map` 좌표계의 x·y와 yaw를 `PoseStamped`로 만들고, yaw는 `sin(yaw/2)`, `cos(yaw/2)`로 변환한다.
 
-```python
-for name in ('A', 'B'):
-    # 목표를 전송하고 완료 후 결과를 검사하는 핵심 흐름
-    nav.goToPose(pose(config[name]))
-    while not nav.isTaskComplete():
-        feedback = nav.getFeedback()
-    if nav.getResult() != TaskResult.SUCCEEDED:
-        raise RuntimeError(f'{name} did not succeed; no next goal sent')
+목표 전송부터 완료까지의 핵심 순서는 다음과 같다. 실제 구현은 각 대기 구간의 예외와 취소 요청을 함께 처리한다.
+
+```mermaid
+flowchart LR
+    A[AMCL 위치·Nav2 준비 확인] --> B[최신 odom 확인]
+    B --> C[A 목표 전송]
+    C --> D{A 성공?}
+    D -->|성공| E[B 목표 전송·결과 확인]
+    D -->|실패| F[다음 목표 없이 종료]
 ```
 
-위 코드는 흐름 요약이다. 실제 소스는 목표 거절·180초 제한·오도메트리 단절을 검사하며 예외 시 실행 중인 작업을 취소한다. `/plan` 경로, 남은 거리, 복구 횟수와 결과를 JSONL로 저장한다. `--execute`가 없으면 A→B 경로 생성만 확인한다.
+| 인터페이스·조건 | 실제 코드의 처리 |
+| --- | --- |
+| 목표 pose | `map` 프레임, ROS clock 타임스탬프, yaw→쿼터니언 변환 |
+| 초기 위치 | 명시한 초기 pose 또는 수신한 AMCL 위치를 사용. AMCL 수신 대기는 최대 15초 |
+| `/odom` | `qos_profile_sensor_data`로 수신. 3초 이상 미수신·시각 차이·위치 불연속 검사 |
+| 목표 결과 | `goToPose()` 거절과 `TaskResult` 검사. 성공한 경우에만 다음 목표 전송 |
+| 시간 제한 | 목표당 기본 180초를 monotonic clock으로 확인하고 초과 시 `cancelTask()` 요청 |
+| `/plan`·피드백 | 경로 점, 남은 거리, 복구 횟수와 최종 결과를 JSONL로 기록 |
+
+`--execute`가 없으면 A→B 경로 생성만 확인한다. 경로 점의 변화는 주기적 재계획에도 발생하므로 장애물 회피의 단독 증거로 사용하지 않는다. `cancelTask()`는 Nav2 취소 요청이며 물리적 정지 시간의 검증을 대신하지 않는다. Nav2 활성화 대기 자체에는 별도 시간 제한을 두지 않았다.
 
 | 실행 설정 | A (x, y, yaw) | B (x, y, yaw) |
 | --- | --- | --- |
