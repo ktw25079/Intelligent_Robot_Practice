@@ -1,6 +1,6 @@
 # week10 실습 정리
 
-[전체 실습](../README.md) · [실행 코드](src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py)
+[전체 실습](../README.md) · [재현 환경](../docs/REPRODUCIBILITY.md) · [검증 근거](../docs/EVIDENCE.md) · [실행 코드](src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py)
 
 직접 만든 실물 지도에서 Nav2로 A→B 순차 주행과 장애물이 있는 경로의 회피를 실습했다. 실물 영상 2개, RViz 녹화, 목표별 결과 로그를 함께 보관한다.
 
@@ -41,9 +41,12 @@ for name in ('A', 'B'):
 
 위치는 m, 방향은 rad이다. 장애물 주행의 A는 복귀 후 정렬한 실제 출발 위치를 반영했다.
 
+<details>
+<summary>설치·빌드·실행 방법</summary>
+
 ### 3. 빌드와 실행
 
-사전 조건은 ROS 2 Humble, `colcon`, 실물 bringup 및 TurtleBot3 로봇 모델이다. 하드웨어 준비는 [Mission 2](../mission2/docs/setup-and-run.md)를 따른다. 저장소의 `week10/`에서 별도 작업공간으로 빌드한다.
+사전 조건은 ROS 2 Humble, `colcon`, 실물 bringup 및 TurtleBot3 로봇 모델이다. 하드웨어 준비는 [Mission 2](../mission2/docs/setup-and-run.md)를 따른다. 저장소의 `week10/`에서 별도 작업공간으로 빌드한다. 아래 복사는 `~/nav10_ws/src`에 두 패키지가 없는 최초 배치 기준이다. 기존 작업공간에서는 중복 복사하지 않는다.
 
 ```bash
 source /opt/ros/humble/setup.bash
@@ -61,6 +64,7 @@ colcon build --symlink-install
 ```bash
 source /opt/ros/humble/setup.bash
 source ~/turtlebot3_ws/install/setup.bash
+source ~/lecture05-repair_ws/install/setup.bash  # Mission 2 하드웨어·SDK 보정본
 export ROS_DOMAIN_ID=4 ROS_LOCALHOST_ONLY=0
 ros2 launch turtlebot3_manipulation_bringup hardware.launch.py
 ```
@@ -98,6 +102,8 @@ ros2 run ire_week10_nav_demo go_to_pose_202302200 \
 
 장애물 실습은 `with_obstacle_04_goals.json`을 사용한다. 강의 조건은 주행 중 로봇보다 1 m 이상 앞에 LiDAR 높이에 걸리는 장애물을 놓고 경로 변화를 확인하는 것이다. 저장 좌표는 제공 지도 전용이며 다른 공간에서는 다시 지정한다.
 
+</details>
+
 ## 결과
 
 | 구분 | 실물 영상 | RViz 녹화 | 실행 로그 |
@@ -117,4 +123,4 @@ RViz 장애물 녹화의 20초 장면에는 지도 내부의 센서 반사점과
 
 실물 영상은 장애물을 놓는 순간을 포함하지 않으며, 실물 영상과 RViz·로그의 정확한 시각 동기화는 확인하지 않았다. 따라서 로그의 도착 성공과 촬영 구간의 회피 장면을 근거로 기록하고, 전 주행 충돌 0회 및 주행 중 장애물 투입 조건 전체를 검증한 것으로 단정하지 않는다. [원본 파일명·SHA-256·캡처 시각](results/video_sources.json)을 함께 보관했다.
 
-소스 출처: iCIRLab `icir_ire_lecture`의 Nav2 예제와 ROBOTIS `turtlebot3_manipulation_navigation2`(Apache-2.0). 원본 패키지 구조와 저작권 헤더를 유지했으며, 실행 소스는 이번 자료 정리 과정에서 변경하지 않았다.
+소스 출처: iCIRLab `icir_ire_lecture`의 Nav2 예제와 ROBOTIS `turtlebot3_manipulation_navigation2`(Apache-2.0). 원본 패키지 구조와 저작권 헤더를 유지한다. [코드 출처와 적용 범위](../docs/PROVENANCE.md)를 참고한다.
