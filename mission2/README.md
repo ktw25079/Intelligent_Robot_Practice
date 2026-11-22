@@ -70,19 +70,26 @@ ros2 topic echo /cmd_vel
 
 컨트롤러 활성화 화면과 실물 사진에서 bringup 및 팔 자세 변경을 확인했고, 주행 영상에서 차체 이동과 방향 전환을 확인했다. 자동 경로 계획이나 목표 관절각 추종 실험이 아닌 키보드 수동 조작이다.
 
-![다섯 컨트롤러 활성화](screenshots/bringup-five-active.png)
+| 실물 로봇 구성 | 컨트롤러 활성화 |
+| --- | --- |
+| <img src="screenshots/robot-hardware.png" width="360" alt="실물 TurtleBot3와 로봇팔"> | <img src="screenshots/bringup-five-active.png" width="420" alt="다섯 컨트롤러 active 상태"> |
 
-팀원 제공 화면에 `joint_state_broadcaster`, `diff_drive_controller`, `gripper_controller`, `imu_broadcaster`, `arm_controller`가 모두 `active`로 표시되어 있다.
+팀원 제공 화면에서 `joint_state_broadcaster`, `diff_drive_controller`, `gripper_controller`, `imu_broadcaster`, `arm_controller`가 모두 `active`로 표시되어 있다.
+
+<details>
+<summary>초기·지정 자세와 네 터미널 실행 화면</summary>
 
 | Bringup 초기 자세 | 키보드로 만든 지정 자세 |
 | --- | --- |
-| ![초기 자세](screenshots/initial-pose.jpg) | ![지정 자세](screenshots/target-pose.jpg) |
+| <img src="screenshots/initial-pose.jpg" width="360" alt="초기 자세"> | <img src="screenshots/target-pose.jpg" width="360" alt="지정 자세"> |
 
-초기 자세는 팔이 전방으로 뻗은 상태, 지정 자세는 팔과 그리퍼를 위로 세운 상태다. 강의자료의 예시 형상과 대응하지만 관절각 오차를 측정한 것은 아니다.
+초기 자세는 팔이 전방으로 뻗은 상태, 지정 자세는 팔과 그리퍼를 위로 세운 상태다. 관절각 오차는 측정하지 않았다.
 
-![4분할 실행 화면](screenshots/four-terminals.png)
+<img src="screenshots/four-terminals.png" width="760" alt="Bringup·cmd_vel·Servo·teleop 실행 화면">
 
-왼쪽 위는 Pi bringup, 오른쪽 위는 `/cmd_vel`, 왼쪽 아래는 MoveIt Servo, 오른쪽 아래는 teleop이다. 속도 값 0은 캡처 순간의 정지 명령이다. Servo 화면에는 관절 한계 정지 경고와 3D 센서 플러그인 미설정 메시지가 남아 있다.
+왼쪽 위는 Pi bringup, 오른쪽 위는 `/cmd_vel`, 왼쪽 아래는 MoveIt Servo, 오른쪽 아래는 teleop이다. Servo 화면의 관절 한계 정지 경고와 3D 센서 플러그인 미설정 메시지는 [결과 상세](docs/results.md)에 설명했다.
+
+</details>
 
 - [주행 영상 MP4](results/path-driving.mp4?raw=true): 약 10.80초. 이동·회전은 확인되지만 과제의 `직진 약 15초 → 45° 이상 회전 → 복귀` 전체 조건을 이 영상만으로 검증할 수 없다.
 - [Servo 연결 직후 화면](screenshots/mission2-ready-final.png): 서비스 연결과 시작 로그, 키 안내 및 모델 관련 메시지.
