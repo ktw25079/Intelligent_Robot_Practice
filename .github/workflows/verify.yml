@@ -20,3 +20,11 @@ jobs:
         env:
           PYTHONPATH: mission1/mission1_202302200
         run: python3 -m unittest discover -s mission1/mission1_202302200/test -v
+      - name: Install numerical dependency
+        run: python3 -m pip install numpy==1.26.4
+      - name: Test pick and place logic and recorded evidence without ROS
+        run: |
+          python3 mission4/submission/pick_demo_202302200.py
+          python3 -m unittest discover -s mission4/tests -v
+          cd mission4
+          sha256sum -c SHA256SUMS
