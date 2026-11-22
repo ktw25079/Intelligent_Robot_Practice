@@ -1,8 +1,8 @@
 # Mission 4 · 이동형 Pick & Place
 
-**교시한 팔 궤적과 베이스 제어를 연결하여 접근 → 하강 → 파지 → 상승 → 이송 → 배치·후퇴를 한 번의 실행으로 수행했다.** 2026-11-20 `continuous_run_11`에 6단계 완료가 기록되어 있다. 최종 물체의 직립 상태는 영상 확인이 남아 있다.
+**교시한 팔 궤적과 베이스 제어를 연결하여 접근 → 하강 → 파지 → 상승 → 이송 → 배치·후퇴를 한 번의 실행으로 수행했다.** 2026-11-20 `continuous_run_11`에 6단계 완료가 기록되어 있다. 실물 영상에서는 물체 이송과 마지막 직립 배치·로봇 후퇴를 확인할 수 있다.
 
-[최종 실행 코드](submission/pick_demo_202302200.py) · [실행 로그](results/continuous_run_11.log) · [결과 요약](results/continuous_run_11_result.json) · [저장소 첫 화면](../README.md)
+[시연 영상 · 4분 2초](https://github.com/ktw25079/Intelligent_Robot_Practice/releases/tag/mission4-demo-20261120) · [최종 실행 코드](submission/pick_demo_202302200.py) · [실행 로그](results/continuous_run_11.log) · [결과 요약](results/continuous_run_11_result.json) · [저장소 첫 화면](../README.md)
 
 ## 목표
 
@@ -53,6 +53,9 @@ python3 mission4/submission/pick_demo_202302200.py
 python3 -m unittest discover -s mission4/tests -v
 ```
 
+<details>
+<summary>실물 실행 환경과 터미널별 명령</summary>
+
 **실물 실행:** Ubuntu 22.04 / ROS 2 Humble, TurtleBot3 Manipulation의 Pi·OpenCR·팔·LiDAR를 사용한다. 드라이버 작업공간은 [Mission 2 환경 구성](../mission2/docs/setup-and-run.md)에 따라 먼저 설치·빌드한다. 최종 코드는 독립 Python 파일이므로 별도 `colcon build`나 `ros2 run` 진입점이 필요 없다.
 
 Pi의 첫 터미널에서 기존 하드웨어 overlay를 source한 뒤:
@@ -77,7 +80,33 @@ python3 mission4/submission/pick_demo_202302200.py --execute
 
 PC의 MoveIt/RViz는 교시·준비 단계에서 `ros2 launch turtlebot3_manipulation_moveit_config moveit_core.launch.py`로 사용했다. 궤적 준비 스크립트는 ROS·MoveIt 서비스와 `python3-scipy`가 필요한 과거 준비 절차이며, 실행하면 궤적 파일을 다시 생성한다. 최종 시연 재생에는 호출하지 않는다.
 
+</details>
+
 ## 결과
+
+### 실물 시연
+
+[**전체 영상 보기·다운로드 (MP4, 720p)**](https://github.com/ktw25079/Intelligent_Robot_Practice/releases/download/mission4-demo-20261120/mission4-demo-720p.mp4) · [영상 페이지](https://github.com/ktw25079/Intelligent_Robot_Practice/releases/tag/mission4-demo-20261120) · [출처·해시·확인 범위](results/video_evidence.json)
+
+<table>
+<tr>
+<td width="50%" align="center"><a href="https://github.com/ktw25079/Intelligent_Robot_Practice/releases/tag/mission4-demo-20261120"><img src="screenshots/transport.jpg" width="420" height="236" alt="2분 20초, 물체를 잡고 이동하는 로봇"/></a><br/><strong>02:20 · 물체 이송</strong></td>
+<td width="50%" align="center"><a href="https://github.com/ktw25079/Intelligent_Robot_Practice/releases/tag/mission4-demo-20261120"><img src="screenshots/final-placement.jpg" width="420" height="236" alt="3분 58초, 물체를 세워 두고 후퇴한 로봇"/></a><br/><strong>03:58 · 직립 배치 후 후퇴</strong></td>
+</tr>
+</table>
+
+`IMG_0274.mov`의 전체 241.533초를 실시간 속도·음성 그대로 MP4로 변환했다. 원본 MOV는 로컬에 보존하고, 보기용 사본은 1280×720 / 30fps로 제공한다. 마지막 장면에서 물체가 세워진 채 남고 그리퍼가 떨어진 뒤 로봇·팔이 물러난 모습을 확인했다.
+
+| 영상 탐색 위치 | 확인할 장면 |
+| --- | --- |
+| 00:00–01:15 | 베이스 접근과 팔 자세 변경 |
+| 01:15–02:00 | 하강·파지·상승 구간 |
+| 02:00–03:15 | 물체를 잡은 상태로 목적지 방향 이동 |
+| 03:15–04:01 | 배치·개방·베이스 후퇴와 팔 복귀 |
+
+구간은 영상 탐색용 근사값이다. 촬영 메타데이터는 run11과 같은 날짜를 가리키지만 영상과 로그의 프레임 단위 시각 동기화는 검증하지 않았다. 영상으로 파지력이나 물체와 바닥 사이의 정확한 간격을 측정하지 않는다.
+
+### 실행 로그와 수치
 
 [run11 원본 로그](results/continuous_run_11.log)의 `mission_start`부터 `six_stage_complete`까지 약 **238.9초**다. [당시 결과 기록](results/continuous_run_11_result.json)은 한 번의 실행·수동 개입 없음으로 기록되어 있으며, 로그에는 6단계와 최종 `completed: true`가 남아 있다.
 
@@ -86,18 +115,19 @@ PC의 MoveIt/RViz는 교시·준비 단계에서 `ros2 launch turtlebot3_manipul
 | 6단계 연속 실행 | 접근 → 하강 → 파지 → 상승 → 이송 → 배치·후퇴 완료 | 단일 실행 기록. 반복 성공률은 미측정 |
 | 상승 | 말단 높이 증가 0.02716m | 관절 피드백 기반 FK 계산. 물체 바닥 간격의 실측 아님 |
 | B 도착 | 목표 대비 평면 거리 0.04126m | 지도·odom 기반 추정값. 외부 실측 오차 아님 |
-| 배치·개방 | 배치 자세 확인 후 그리퍼 위치 0.01901m | 물체 직립·낙하 여부는 영상 확인 필요 |
+| 배치·개방 | 배치 자세 확인 후 그리퍼 위치 0.01901m | 영상 마지막 구간에서 직립 배치와 그리퍼 분리 확인 |
 | 후퇴·복귀 | 후퇴 0.09864m, 팔 bringup 자세 복귀 | 후퇴는 odom 기반 거리 |
 | 배터리 | 시작 12.24V → 종료 12.13V | 해당 실행의 피드백 값 |
 
 파지 액션은 `status: 6` 종료 후 교시 접촉 위치 조건으로 수용했고, 상승도 `controller_status: 6` 후 `observed_endpoint_accepted`로 진행했다. 따라서 이 결과를 모든 액션의 정상 성공 응답으로 해석하지 않는다. B 접근 중에는 두 번의 근접 재정합 기록이 있다.
 
-### 초기 파지 시험 사진
+<details>
+<summary>이전 파지 시험 자료</summary>
 
-<img src="screenshots/early-grasp.png" width="360" alt="초기 파지 시험에서 기둥형 물체를 잡은 실물 로봇"/>
+[초기 부분 파지·상승 사진](screenshots/early-grasp.png)은 당시 원본으로 보존한다. 위 최종 시연 캡처와 다른 시험이며, run11의 전체 동작 근거로 사용하지 않는다.
 
-이 사진은 **이전 부분 파지·상승 시험**의 원본이다. 물체·장비 구성을 보여 주며, run11의 전체 운반이나 최종 직립 배치 증거로 사용하지 않는다. 최종 연속 시연 영상은 별도 확인 후 연결한다.
+</details>
 
 ### 검증 범위
 
-기존 11개 시험은 당시 `continuous_mission.json`을 사용한 상태 전환·회귀 시험이다. 추가 시험은 최종 실행본과 모듈형 코드의 일치, 내장 설정과 최종 JSON의 일치, run11 단계·수치의 연결을 확인한다. ROS 통신이나 실물 동작을 새로 실행한 검증은 아니다. 설정 원본의 `execution_verified` 등 과거 플래그는 보존했으며, 최종 실행 근거는 별도의 run11 로그로 구분한다.
+기존 11개 시험은 당시 `continuous_mission.json`을 사용한 상태 전환·회귀 시험이다. 추가 시험은 최종 실행본과 모듈형 코드의 일치, 내장 설정과 최종 JSON의 일치, run11 단계·수치의 연결을 확인한다. ROS 통신이나 실물 동작을 새로 실행한 검증은 아니다. 설정 원본의 `execution_verified` 등 과거 플래그는 보존했으며, 최종 실행 근거는 별도의 run11 로그로 구분한다. 당시 결과 JSON의 영상 확인 대기 문구도 원본 그대로 두고, 이후 확인한 시연 장면은 [영상 확인 기록](results/video_evidence.json)에 별도로 남겼다.
