@@ -15,7 +15,9 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Check documentation and saved evidence
-        run: python3 tools/check_repository.py
+        run: |
+          python3 tools/check_repository.py
+          python3 tools/summarize_saved_runs.py --check
       - name: Test square patrol controller without ROS
         env:
           PYTHONPATH: mission1/mission1_202302200

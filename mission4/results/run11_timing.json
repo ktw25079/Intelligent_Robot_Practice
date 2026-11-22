@@ -1,0 +1,67 @@
+{
+  "source": {
+    "path": "mission4/results/continuous_run_11.log",
+    "sha256": "6829a29316ee32206536c23b47ed0b66a09a228ed3b627611678d68d810e431e"
+  },
+  "timing_basis": "mission_start then consecutive stage-completion milestones; includes transitions and waits",
+  "scope": "One saved run; timestamps are log wall-clock times, not synchronized video times.",
+  "stages": [
+    {
+      "phase": "1_approach",
+      "end_event": {
+        "event": "arm_complete",
+        "name": "approach"
+      },
+      "start_offset_s": 0.0,
+      "end_offset_s": 69.577455,
+      "elapsed_s": 69.577455
+    },
+    {
+      "phase": "2_lower",
+      "end_event": {
+        "event": "floor_reference"
+      },
+      "start_offset_s": 69.577455,
+      "end_offset_s": 91.802226,
+      "elapsed_s": 22.224771
+    },
+    {
+      "phase": "3_grasp",
+      "end_event": {
+        "event": "gripper_complete"
+      },
+      "start_offset_s": 91.802226,
+      "end_offset_s": 94.533784,
+      "elapsed_s": 2.731559
+    },
+    {
+      "phase": "4_lift",
+      "end_event": {
+        "event": "lift_verified"
+      },
+      "start_offset_s": 94.533784,
+      "end_offset_s": 116.870041,
+      "elapsed_s": 22.336257
+    },
+    {
+      "phase": "5_transfer",
+      "end_event": {
+        "event": "navigation_complete"
+      },
+      "start_offset_s": 116.870041,
+      "end_offset_s": 188.84931,
+      "elapsed_s": 71.979269
+    },
+    {
+      "phase": "6_place_retreat",
+      "end_event": {
+        "event": "six_stage_complete"
+      },
+      "start_offset_s": 188.84931,
+      "end_offset_s": 238.859463,
+      "elapsed_s": 50.010154
+    }
+  ],
+  "total_s": 238.859463,
+  "near_goal_relocalization_count": 2
+}

@@ -1,0 +1,50 @@
+{
+  "timing_basis": "goal_sent to goal_result; includes action handling",
+  "scope": "One saved run per condition; not repeated-trial statistics or a controlled performance comparison.",
+  "runs": [
+    {
+      "source": {
+        "path": "mission3/results/logs/no_obstacle_01.jsonl",
+        "sha256": "44e8d94f251755d0e9d1aff3036c79924109e5d49e762553c147bccd1b2c067f"
+      },
+      "goals": [
+        {
+          "goal": "A",
+          "sent_utc": "2026-11-17T10:10:19.541930+00:00",
+          "result_utc": "2026-11-17T10:10:19.604185+00:00",
+          "elapsed_s": 0.062255,
+          "result": "TaskResult.SUCCEEDED"
+        },
+        {
+          "goal": "B",
+          "sent_utc": "2026-11-17T10:10:19.604323+00:00",
+          "result_utc": "2026-11-17T10:10:29.382881+00:00",
+          "elapsed_s": 9.778558,
+          "result": "TaskResult.SUCCEEDED"
+        }
+      ]
+    },
+    {
+      "source": {
+        "path": "mission3/results/logs/with_obstacle_04.jsonl",
+        "sha256": "cd0efb9d0e02a1314555f5a247af93f2933de49be0fac353d06a718f22ea1408"
+      },
+      "goals": [
+        {
+          "goal": "A",
+          "sent_utc": "2026-11-17T10:23:22.082294+00:00",
+          "result_utc": "2026-11-17T10:23:25.866948+00:00",
+          "elapsed_s": 3.784654,
+          "result": "TaskResult.SUCCEEDED"
+        },
+        {
+          "goal": "B",
+          "sent_utc": "2026-11-17T10:23:25.867016+00:00",
+          "result_utc": "2026-11-17T10:23:41.128393+00:00",
+          "elapsed_s": 15.261377,
+          "result": "TaskResult.SUCCEEDED"
+        }
+      ]
+    }
+  ]
+}
