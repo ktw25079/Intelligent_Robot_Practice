@@ -1,0 +1,109 @@
+{
+  "stage": "pick_to_lift",
+  "started_at": 1795088831.723555,
+  "completed": false,
+  "events": [
+    {
+      "event": "preflight_passed",
+      "time": 1795088840.8537462,
+      "surface": [
+        0.1463258705276955,
+        -0.01509338289499826
+      ],
+      "voltage": 11.63
+    },
+    {
+      "event": "gripper_already_open",
+      "time": 1795088840.8543608,
+      "position": 0.019006021961903093
+    },
+    {
+      "event": "approach_start",
+      "time": 1795088841.5130668,
+      "actual": [
+        -0.0030679615757712823,
+        -1.0461748973380072,
+        1.081456455459377,
+        0.018407769454627694
+      ],
+      "voltage": 11.63
+    },
+    {
+      "event": "approach_done",
+      "time": 1795088882.5522363,
+      "actual": [
+        -0.02914563496982718,
+        -0.4356505437595221,
+        0.21015536794033285,
+        0.4095728703654662
+      ],
+      "max_joint_error": 0.03254333093841161,
+      "voltage": 11.58
+    },
+    {
+      "event": "lower_start",
+      "time": 1795088882.5969045,
+      "actual": [
+        -0.02914563496982718,
+        -0.4356505437595221,
+        0.21015536794033285,
+        0.4095728703654662
+      ],
+      "voltage": 11.58
+    },
+    {
+      "event": "lower_done",
+      "time": 1795088922.0730326,
+      "actual": [
+        -0.02914563496982718,
+        -0.2868544073346149,
+        0.9065826456404139,
+        -0.4433204476989503
+      ],
+      "max_joint_error": 0.015339807878856415,
+      "voltage": 11.58
+    },
+    {
+      "event": "gripper_close_start",
+      "time": 1795088922.0739574
+    },
+    {
+      "event": "gripper_result",
+      "time": 1795088926.8222282,
+      "status": 6,
+      "position": 0.0018867963690993384,
+      "stalled": true,
+      "reached_goal": false
+    },
+    {
+      "event": "vertical_lift_start",
+      "time": 1795088926.8616378,
+      "actual": [
+        -0.02914563496982718,
+        -0.28532042654672923,
+        0.9081166264282996,
+        -0.4433204476989503
+      ],
+      "voltage": 11.540000000000001
+    },
+    {
+      "event": "stopped",
+      "time": 1795088956.8023872,
+      "reason": "Arm action failed: control_msgs.action.FollowJointTrajectory_GetResult_Response(status=6, result=control_msgs.action.FollowJointTrajectory_Result(error_code=-5, error_string='Aborted due to goal_time_tolerance exceeding by 2.168981 seconds'))"
+    }
+  ],
+  "stopped_reason": "Arm action failed: control_msgs.action.FollowJointTrajectory_GetResult_Response(status=6, result=control_msgs.action.FollowJointTrajectory_Result(error_code=-5, error_string='Aborted due to goal_time_tolerance exceeding by 2.168981 seconds'))",
+  "final_joints": {
+    "wheel_right_joint": 14.072739748062872,
+    "joint2": -0.4279806398200939,
+    "wheel_left_joint": 19.35270161996525,
+    "joint1": -0.02914563496982718,
+    "joint4": 0.17947575218262002,
+    "gripper_left_joint": 0.0018867963690993384,
+    "gripper_right_joint": 0.0018867963690993384,
+    "joint3": 0.5062136600022615
+  },
+  "finished_at": 1795088957.0683424,
+  "physical_lift_verification": "user confirmed foot off floor and stable grip",
+  "next_step": "user authorized loaded transfer to B"
+}

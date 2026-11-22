@@ -1,0 +1,31 @@
+{
+  "name": "grasp",
+  "joint_order": [
+    "joint1",
+    "joint2",
+    "joint3",
+    "joint4"
+  ],
+  "joints": {
+    "joint1": -0.0337475773334841,
+    "joint2": -0.28532042654672923,
+    "joint3": 0.9065826456404139,
+    "joint4": -0.4586602555778067
+  },
+  "gripper_joints": {
+    "gripper_left_joint": 0.0023930100291016,
+    "gripper_right_joint": 0.0023930100291016
+  },
+  "stamp": {
+    "sec": 1795086125,
+    "nanosec": 806181817
+  },
+  "sample_count": 5,
+  "recorded_at": "2026-11-19T20:02:06.453109+09:00",
+  "user_confirmation": "중간 픽업 지점에서 받침이 바닥에 닿고 그리퍼가 물체를 잡은 상태",
+  "object_on_floor": true,
+  "grasp_visually_confirmed_by_user": true,
+  "validated_for_execution": false,
+  "source": "fresh joint_states read on robot via SSH",
+  "note": "Pose recorded only; autonomous replay not validated"
+}

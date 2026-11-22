@@ -1,0 +1,53 @@
+{
+  "recorded_at": "2026-11-19T19:52:53.075118+09:00",
+  "frame_id": "map",
+  "map_yaml": "maps/map.yaml",
+  "original_goals_source": "config/goals_corners.json",
+  "A": {
+    "x": 0.05600000000000005,
+    "y": 0.22799999999999998,
+    "yaw": 1.0265158418489166
+  },
+  "pickup": {
+    "x": 0.37440554156143335,
+    "y": 0.7905900651869924,
+    "yaw": 0.6506883883786878
+  },
+  "B": {
+    "x": 1.206,
+    "y": 2.128,
+    "yaw": 1.0265158418489166
+  },
+  "pickup_record": "mission_config/pickup_20261119_195253.json",
+  "sequence": [
+    "navigate_A_to_pickup",
+    "align_base_and_open_gripper",
+    "arm_approach_and_lower",
+    "close_gripper",
+    "lift",
+    "navigate_pickup_to_B",
+    "lower_to_floor",
+    "open_gripper",
+    "retreat_arm",
+    "reverse_base_0.10m"
+  ],
+  "base_reverse_distance_m": 0.1,
+  "reverse_requires_rear_clearance": true,
+  "taught_poses": {
+    "grasp": "taught_poses/grasp_20261119_200206.json",
+    "lift": "taught_poses/lift_20261119_194450.json",
+    "pre_grasp": "taught_poses/pre_grasp_20261119_200424.json"
+  },
+  "lidar_trigger": {
+    "front_distance_m": 0.2,
+    "status": "requested; not implemented",
+    "requires_lateral_alignment": true
+  },
+  "validated_for_autonomous_execution": false,
+  "pending": [
+    "verify object placement relative to pickup base pose",
+    "record open-gripper approach and lowering sequence",
+    "record or verify B placement and arm retreat",
+    "validate loaded navigation and rear clearance"
+  ]
+}

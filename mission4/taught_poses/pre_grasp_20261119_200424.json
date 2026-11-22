@@ -1,0 +1,32 @@
+{
+  "name": "pre_grasp",
+  "joint_order": [
+    "joint1",
+    "joint2",
+    "joint3",
+    "joint4"
+  ],
+  "joints": {
+    "joint1": -0.032213596545598466,
+    "joint2": -0.2868544073346149,
+    "joint3": 0.9050486648525283,
+    "joint4": -0.4586602555778067
+  },
+  "gripper_joints": {
+    "gripper_left_joint": 0.01898301225008481,
+    "gripper_right_joint": 0.01898301225008481
+  },
+  "stamp": {
+    "sec": 1795086264,
+    "nanosec": 358102957
+  },
+  "sample_count": 5,
+  "recorded_at": "2026-11-19T20:04:24.990160+09:00",
+  "user_confirmation": "바닥에 있는 물체에 그리퍼 정중앙을 맞추고 그리퍼를 닫기 직전 상태",
+  "object_on_floor": true,
+  "alignment_visually_confirmed_by_user": true,
+  "gripper_closure_pending": true,
+  "validated_for_execution": false,
+  "source": "fresh joint_states read on robot via SSH",
+  "note": "Pose recorded only; autonomous replay not validated"
+}

@@ -1,0 +1,16 @@
+{
+  "recorded_at": 1795094329.9077778,
+  "source": "continuous_run_06 final_state and user physical observation",
+  "joints": {
+    "joint2": -0.3911651009108385,
+    "joint1": -0.032213596545598466,
+    "joint4": 0.17947575218262002,
+    "joint3": 0.5553010452146021
+  },
+  "gripper_position": 0.002139903199100469,
+  "user_confirmed_clear_of_floor_and_suitable_for_transport": true,
+  "autonomous_transport_verified": false,
+  "next_action": "Use this actual pose as candidate carry target; validate transition and placement paths before execution. Do not globally disable safety stops.",
+  "placement": "Use taught floor pose; no contact-force sensor available.",
+  "restart": "User will power off and manually reposition near A; previous map/odom anchor invalid after repositioning. Wait for completion before bringup."
+}

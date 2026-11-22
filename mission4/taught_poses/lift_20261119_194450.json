@@ -1,0 +1,31 @@
+{
+  "name": "lift",
+  "recorded_at": "2026-11-19T19:44:50.199835+09:00",
+  "user_confirmation": "물체를 잡고 받침이 바닥에서 떨어진 상태",
+  "object_on_floor": false,
+  "lift_visually_confirmed_by_user": true,
+  "grasp_visually_confirmed_by_user": true,
+  "joint_order": [
+    "joint1",
+    "joint2",
+    "joint3",
+    "joint4"
+  ],
+  "joints": {
+    "joint1": -0.02914563496982718,
+    "joint2": -0.3374757733348411,
+    "joint3": 0.5629709491540303,
+    "joint4": -0.2807184841830723
+  },
+  "gripper_joints": {
+    "gripper_left_joint": 0.0023930100291016,
+    "gripper_right_joint": 0.0023930100291016
+  },
+  "stamp": {
+    "sec": 1795085090,
+    "nanosec": 209298194
+  },
+  "sample_count": 5,
+  "validated_for_execution": false,
+  "note": "Recorded pose only; approach path and autonomous replay have not been validated."
+}
