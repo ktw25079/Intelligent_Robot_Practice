@@ -17,6 +17,7 @@
 | [week08](../week08/docs/pi-camera-workflow.md) | `week08/`에서 영상 패키지 빌드 | domain 4, localhost 0 | Pi 카메라 + PC |
 | [week09](../week09/README.md) | `week09/scripts/build.sh`로 지정 5개 빌드 | domain 4, localhost 0, wall time | PC + 실물 로봇 |
 | [Mission 3](../mission3/README.md) | `mission3/src`의 두 패키지를 `~/nav10_ws`에 배치 후 빌드 | domain 4, localhost 0, wall time | PC + 실물 로봇 / Nav2 |
+| [Mission 4](../mission4/README.md) | Pi에서 독립 Python 실행, Mission 2 드라이버 overlay·NumPy 필요 | domain 4, localhost 0, wall time | 실물 로봇 / 기록 지도·교시 자세 |
 
 `ROS_DOMAIN_ID`는 실습 장비의 실제 그룹과 맞춘다. 다른 도메인으로 실행한 ros2 daemon의 결과가 남아 있으면 올바른 환경을 source한 뒤 `ros2 daemon stop`으로 재탐색한다. 다른 실습의 overlay를 한 터미널에 계속 겹쳐 source하지 않고 새 터미널에서 시작한다.
 
