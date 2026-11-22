@@ -121,6 +121,22 @@ PC의 MoveIt/RViz는 교시·준비 단계에서 `ros2 launch turtlebot3_manipul
 
 파지 액션은 `status: 6` 종료 후 교시 접촉 위치 조건으로 수용했고, 상승도 `controller_status: 6` 후 `observed_endpoint_accepted`로 진행했다. 따라서 이 결과를 모든 액션의 정상 성공 응답으로 해석하지 않는다. B 접근 중에는 두 번의 근접 재정합 기록이 있다.
 
+#### 단계별 경과 시간
+
+| 완료 구간 | 시간 (s) | 종료 이벤트 |
+| --- | ---: | --- |
+| 접근·정렬·팔 접근 자세 | 69.58 | `arm_complete: approach` |
+| 하강·바닥 기준 확인 | 22.22 | `floor_reference` |
+| 파지 | 2.73 | `gripper_complete` |
+| 상승·높이 확인 | 22.34 | `lift_verified` |
+| B 이송·위치 재정합·정렬 | 71.98 | `navigation_complete` |
+| 배치·개방·후퇴·팔 복귀 | 50.01 | `six_stage_complete` |
+
+첫 구간은 `mission_start`부터, 이후 구간은 직전 완료 이벤트부터 계산하여 대기·상태 전환 시간도 포함한다. 이 실행에서는 이송 구간이 가장 길었고, 근접 재정합 2회가 포함됐다. 구간 시간만으로 재정합 자체의 비용이나 수정 전후 개선량을 분리하지 않는다. [구간 경계·원본 해시](results/run11_timing.json)
+
+저장소 루트에서 `python3 tools/summarize_saved_runs.py --check`를 실행하면 Mission 3·4의 시간 요약이 원본 로그와 일치하는지 확인한다. 로봇이나 ROS를 실행하지 않는다.
+
+
 <details>
 <summary>이전 파지 시험 자료</summary>
 
