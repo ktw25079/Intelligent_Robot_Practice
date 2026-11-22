@@ -1,0 +1,11 @@
+{
+  "single_invocation_completed": true,
+  "all_six_stages_executed": true,
+  "manual_intervention_during_run": false,
+  "B_error_m": 0.04125959673074905,
+  "retreat_m": 0.0986422881983968,
+  "gripper_open": true,
+  "bringup_pose_reached": true,
+  "physical_upright_placement": "requires visual observation; taught height and controller feedback verified",
+  "voltage": 12.13
+}
