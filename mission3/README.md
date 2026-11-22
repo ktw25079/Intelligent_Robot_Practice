@@ -132,6 +132,14 @@ ros2 run ire_week10_nav_demo go_to_pose_202302200 \
 
 두 로그 모두 A와 B에 대해 `TaskResult.SUCCEEDED`, 마지막에 `sequence_succeeded`를 기록했다. 실물 영상에서는 일반 이동과 상자가 있는 구간을 돌아가는 이동을 확인할 수 있다.
 
+| 저장 실행 | A 응답까지 (s) | B 응답까지 (s) |
+| --- | ---: | ---: |
+| 일반 주행 `no_obstacle_01` | 0.06 | 9.78 |
+| 장애물 주행 `with_obstacle_04` | 3.78 | 15.26 |
+
+시간은 각 `goal_sent`부터 `goal_result`까지이며 액션 처리 시간을 포함한다. 일반 주행의 A는 0.06초 만에 성공 응답을 받아 별도 이동 시간을 대표하지 않는다. 조건별 한 번의 기록이며 동일 출발 상태의 반복 비교가 아니므로, 두 값의 차이를 장애물의 순수 지연이나 성능 개선율로 해석하지 않는다. [원본 시각·계산값](results/navigation_timing.json) · [재계산 코드](../tools/summarize_saved_runs.py)
+
+
 | 일반 주행 · 20초 | 장애물 구간 · 6초 |
 | --- | --- |
 | ![일반 주행](screenshots/a_to_b.jpg) | ![장애물 주변 주행](screenshots/a_obstacle_b.jpg) |
