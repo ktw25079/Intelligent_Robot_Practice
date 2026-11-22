@@ -1,0 +1,58 @@
+{
+  "source": {
+    "filename": "IMG_0274.mov",
+    "sha256": "18a607b04a894eb107a6aa0e9016cfcb3b1c81e6a700a25b2541738756cd03e4",
+    "size_bytes": 337615146,
+    "duration_seconds": 241.533333,
+    "width": 1920,
+    "height": 1080,
+    "fps": 30,
+    "video_frames": 7246,
+    "camera_creation_date": "2026-11-20T19:29:52+09:00",
+    "preservation": "Original MOV retained unchanged in local Downloads; public viewing copy is separately encoded."
+  },
+  "published_copy": {
+    "filename": "mission4-demo-720p.mp4",
+    "url": "https://github.com/ktw25079/Intelligent_Robot_Practice/releases/download/mission4-demo-20261120/mission4-demo-720p.mp4",
+    "release_url": "https://github.com/ktw25079/Intelligent_Robot_Practice/releases/tag/mission4-demo-20261120",
+    "sha256": "b491f9694a83313c68d1d37c7efa0f9aac66304ac605adc60c6a3ecf5f5ca1cb",
+    "size_bytes": 56077626,
+    "duration_seconds": 241.535,
+    "width": 1280,
+    "height": 720,
+    "fps": 30,
+    "video_frames": 7246,
+    "transformation": "Full-length H.264 CRF26 / AAC 96k MP4; 720p, original playback speed, audio retained, faststart; location/device metadata excluded. No trimming or speed change."
+  },
+  "review": {
+    "method": "Visual inspection of samples every 5 seconds across the recording, every 1 second in the final 36 seconds, and full-resolution selected frames. Entire public copy decoded without errors.",
+    "observed": [
+      "Approach to the upright object",
+      "Gripper positioned around object and arm posture change",
+      "Robot transports the held object toward the blue wall",
+      "Object remains upright after gripper separation; robot retreats and arm returns"
+    ],
+    "limits": [
+      "Video and run11 log have not been synchronized frame by frame",
+      "Visual review does not measure object-to-floor clearance, grip force, or absolute arrival accuracy",
+      "Single demonstration; repeated success rate not measured"
+    ]
+  },
+  "frames": [
+    {
+      "file": "screenshots/grasp.jpg",
+      "source_time_seconds": 98,
+      "observation": "Gripper around the object during grasp/lift transition"
+    },
+    {
+      "file": "screenshots/transport.jpg",
+      "source_time_seconds": 140,
+      "observation": "Object held while robot transfers toward destination"
+    },
+    {
+      "file": "screenshots/final-placement.jpg",
+      "source_time_seconds": 238,
+      "observation": "Object upright and separate from gripper after robot retreat"
+    }
+  ]
+}
