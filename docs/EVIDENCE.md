@@ -17,7 +17,7 @@
 | week08 | [검사 JSON](../week08/results/verification.json), [bag DB](../week08/results/aruco_bag/aruco_bag_0.db3), [화면](../week08/screenshots/02_rosbag_play_aruco_pose.png) | CSI 카메라 ID 0, bag 영상 28개·CameraInfo 32개, 재생 pose 28개 | 강의 제공 보정값과 약 13cm 마커. 절대 거리 정확도 미검증; C920 보정 별도 |
 | week09 | [PGM](../week09/results/map.pgm)·[YAML](../week09/results/map.yaml), [로그](../week09/results/cartographer_excerpt.log), [화면](../week09/screenshots/02_low_speed_mapping.png) | 실물 지도 저장, map_server 읽기·활성화, 저속화 후 벽 겹침 감소 관찰 | 일부 번짐·미관측 영역 존재. 같은 경로의 통제 비교·전체 폐루프·실측 오차 검증 아님 |
 | Mission 3 | [일반 주행 로그](../mission3/results/logs/no_obstacle_01.jsonl)·[장애물 주행 로그](../mission3/results/logs/with_obstacle_04.jsonl), [실물 영상·RViz](../mission3/README.md#결과) | 두 실행에서 A·B 성공 로그, 촬영 구간의 이동·회피 | 영상·로그 시각 동기화, 전 구간 무충돌 및 주행 중 장애물 투입 조건 전체는 미검증 |
-| Mission 4 | [run11 로그](../mission4/results/continuous_run_11.log)·[요약](../mission4/results/continuous_run_11_result.json), [시연 영상](../mission4/README.md#실물-시연), [14개 시험](../mission4/tests/) | 영상의 직립 배치·후퇴, 6단계 완료, B 추정 오차 0.04126m, odom 후퇴 0.09864m | 제어기 오류 후 조건부 수용 구간 포함. 영상·로그 프레임 동기화, 반복 성공률·외부 실측 오차 미검증 |
+| 이동형 부록 | [run11 로그](../appendix/mobile_pick_place/results/continuous_run_11.log)·[요약](../appendix/mobile_pick_place/results/continuous_run_11_result.json), [시연 영상](../appendix/mobile_pick_place/README.md#실물-시연), [14개 시험](../appendix/mobile_pick_place/tests/) | 영상의 직립 배치·후퇴, 6단계 완료, B 추정 오차 0.04126m, odom 후퇴 0.09864m | 제어기 오류 후 조건부 수용 구간 포함. 영상·로그 프레임 동기화, 반복 성공률·외부 실측 오차 미검증 |
 
 ## 자동 검사
 
@@ -41,7 +41,7 @@ PYTHONPATH=mission1/mission1_202302200 \
 
 외부 웹 링크 가용성, 영상 내용의 진위, 카메라 보정 정확도, ROS 노드 실행과 실물 동작은 CI 범위 밖이다. Mission 2 원본 패키지 내부 README와 SDK의 과거 Python 코드는 당시 소스 보존 대상이므로 현재 문서·Python 구문 검사에서는 제외하고 원본 해시로 확인한다.
 
-Mission 4 시험은 `python3 -m unittest discover -s mission4/tests -v`로 실행한다. NumPy를 먼저 설치한다. 보존 파일은 `mission4/`에서 `sha256sum -c SHA256SUMS`로 확인한다.
+이동형 부록 시험은 `python3 -m unittest discover -s appendix/mobile_pick_place/tests -v`로 실행한다. NumPy를 먼저 설치한다. 보존 파일은 `appendix/mobile_pick_place/`에서 `sha256sum -c SHA256SUMS`로 확인한다.
 
 ## 결과를 추가할 때
 

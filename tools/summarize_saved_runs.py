@@ -41,7 +41,7 @@ def navigation():
 
 
 def manipulation():
-    rows, source = read_log('mission4/results/continuous_run_11.log')
+    rows, source = read_log('appendix/mobile_pick_place/results/continuous_run_11.log')
     start = one(rows, event='mission_start')['time']
     previous = start
     stages = []
@@ -75,7 +75,7 @@ def main():
     parser.add_argument('--check', action='store_true', help='Compare stored summaries without writing files')
     args = parser.parse_args()
     outputs = {'mission3/results/navigation_timing.json': navigation(),
-               'mission4/results/run11_timing.json': manipulation()}
+               'appendix/mobile_pick_place/results/run11_timing.json': manipulation()}
     for relative, data in outputs.items():
         path = ROOT / relative
         if args.check:

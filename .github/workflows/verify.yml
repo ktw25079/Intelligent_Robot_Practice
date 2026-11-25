@@ -26,7 +26,7 @@ jobs:
         run: python3 -m pip install numpy==1.26.4
       - name: Test pick and place logic and recorded evidence without ROS
         run: |
-          python3 mission4/submission/pick_demo_202302200.py
-          python3 -m unittest discover -s mission4/tests -v
-          cd mission4
+          python3 appendix/mobile_pick_place/submission/pick_demo_202302200.py
+          python3 -m unittest discover -s appendix/mobile_pick_place/tests -v
+          cd appendix/mobile_pick_place
           sha256sum -c SHA256SUMS
