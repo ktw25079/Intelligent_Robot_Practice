@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>ire_week11_moveit</name>
+  <version>0.1.0</version>
+  <description>Mission4 stationary six-stage student demonstration</description>
+  <maintainer email="ktw25079@users.noreply.github.com">202302200</maintainer>
+  <license>Apache-2.0</license>
+  <buildtool_depend>ament_cmake</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <exec_depend>control_msgs</exec_depend>
+  <exec_depend>trajectory_msgs</exec_depend>
+  <exec_depend>moveit_msgs</exec_depend>
+  <exec_depend>ament_index_python</exec_depend>
+  <exec_depend>turtlebot3_manipulation_description</exec_depend>
+  <exec_depend>python3-numpy</exec_depend>
+  <exec_depend>python3-scipy</exec_depend>
+  <export><build_type>ament_cmake</build_type></export>
+</package>
