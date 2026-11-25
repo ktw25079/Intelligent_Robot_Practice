@@ -77,7 +77,6 @@ SLAM 지도에는 일부 미관측 영역과 번짐이 남아 있다. 각 실습
 | [week09](week09/README.md) | Cartographer 운용·저속 제한·저장 도구 | 157×165셀 지도, 0.05m/셀, 파일 재로드 | 실물 SLAM |
 | [Mission 3](mission3/README.md) | Nav2 목표 전송·A→B 순차 주행·장애물 회피 | 실물 영상 2개, RViz 녹화, A·B 성공 로그 | 실물 Nav2 |
 | [이동형 부록](appendix/mobile_pick_place/README.md) | MoveIt 기반 교시 궤적 검증·팔 액션·베이스 제어 통합 | 6단계 완료 로그·시연 영상, 직립 배치·후퇴 | 실물 이동형 Pick & Place |
-
 | [Mission 4](mission4/README.md) | 베이스 고정 상태에서 A→B Pick & Place 재실습 준비 | 정지형 실물 결과 미확인 | 교시·실물 검증 대기 |
 
 week02의 저장 로그는 기본 데모 결과다. Mission 2는 팀 실습 자료이며, week08의 C920 보정·pose 재생과 week09의 전체 공간 폐루프 검증은 완료 확인 전이다. Mission 3의 성공 로그는 목표 도달 판정이며 반복 성공률·실측 도착 오차·전 구간 무충돌을 측정한 결과는 아니다. [근거와 한계 전체 보기](docs/EVIDENCE.md)
