@@ -85,3 +85,5 @@ python3 "$HOME/intelligent_robot_practice/week02/listener.py"
 | ![발행 결과](screenshots/talker_202302200.png) | ![수신 결과](screenshots/listener_202302200.png) |
 
 [발행 로그](results/talker.log) · [수신 로그](results/listener.log)
+
+Lecture02 PDF 34쪽은 발행·수신 터미널이 함께 보이는 한 장의 캡처를 요구한다. 현재 저장된 두 이미지는 별도 창 캡처이므로 동시 실행 화면을 다시 기록해야 한다.

@@ -52,6 +52,8 @@ CameraInfo는 최근 수신한 K·D를 캐시하며 영상과 메시지별 동�
 
 [검증값](results/verification.json) · [bag 메타데이터](results/aruco_bag/metadata.yaml) · [bag DB](results/aruco_bag/aruco_bag_0.db3) · [재생 프레임](results/replayed_camera.jpg)
 
+Lecture08 PDF 20쪽의 기록 시간은 10초이나 현재 bag은 약 6.125초다. 또한 현재 RViz 캡처에는 Image·Pose가 보이고 RobotModel은 표시되지 않는다. 강의 구성에 맞춘 RobotModel 표시와 10초 이상 기록·재생은 다시 확인해야 한다.
+
 검사 노드별 수신 수는 센서 FPS나 누락률이 아니다. 약 13cm의 마커 실측값과 강의 제공 보정값을 사용했으므로 거리·자세의 절대 정확도는 검증하지 않았다. Pi와 PC의 시계 차이도 있었다. 팔 초기화는 실패했지만 카메라 정적 TF는 확인했으며, 팔 정상 구동을 확인한 결과는 아니다.
 
 ### C920: 영상·ID 확인, 보정 완료 미확인
