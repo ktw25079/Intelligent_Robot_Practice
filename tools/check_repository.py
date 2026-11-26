@@ -164,8 +164,6 @@ def main():
             require(readme.startswith(title), f'{lab}: README title does not follow convention')
             sections = [readme.find('\n## ' + name + '\n') for name in ('목표', '과정', '결과')]
             require(all(i >= 0 for i in sections) and sections == sorted(sections), f'{lab}: README sections missing or out of order')
-            if lab == 'mission4' and '정지형 실물 시연은 아직 확인하지 않았다' in readme:
-                continue  # No evidence or code is fabricated for the pending stationary run.
             for folder in ('screenshots', 'results'):
                 require(any(n.startswith(f'{lab}/{folder}/') for n in tracked), f'{lab}: {folder} missing')
             require(any(n.startswith(lab + '/') and n.endswith(('.py', '.cpp', '.sh', '.urdf')) for n in tracked), f'{lab}: code missing')
