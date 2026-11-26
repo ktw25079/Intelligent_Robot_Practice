@@ -8,15 +8,16 @@
 
 | 실습 | 확인 방법과 원본 | 확인한 내용 | 해석 범위 |
 | --- | --- | --- | --- |
-| week02 | [발행](../week02/results/talker.log)·[수신](../week02/results/listener.log) 로그, [화면](../week02/screenshots/talker_202302200.png) | 기본 데모의 동일 번호 메시지 송수신 | 별도 Python 대응 코드의 실행 증거는 아님 |
+| week02 | [발행](../week02/results/talker.log)·[수신](../week02/results/listener.log) 로그, [화면](../week02/screenshots/talker_202302200.png) | 기본 데모의 동일 번호 메시지 송수신 | 발행·수신 캡처는 각각 별도 창이다. Lecture02 34쪽의 동시 화면은 미확인 |
 | week03 | [로그](../week03/results/listener.log), [rqt_graph](../week03/screenshots/rqt_graph_202302200.png) | 학번 노드·토픽으로 메시지 전달 | 지연·처리량 벤치마크는 수행하지 않음 |
 | Mission 1 | [검사 JSON](../mission1/results/patrol_demo_verification.json), [시연 영상](../mission1/results/patrol_demo_2laps.mkv), [수치 시험](../mission1/mission1_202302200/test/test_square_motion.py) | 두 바퀴, 직진·회전 중 정지·재개; 각 2초 정지 관측 | 서비스 응답 후 0.4초 안정화 뒤 측정. 정지 응답 지연이나 실물 성능은 측정하지 않음 |
-| Mission 2 | [컨트롤러 화면](../mission2/screenshots/bringup-five-active.png), [주행 영상](../mission2/results/path-driving.mp4), [자세 사진](../mission2/screenshots/target-pose.jpg) | 5개 active, 수동 주행·팔 자세 변경 | 주행 영상 약 10.8초. 목표 경로 전 구간·궤적 정확도는 확인하지 않음 |
+| Mission 2 | [컨트롤러 화면](../mission2/screenshots/bringup-five-active.png), [주행 영상](../mission2/results/path-driving.mp4), [자세 사진](../mission2/screenshots/target-pose.jpg) | 5개 active, 수동 주행·팔 자세 변경 | 주행 영상은 약 10.8초다. 약 15초 직진 후 45° 이상 회전하고 복귀하는 전 과정은 미확인 |
 | week06 | [통합 화면](../week06/screenshots/mission_capture.png), [컨트롤러](../week06/results/controllers.txt), [관찰 기록](../week06/results/observations.md) | 시뮬레이션 센서·주행·명령 그래프 | 그래프는 실제 속도가 아닌 명령값. 캡처 전 로봇 자세 복원 |
 | week07 | [URDF 검사](../week07/results/check_urdf.txt), [TF 값](../week07/results/tf2_echo_moved.txt), [TF 트리](../week07/results/frames_2026-10-26_13.41.44.pdf) | 4링크·3관절, 직선 이동 및 소각도 회전 | RViz 운동학 모델. 관성·동역학·실물 검증 아님 |
 | week08 | [검사 JSON](../week08/results/verification.json), [bag DB](../week08/results/aruco_bag/aruco_bag_0.db3), [화면](../week08/screenshots/02_rosbag_play_aruco_pose.png) | CSI 카메라 ID 0, bag 영상 28개·CameraInfo 32개, 재생 pose 28개 | 강의 제공 보정값과 약 13cm 마커. 절대 거리 정확도 미검증; C920 보정 별도 |
 | week09 | [PGM](../week09/results/map.pgm)·[YAML](../week09/results/map.yaml), [로그](../week09/results/cartographer_excerpt.log), [화면](../week09/screenshots/02_low_speed_mapping.png) | 실물 지도 저장, map_server 읽기·활성화, 저속화 후 벽 겹침 감소 관찰 | 일부 번짐·미관측 영역 존재. 같은 경로의 통제 비교·전체 폐루프·실측 오차 검증 아님 |
 | Mission 3 | [일반 주행 로그](../mission3/results/logs/no_obstacle_01.jsonl)·[장애물 주행 로그](../mission3/results/logs/with_obstacle_04.jsonl), [실물 영상·RViz](../mission3/README.md#결과) | 두 실행에서 A·B 성공 로그, 촬영 구간의 이동·회피 | 영상·로그 시각 동기화, 전 구간 무충돌 및 주행 중 장애물 투입 조건 전체는 미검증 |
+| Mission 4 | [정지형 시연 영상](../mission4/results/mission4_202302200.mp4) · [실행 로그](../mission4/results/run.log) | 한 번 실행해 6단계 완료. 영상에서 A 파지, 무낙하 이송, B 직립 배치와 후퇴 확인 | 약 160초는 첫 개방부터 브링업 복귀까지의 로그 경과 시간이다. 물체의 실제 상승 높이는 측정하지 않았다. |
 | 이동형 부록 | [run11 로그](../appendix/mobile_pick_place/results/continuous_run_11.log)·[요약](../appendix/mobile_pick_place/results/continuous_run_11_result.json), [시연 영상](../appendix/mobile_pick_place/README.md#실물-시연), [14개 시험](../appendix/mobile_pick_place/tests/) | 영상의 직립 배치·후퇴, 6단계 완료, B 추정 오차 0.04126m, odom 후퇴 0.09864m | 제어기 오류 후 조건부 수용 구간 포함. 영상·로그 프레임 동기화, 반복 성공률·외부 실측 오차 미검증 |
 
 ## 자동 검사
@@ -36,7 +37,7 @@ PYTHONPATH=mission1/mission1_202302200 \
 - rosbag SQLite 무결성·토픽별 메시지 수와 메타데이터 일치
 - PGM 크기·픽셀 수와 YAML·검증 기록의 연결
 - Nav2 실행 로그와 목표 설정의 일치, A→B 성공 순서, 실물 영상 SHA-256
-- Mission 4의 상태 전환·실패 시 중단·기하 계산, 최종 실행본/설정 일치 및 로그 수치 검증 (NumPy 필요)
+- 이동형 부록의 상태 전환·실패 시 중단·기하 계산, 최종 실행본/설정 일치 및 로그 수치 검증 (NumPy 필요)
 - 사각 순찰의 반복 경로·각도 경계·속도 제한·직진 재개 수치 시험
 
 외부 웹 링크 가용성, 영상 내용의 진위, 카메라 보정 정확도, ROS 노드 실행과 실물 동작은 CI 범위 밖이다. Mission 2 원본 패키지 내부 README와 SDK의 과거 Python 코드는 당시 소스 보존 대상이므로 현재 문서·Python 구문 검사에서는 제외하고 원본 해시로 확인한다.
