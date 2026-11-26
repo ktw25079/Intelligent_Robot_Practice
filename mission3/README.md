@@ -46,7 +46,7 @@ flowchart LR
 | --- | --- |
 | 목표 pose | `map` 프레임, ROS clock 타임스탬프, yaw→쿼터니언 변환 |
 | 초기 위치 | 명시한 초기 pose 또는 수신한 AMCL 위치를 사용. AMCL 수신 대기는 최대 15초 |
-| `/odom` | `qos_profile_sensor_data`로 수신. 3초 이상 미수신·시각 차이·위치 불연속 검사 |
+| `/odom` | `qos_profile_sensor_data`로 수신. 3초 초과 미수신·시각 차이와 위치 불연속 검사. 콜백이 기록한 시각·위치 오류는 이후 정상 샘플을 받아도 해당 실행에서 유지 |
 | 목표 결과 | `goToPose()` 거절과 `TaskResult` 검사. 성공한 경우에만 다음 목표 전송 |
 | 시간 제한 | 목표당 기본 180초를 monotonic clock으로 확인하고 초과 시 `cancelTask()` 요청 |
 | `/plan`·피드백 | 경로 점, 남은 거리, 복구 횟수와 최종 결과를 JSONL로 기록 |
