@@ -1,105 +1,41 @@
-# Intelligent Robot Practice
+# ROS 2 실물 로봇 제어 · 지능로봇실습
 
-**ROS 2 노드·서비스를 구현하고, 실물 TurtleBot3의 카메라 인식·지도 작성·자율주행·물체 이송을 실습한 프로젝트.**
+**고정된 로봇 팔로 상자를 옮기고, 이동 로봇에는 목적지 두 곳을 차례로 보냈다.** ROS 2 Humble 수업에서 팔·그리퍼의 동작 순서와 Nav2의 목표 전송 로직을 작성하고, 실물 영상과 액션 로그를 대조했다.
 
-강태욱 · 202302200 · 2026년 2학기 · Ubuntu 22.04 / ROS 2 Humble
+[![로봇 팔이 흰 상자를 들어 옆에 세운 뒤 그리퍼를 들어 올리는 실물 시연](mission4/screenshots/pick-place.gif)](mission4/results/mission4_202302200.mp4)
 
-[![Repository checks](https://github.com/ktw25079/Intelligent_Robot_Practice/actions/workflows/verify.yml/badge.svg?branch=main)](https://github.com/ktw25079/Intelligent_Robot_Practice/actions/workflows/verify.yml)
+**11주차 · 상자 이송**　흰 상자가 그리퍼와 함께 움직이다가, B에서 그리퍼가 열린 뒤에는 세워진 자리에 그대로 남는다. 원본 영상의 0:30~2:00 구간을 12배속으로 재생했다.
 
-[실습별 코드](#실습-목록) · [재현 안내](docs/REPRODUCIBILITY.md) · [검증 범위](docs/EVIDENCE.md) · [코드 출처와 기여](docs/PROVENANCE.md)
+강의의 관절 자세 예제를 바탕으로 5 × 5 × 10 cm 상자에 맞춰 네 관절의 목표각을 잡았다. 팔과 그리퍼가 각각 성공을 반환해야 다음 동작으로 넘어가게 했다. 실물 1회 실행에서 첫 개방 명령부터 초기 자세 복귀 완료까지 약 160초가 걸렸다. [팔·그리퍼 코드](mission4/src/ire_week11_moveit/scripts/pick_demo_202302200.py) · [원본 영상](mission4/results/mission4_202302200.mp4) · [실행 로그](mission4/results/run.log)
 
-## 핵심 구현과 검증
-
-직접 작성한 사각 순찰 제어기와 ROS 어댑터, 강의 예제를 확장한 Nav2 목표 관리 코드, 정지한 로봇 팔의 6단계 Pick & Place, 제공 패키지를 활용한 실물 통합 실습으로 구성된다. 팀 제공 드라이버와 강의 알고리즘의 적용 범위는 [코드 출처](docs/PROVENANCE.md)에 구분했다.
-
-| 구현 판단 | 코드에서 확인할 부분 | 실행·검증 근거 |
-| --- | --- | --- |
-| 제어 로직과 ROS 통신 분리 | [상태 제어기](mission1/mission1_202302200/mission1_202302200/square_motion.py)와 [토픽·서비스 노드](mission1/mission1_202302200/mission1_202302200/patrol.py). 최초 방향 기준 회전, 정지 시 진행 상태 유지, 오래된 pose 입력 시 0속도 발행 | [수치 시험](mission1/mission1_202302200/test/test_square_motion.py)과 [두 바퀴·정지 측정값](mission1/results/patrol_demo_verification.json). turtlesim 결과 |
-| 목표 전송 이후의 상태 관리 | [Nav2 클라이언트](mission3/src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py). A 성공 후 B 전송, 목표 거절·시간 초과·odom 이상 처리, 취소 요청과 JSONL 기록 | [일반 주행](mission3/results/logs/no_obstacle_01.jsonl)·[장애물 주행](mission3/results/logs/with_obstacle_04.jsonl)의 A·B 성공, [실물·RViz 영상](mission3/README.md#결과) |
-| 센서 입력과 재생 실험 분리 | [검출 노드](week08/ire_week08_vision/ire_week08_vision/aruco_detect.py)의 센서 QoS·영상 타임스탬프·광학 프레임 적용. 실시간 입력을 멈춘 뒤 bag 재생 | [수신·재생 기록](week08/results/verification.json): 영상 28개·CameraInfo 32개, 재생 pose 28개. 절대 위치 정확도는 미측정 |
-| 증상에 따라 원인을 나누어 점검 | [카메라 케이블·모듈 비교](week08/docs/troubleshooting.md), [OpenCR·SDK 통신 점검](mission2/docs/hardware-repair.md), [매핑 속도 제한](week09/README.md) | 오류 로그·컨트롤러 상태·원본 지도 보존. 관찰과 원인 추정을 구분 |
-| 고정 베이스에서 팔로 상자 이송 | [정지형 6단계 코드](mission4/src/ire_week11_moveit/scripts/pick_demo_202302200.py). 교시한 관절각으로 A에서 파지하고 B에서 개방·후퇴 | [실물 영상](mission4/results/mission4_202302200.mp4)의 무낙하 이송·직립 배치, [실행 로그](mission4/results/run.log)의 브링업 복귀 |
-| 단계별 조건에 따른 팔·베이스 연동 | [이동형 실행본](appendix/mobile_pick_place/submission/pick_demo_202302200.py). 교시 궤적 액션 실행, LiDAR 지도 정합, 파지·높이 확인 후 이송·개방 | [run11 로그](appendix/mobile_pick_place/results/continuous_run_11.log)의 6단계 완료·후퇴, [14개 시험](appendix/mobile_pick_place/tests/). [실물 영상](appendix/mobile_pick_place/README.md#실물-시연)에서 직립 배치·후퇴 확인 |
-
-## 대표 결과
-
-<table>
-<tr>
-<td width="50%" align="center" valign="top">
-<a href="mission1/README.md"><img src="mission1/screenshots/overview.svg" width="420" height="236" alt="Mission 1 · 사각 순찰"/></a><br/>
-<strong><a href="mission1/README.md">Mission 1 · 사각 순찰</a></strong><br/>
-정지·재개와 두 바퀴 주행
-</td>
-<td width="50%" align="center" valign="top">
-<a href="mission2/README.md"><img src="mission2/screenshots/overview.svg" width="420" height="236" alt="Mission 2 · 실물 제어"/></a><br/>
-<strong><a href="mission2/README.md">Mission 2 · 실물 제어</a></strong><br/>
-컨트롤러 5개 활성화·팔 자세 변경
-</td>
-</tr>
-<tr>
-<td width="50%" align="center" valign="top">
-<a href="mission3/README.md"><img src="mission3/screenshots/overview.svg" width="420" height="236" alt="Mission 3 · 자율주행"/></a><br/>
-<strong><a href="mission3/README.md">Mission 3 · 자율주행</a></strong><br/>
-A→B 순차 이동·장애물 회피 장면
-</td>
-<td width="50%" align="center" valign="top">
-<a href="mission4/README.md"><img src="mission4/screenshots/placement.jpg" width="420" height="236" alt="Mission 4 · B에 세운 상자와 후퇴한 그리퍼"/></a><br/>
-<strong><a href="mission4/README.md">Mission 4 · 정지형 Pick &amp; Place</a></strong><br/>
-A에서 파지 후 B에 직립 배치
-</td>
-</tr>
-<tr>
-<td width="50%" align="center" valign="top">
-<a href="week08/README.md"><img src="week08/screenshots/overview.svg" width="420" height="236" alt="week08 · 시각 인식"/></a><br/>
-<strong><a href="week08/README.md">week08 · 시각 인식</a></strong><br/>
-ArUco ID·pose 검출과 기록·재생
-</td>
-<td width="50%" align="center" valign="top">
-<a href="week09/README.md"><img src="week09/screenshots/overview.svg" width="420" height="236" alt="week09 · 지도 작성"/></a><br/>
-<strong><a href="week09/README.md">week09 · 지도 작성</a></strong><br/>
-저속 매핑·지도 저장·재로드
-</td>
-</tr>
-</table>
-
-SLAM 지도에는 일부 미관측 영역과 번짐이 남아 있다. 각 실습에서 실행 근거와 확인 범위를 볼 수 있다.
+**10주차 · 두 지점 자율주행**　강의의 단일 목표 예제를 확장해 A의 성공 응답을 받은 뒤 B를 보내도록 했다. 경로 계획과 추종은 Nav2가 맡고, 작성한 Python 노드는 목표 순서와 취소, 결과 기록을 맡는다. 일반 주행과 장애물 주행을 각각 한 번 실행했고, 두 로그 모두 A와 B 순서로 `TaskResult.SUCCEEDED`를 기록했다. 장애물 주행 영상에는 로봇이 상자 옆을 돌아가는 장면이 보인다. [목표 전송 코드](mission3/src/ire_week10_nav_demo/ire_week10_nav_demo/go_to_pose_202302200.py) · [지도](mission3/results/maps/map.pgm) · [장애물 주행 영상](mission3/results/videos/a_obstacle_b.mp4) · [일반 로그](mission3/results/logs/no_obstacle_01.jsonl) · [장애물 로그](mission3/results/logs/with_obstacle_04.jsonl)
 
 ## 실습 목록
 
-| 실습 | 구현·적용한 내용 | 확인한 결과 | 실행 환경 |
-| --- | --- | --- | --- |
-| [week02](week02/README.md) | 기본 pub/sub 데모와 Python 대응 코드 | 같은 번호의 메시지 발행·수신 로그 | PC / ROS 데모 |
-| [week03](week03/README.md) | Python 패키지·파라미터·remapping | 학번 노드·토픽, rqt_graph 연결 | PC / ROS 노드 |
-| [Mission 1](mission1/README.md) | pose 기반 사각 순찰, SetBool 정지·재개 | 두 바퀴 시연, 직진·회전 정지 검사 | turtlesim |
-| [Mission 2](mission2/README.md) | 팀 제공 ROBOTIS 작업공간 구성·실물 운용 | 컨트롤러 5개 active, 수동 주행·팔 자세 | Pi + TurtleBot3 |
-| [week06](week06/README.md) | Gazebo·RViz·RQt 통합, 베이스 teleop | LaserScan·영상·속도 명령 그래프 | Gazebo |
-| [week07](week07/README.md) | URDF 4링크·3종 관절, launch 설정 | 관절 슬라이더와 TF 변환·트리 | RViz / TF |
-| [week08](week08/README.md) | 강의 ArUco 예제의 실물 적용·rosbag 검증 | CSI 카메라 ID·pose 재생, C920 ID 검출 | Pi 카메라 + PC |
-| [week09](week09/README.md) | Cartographer 운용·저속 제한·저장 도구 | 157×165셀 지도, 0.05m/셀, 파일 재로드 | 실물 SLAM |
-| [Mission 3](mission3/README.md) | Nav2 목표 전송·A→B 순차 주행·장애물 회피 | 실물 영상 2개, RViz 녹화, A·B 성공 로그 | 실물 Nav2 |
-| [Mission 4](mission4/README.md) | 베이스 고정 6단계 Pick & Place | 단일 실행·무낙하 이송·직립 배치·상승 후퇴 | 실물 / ROS 2 Humble |
-| [이동형 부록](appendix/mobile_pick_place/README.md) | MoveIt 기반 교시 궤적 검증·팔 액션·베이스 제어 통합 | 6단계 완료 로그·시연 영상, 직립 배치·후퇴 | 실물 이동형 Pick & Place |
+| 주차 | 구현·실습 | 관찰한 결과 |
+| --- | --- | --- |
+| [02 · 토픽 통신](week02/README.md) | 기본 talker·listener 데모를 실행하고 대응하는 Python 노드를 작성했다. | 기본 데모에서 발행한 `Hello World: 1`을 구독자가 같은 번호로 받았다. |
+| [03 · Python 패키지](week03/README.md) | 노드·토픽 이름을 바꾸고 이름을 파라미터로 전달했다. | 발행·수신 로그에 같은 메시지가 찍히고 rqt_graph에 두 노드가 연결됐다. |
+| [04 · 사각 순찰](mission1/README.md) | turtlesim의 위치와 방향으로 회전·전진을 제어하고 서비스로 정지·재개했다. | 두 바퀴를 돌았다. 직진·회전 중 각각 정지시킨 뒤 2초간 위치와 방향이 그대로였다. |
+| [05 · 실물 bringup](mission2/README.md) | 팀원이 제공한 작업공간에 노트북을 연결해 바퀴와 팔을 조작했다. | 팀 캡처에 컨트롤러 5개가 `active`로 표시됐다. 주행 영상과 팔의 자세 사진을 남겼다. |
+| [06 · Gazebo 주행](week06/README.md) | Gazebo·RViz·RQt Plot을 함께 실행하고 키보드 입력을 속도 명령으로 보냈다. | 시뮬레이션에서 직진·회전·정지할 때의 속도 명령과 센서 영상을 확인했다. |
+| [07 · URDF와 TF](week07/README.md) | 링크 4개를 회전·직선·고정 관절로 연결했다. | 직선 관절을 약 0.137 m 움직인 상태에서 끝점의 TF 좌표는 (0.557, 0.000, 0.400) m였다. |
+| [08 · ArUco 인식](week08/README.md) | 강의 검출기를 Pi 카메라에 연결하고 실시간 카메라 입력을 멈춘 뒤 rosbag을 재생했다. | 0.5배속 재생에서 영상 28개·보정 정보 32개를 받았고, ID 0과 자세 메시지 28개를 확인했다. |
+| [09 · 실물 SLAM](week09/README.md) | 회전 구간에 벽이 겹쳐 보여 수동 주행 속도를 제한하고 지도를 저장했다. | 157 × 165셀 지도(0.05 m/셀)를 다시 불러왔다. 일부 벽 번짐과 미관측 영역이 남았다. |
+| [10 · 두 지점 자율주행](mission3/README.md) | Nav2에 A와 B를 순서대로 보내고 목표별 결과를 기록했다. | 일반·장애물 주행에서 각각 두 목표의 성공 응답을 받았다. |
+| [11 · 고정 베이스 상자 이송](mission4/README.md) | 교시한 자세를 이용해 접근부터 배치·후퇴까지 여섯 단계를 연결했다. | 상자를 세워 놓고 그리퍼가 물러난 뒤 팔이 초기 자세로 돌아왔다. |
 
-week02의 저장 로그는 기본 데모 결과다. Mission 2는 팀 실습 자료이며, week08의 C920 보정·pose 재생과 week09의 전체 공간 폐루프 검증은 완료 확인 전이다. Mission 3의 성공 로그는 목표 도달 판정이며 반복 성공률·실측 도착 오차·전 구간 무충돌을 측정한 결과는 아니다. [근거와 한계 전체 보기](docs/EVIDENCE.md)
+[이동형 상자 이송 부록](appendix/mobile_pick_place/README.md)에는 베이스도 함께 움직인 별도 실물 실험의 코드·영상·기록이 있다. [코드 출처와 담당 범위](docs/PROVENANCE.md) · [실습별 검증 범위](docs/EVIDENCE.md)
 
-## 시작하기
+## 실행 방법
+
+Ubuntu 22.04에서 저장소를 내려받은 뒤, ROS나 로봇 없이 사각 순찰 제어기의 정지·재개 시험을 실행할 수 있다.
 
 ```bash
 git clone https://github.com/ktw25079/Intelligent_Robot_Practice.git ~/intelligent_robot_practice
 cd ~/intelligent_robot_practice
-
-# ROS·하드웨어 없이 저장소 자료와 제어기 수치 시험 확인
-python3 tools/check_repository.py
 PYTHONPATH=mission1/mission1_202302200 \
   python3 -m unittest discover -s mission1/mission1_202302200/test -v
 ```
 
-동일 이름의 패키지가 있으므로 `colcon build`는 **각 실습 README에 지정된 작업공간**에서 실행한다. [장치·작업공간·통신 설정](docs/REPRODUCIBILITY.md)
-
-CI는 문서·소스·데이터 검사, 사각 순찰 수치 시험과 이동형 부록의 상태 전환·기록 검증을 실행한다. [자동 검사 항목](docs/EVIDENCE.md#자동-검사)
-
-## 자료 구조와 출처
-
-각 실습의 `README.md`는 **목표 → 과정 → 결과**, `screenshots/`는 화면·사진, `results/`는 로그·측정값·영상·지도다. Mission 2의 `workspaces/`는 팀 제공 소스다.
-
-직접 작성한 제어기·URDF, 강의 예제 적용, ROBOTIS와 팀 제공 소스를 구분하고 원본 라이선스를 보존한다. [파일별 출처와 수정 범위](docs/PROVENANCE.md)
+ROS 2 Humble 실습은 위 표에서 주차를 열고 해당 작업공간에서 빌드한다. 같은 이름의 패키지가 있어 주차별로 작업공간을 나눴다. [장치·통신 설정](docs/REPRODUCIBILITY.md) · [저장 자료 자동 검사](docs/EVIDENCE.md#자동-검사)
