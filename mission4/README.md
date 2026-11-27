@@ -35,6 +35,8 @@ ros2 run ire_week11_moveit pick_demo_202302200
 
 ## 결과
 
-11월 26일 실물 실행 로그에서 첫 개방부터 브링업 복귀까지 160초가 걸렸다. 시연 영상에서 상자가 A를 떠나 B까지 그리퍼에 잡혀 있고, 내려놓은 뒤에도 똑바로 서 있는 모습을 확인할 수 있다. [실행 로그](results/run.log) · [시연 영상 · 2분 35초](results/mission4_202302200.mp4)
+11월 26일 실물 1회 실행에서 첫 그리퍼 개방 명령부터 초기 자세 복귀 완료까지 약 160초가 걸렸다. 영상에서 흰 상자가 그리퍼를 따라 A에서 B로 이동하고, 그리퍼가 열린 뒤에도 B에 세워져 있다. [실행 로그](results/run.log) · [시연 영상 · 2분 35초](results/mission4_202302200.mp4)
 
-[![1분 55초, 그리퍼가 물러난 뒤 B에 세워진 상자](screenshots/placement.jpg)](results/mission4_202302200.mp4)
+[![상자를 파지해 B로 옮기고 그리퍼를 들어 올리는 모습](screenshots/pick-place.gif)](results/mission4_202302200.mp4)
+
+원본 0:30~2:00 구간의 12배속 영상이다. [1분 55초의 배치 사진](screenshots/placement.jpg)
